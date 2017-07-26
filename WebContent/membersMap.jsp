@@ -93,11 +93,12 @@
           
     <div class="ui nav" style="padding: 3%;">
 
-     <div class="ui secondary massive menu navmenu">
+     <div class="ui secondary menu navmenu">
     
-    <div style="padding-right:5%;"><a href="index.html"><img src="img/logo.png">     
+    <div style="padding-right:5%;"><a href="index.jsp"><img src="img/logo.png"style=" width:200px; height: auto;">      
        </a>  </div>     
 
+  
       
 
   <div class="ui dropdown item">
@@ -107,7 +108,7 @@
       <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
       <a class="item"  href="aboutBoardMembers.jsp">Board Members</a>
       <a class="item"href="aboutCommissionMembers.jsp">Commission Members</a>
-        <a class="item" href="internationalAffiliations.jsp">International Affiliation</a>
+        <a class="item" href="aboutInternationalAffiliations.jsp">International Affiliation</a>
     </div>
   </div>
  
@@ -122,7 +123,6 @@
    OUR MEMBERS
   </a>     
          
-           
     <a class="item" href="downloads.jsp">
    DOWNLOADS
   </a>
@@ -141,8 +141,8 @@
   </div>
 </div>
     
- </div>
-        
+ </div>   
+
         
       
         <div class="main-body-container">
@@ -348,7 +348,7 @@
         <div class="four wide column" style="padding-right:10%;">
    
           <div class="ui inverted link list">
-              <img class="item" width="350px" height="125px;" src="img/footer-logo.png">
+              <img class="item" width="250px" height="auto;" src="img/footer-logo.png">
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">History of PAASCU</a><br>
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Objectives</a><br>
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Board Memberss</a><br>
@@ -396,7 +396,7 @@ J.P. Rizal corner P. Tuazon Sts.,
 </div>
             
             <br><br>
-               <button class="ui large green button">SIGN UP</button>
+               <button class="ui green button">SIGN UP</button>
         </div>
       </div>
    

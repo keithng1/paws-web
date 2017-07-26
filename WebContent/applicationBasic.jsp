@@ -4,8 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Basic Education Application</title>  <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<title>Application for Basic Education</title>
+
+
+
+
+
+ <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         
       <!--Import sementic.css components-->
       <link type="text/css" rel="stylesheet" href="css/semantic.css"/> 
@@ -24,23 +29,28 @@
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <style>
+    
+      <style>
     @viewport { width: auto; }
 </style>
 
-      </head>
-      
-      <body>
-      
-          
-          
+
+
+</head>
+
+<body>
+
+
+
+
+   
           
     <div class="ui nav" style="padding: 3%;">
 
-     <div class="ui secondary massive menu navmenu">
+     <div class="ui secondary menu navmenu">
     
-    <div style="padding-right:5%;"><a href="index.html"><img src="img/logo.png">     
-       </a>  </div>     
+         <div style="padding-right:5%;"><a href="index.jsp"><img src="img/logo.png"style=" width:200px; height: auto;">     </a>
+         </div>     
 
       
 
@@ -51,7 +61,7 @@
       <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
       <a class="item"  href="aboutBoardMembers.jsp">Board Members</a>
       <a class="item"href="aboutCommissionMembers.jsp">Commission Members</a>
-        <a class="item" href="internationalAffiliations.jsp">International Affiliation</a>
+        <a class="item" href="aboutInternationalAffiliations.jsp">International Affiliation</a>
     </div>
   </div>
  
@@ -66,7 +76,6 @@
    OUR MEMBERS
   </a>     
          
-           
     <a class="item" href="downloads.jsp">
    DOWNLOADS
   </a>
@@ -453,7 +462,7 @@
         <div class="four wide column" style="padding-right:10%;">
    
           <div class="ui inverted link list">
-              <img class="item" width="350px" height="125px;" src="img/footer-logo.png">
+              <img class="item" width="250px" height="auto;" src="img/footer-logo.png">
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">History of PAASCU</a><br>
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Objectives</a><br>
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Board Memberss</a><br>
@@ -501,7 +510,7 @@ J.P. Rizal corner P. Tuazon Sts.,
 </div>
             
             <br><br>
-               <button class="ui large green button">SIGN UP</button>
+               <button class="ui green button">SIGN UP</button>
         </div>
       </div>
    

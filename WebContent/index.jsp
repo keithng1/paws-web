@@ -1,8 +1,16 @@
-  <html>
-    <head>
-         <meta charset="UTF-8">
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>PAASCU Home</title>
+
+
+
+
+
+ <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         
       <!--Import sementic.css components-->
       <link type="text/css" rel="stylesheet" href="css/semantic.css"/> 
@@ -13,41 +21,35 @@
          <link type="text/css" rel="stylesheet" href="css/style.css"/> 
       
         
-    
-      
+         <meta charset="UTF-8">
+        
+        
+
+        
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
-
-
-
-
-
-
-
-
-<style>
+      <style>
     @viewport { width: auto; }
 </style>
 
 
 
+</head>
+
+<body>
 
 
 
-      </head>
-      
-      <body>
-      
- 
-          
+
+   
           
     <div class="ui nav" style="padding: 3%;">
 
-     <div class="ui secondary massive menu navmenu">
+     <div class="ui secondary menu navmenu">
     
-         <div style="padding-right:5%;"><a href="index.html"><img src="img/logo.png">   </a>  
+         <div style="padding-right:5%;"><a href="index.jsp"><img src="img/logo.png"style=" width:200px; height: auto;">     </a>
          </div>     
 
       
@@ -56,29 +58,29 @@
   
    ABOUT  <i class="dropdown icon"></i>
     <div class="menu">
-      <a class="item" href="about-paascu.html">About PAASCU</a>
-      <a class="item"  href="about-board-members.html">Board Members</a>
-      <a class="item" href="about-commision-members.html">Commission Members</a>
-        <a class="item" href="about-international.html">International Affiliation</a>
+      <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
+      <a class="item"  href="aboutBoardMembers.jsp">Board Members</a>
+      <a class="item"href="aboutCommissionMembers.jsp">Commission Members</a>
+        <a class="item" href="aboutInternationalAffiliations.jsp">International Affiliation</a>
     </div>
   </div>
  
-  <a class="item" href="news.html">
+  <a class="item" href="newsList.jsp">
      NEWS
   </a>
-  <a class="item"  href="accreditation.html">
+  <a class="item"  href="accreditation.jsp">
      ACCREDITATION
   </a>
          
-    <a class="item" href="members.html">
+    <a class="item" href="members.jsp">
    OUR MEMBERS
   </a>     
          
-    <a class="item" href="downloads.html">
+    <a class="item" href="downloads.jsp">
    DOWNLOADS
   </a>
          
-    <a class="item" href="contact-us.html">
+    <a class="item" href="contactUs.jsp">
     CONTACT
   </a>
   <div class="right menu">
@@ -93,7 +95,6 @@
 </div>
     
  </div>
-      
         
       
         <div class="main-body-container">
@@ -111,7 +112,7 @@
     <div class="column"><div class="carousel-content">  
                   <span class="carousel-header">PAASCU JOINS TRAIN IQA</span><br><br>
             <span style=" text-align: left;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie </span>  <br><br>
-          <button class="ui huge green button">READ MORE ></button>
+          <button class="ui green button">READ MORE ></button>
               </div>
          </div>
   </div>
@@ -134,7 +135,7 @@
     <div class="column"><div class="carousel-content">  
                   <span class="carousel-header">PAASCU JOINS TRAIN IQA</span><br><br>
             <span style=" text-align: left;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie </span>  <br><br>
-          <button class="ui huge green button">READ MORE ></button>
+          <button class="ui green button">READ MORE ></button>
               </div>
          </div>
   </div>
@@ -163,7 +164,7 @@
 
 
  <div class="pad-down"><span class="call-text">Be a member institution.</span></div>
-    <div class=""> <button class="ui huge green button">CONTACT US</button></div>
+    <div class=""> <button class="ui green button">CONTACT US</button></div>
   </div>
 </div>
               
@@ -191,7 +192,7 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie neque pulvinar, 
       </div>
           <br><br>
-          <a style="color: black;"><h2 style="padding-left: 3%;"> VIEW PAASCU ACCREDITED INSTITUTIONS ></h2> </a>
+          <a style="color: black;"><h5 style="padding-left: 3%;"> VIEW PAASCU ACCREDITED INSTITUTIONS ></h5> </a>
        
         <br><br>
         </div>
@@ -206,7 +207,7 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie neque pulvinar, 
       </div>  
             <br><br>
-           <a style="color: black;"><h2 style="padding-left: 3%;"> VIEW PAASCU ACCREDITED PROGRAMS ></h2> </a>
+           <a style="color: black;"><h5 style="padding-left: 3%;"> VIEW PAASCU ACCREDITED PROGRAMS ></h5> </a>
     
           <br><br>
         </div>
@@ -237,7 +238,7 @@
         <div class="four wide column" style="padding-right:10%;">
    
           <div class="ui inverted link list">
-              <img class="item" width="350px" height="125px;" src="img/footer-logo.png">
+              <img class="item" width="250px" height="auto;" src="img/footer-logo.png">
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">History of PAASCU</a><br>
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Objectives</a><br>
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Board Memberss</a><br>
@@ -285,7 +286,7 @@ J.P. Rizal corner P. Tuazon Sts.,
 </div>
             
             <br><br>
-               <button class="ui large green button">SIGN UP</button>
+               <button class="ui green button">SIGN UP</button>
         </div>
       </div>
    

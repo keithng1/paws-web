@@ -16,16 +16,17 @@ html{
 
 
 /*home page */
+/*
 .carousel-header{
     
-    font-size: 40px;
+    font-size: 25px;
     
 }
 .carousel-content{
     
-    padding: 10%;
-    font-size: 24px;
-    line-height: 35px;
+    padding: 18%;
+    font-size: 14px;
+    line-height: 20px;
     
 }
 
@@ -46,26 +47,17 @@ input{
 }
 .description{
     padding: 3% !important;
-    font-size: 24px!important;
+    font-size: 14px!important;
     line-height: 40px!important;
 }
 
 .header{
     
-    font-size: 26px !important;
+    font-size: 18px !important;
 }
 
 
 
-.call{
-    background-color: rgb(243, 241, 241);
-  padding: 2%;
-}
-
-.call-text{
-    font-size: 30;
-    color: rgb(85, 82, 82)
-}
 .pad-down{
     padding-top: 1%;
 }
@@ -82,20 +74,55 @@ input{
     padding-bottom: 5%;
     
 }
-
-
 .card-text{
-    font-size: 30px !important;
+    font-size: 20px !important;
+}
+
+*/
+
+.ui.pagination.menu{
+    font-size: 12px;
+}
+
+.pad-down{
+    padding-top: 1%;
+}
+
+.carousel-header{
+    
+    font-size: 25px;
+    
+}
+.carousel-content{
+    
+    padding: 18%;
+    font-size: 14px;
+    line-height: 20px;
+    
+}
+
+.main-body-container{
+    padding-left:5%;
+    padding-right:5%;
 }
 
 .footer-text{
-    font-size: 18px!important;
+    font-size: 12px!important;
     color: white!important;
      font-family: "opensans"; 
 
 }
 
 
+.call{
+    background-color: rgb(243, 241, 241);
+  padding: 2%;
+}
+
+.call-text{
+    font-size: 18px;
+    color: rgb(85, 82, 82)
+}
 
 /* glide */
 .slider {
@@ -251,6 +278,7 @@ background-position: -17px 0;
 }
 
 
+/*
 
 .sidebar-about{
     
@@ -293,4 +321,5 @@ background-position: -17px 0;
     
     color: gray;
 }
+*/
 
