@@ -37,6 +37,8 @@
       
       
           
+          
+          
     <div class="ui nav" style="padding: 3%;">
 
      <div class="ui secondary massive menu navmenu">
@@ -50,29 +52,30 @@
   
    ABOUT  <i class="dropdown icon"></i>
     <div class="menu">
-      <a class="item" href="about-paascu.html">About PAASCU</a>
-      <a class="item"  href="about-board-members.html">Board Members</a>
-      <a class="item" href="about-commision-members.html">Commission Members</a>
-        <a class="item" href="about-international.html">International Affiliation</a>
+      <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
+      <a class="item"  href="aboutBoardMembers.jsp">Board Members</a>
+      <a class="item"href="aboutCommissionMembers.jsp">Commission Members</a>
+        <a class="item" href="internationalAffiliations.jsp">International Affiliation</a>
     </div>
   </div>
  
-  <a class="item" href="news.html">
+  <a class="item" href="newsList.jsp">
      NEWS
   </a>
-  <a class="item" href="accreditation.html">
+  <a class="item"  href="accreditation.jsp">
      ACCREDITATION
   </a>
          
-    <a class="item" href="members.html">
+    <a class="item" href="members.jsp">
    OUR MEMBERS
   </a>     
          
-    <a class="item" href="downloads.html">
+           
+    <a class="item" href="downloads.jsp">
    DOWNLOADS
   </a>
          
-    <a class="item" href="contact-us.html">
+    <a class="item" href="contactUs.jsp">
     CONTACT
   </a>
   <div class="right menu">

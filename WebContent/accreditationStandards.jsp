@@ -106,40 +106,42 @@
   <p class="item" style="background-color: #45484c; color: white;">
     Accreditation
   </p>
-  <a class="item" href="accreditation.html">
+ <a class="item" href="accreditation.jsp">
     What is Accreditation
   </a>
-   <a class="item"  href="accreditation-org.html">
+   <a class="item"  href="accreditationPaascuOrganization.jsp">
    PAASCU Organization
   </a>
-   <a class="item active" href="accreditation-standards.html">
+   <a class="item active" href="accreditationStandards.jsp">
    PAASCU Standards
   </a>
-  <a class="item" href="accreditation-advantage.html">
+  <a class="item"href="accreditationAdvantage.jsp">
    Advantages of Accreditation
   </a>
         
-    <a class="item" href="accreditation-process.html">
+    <a class="item" href="accreditationProcess.jsp">
    Accreditation Process
   </a>
         
-    <a class="item" href="accreditation-membership.html">
+    <a class="item" href="accreditationMembership.jsp">
    Categories of Membership
   </a>
         
-<a class="item" href="accreditation-benefits.html">
+<a class="item" href="accreditationBenefits.jsp">
    Member Benefits and Incentives
   </a>
         
-<a class="item" href="accreditation-programs.html">
+<a class="item" href="accreditationPrograms.jsp">
    Programs Accredited by PAASCU
   </a>
  
  
  
+ 
 </div>
         
-         </div>    
+         </div>          
+        
         
         </div>
         

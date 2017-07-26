@@ -35,7 +35,6 @@
           
           
           
-          
     <div class="ui nav" style="padding: 3%;">
 
      <div class="ui secondary massive menu navmenu">
@@ -49,30 +48,30 @@
   
    ABOUT  <i class="dropdown icon"></i>
     <div class="menu">
-      <a class="item" href="about-paascu.html">About PAASCU</a>
-      <a class="item"  href="about-board-members.html">Board Members</a>
-      <a class="item" href="about-commision-members.html">Commission Members</a>
-        <a class="item" href="about-international.html">International Affiliation</a>
+      <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
+      <a class="item"  href="aboutBoardMembers.jsp">Board Members</a>
+      <a class="item"href="aboutCommissionMembers.jsp">Commission Members</a>
+        <a class="item" href="internationalAffiliations.jsp">International Affiliation</a>
     </div>
   </div>
  
-  <a class="item" href="news.html">
+  <a class="item" href="newsList.jsp">
      NEWS
   </a>
-  <a class="item" href="accreditation.html">
+  <a class="item"  href="accreditation.jsp">
      ACCREDITATION
   </a>
          
-    <a class="item" href="members.html">
+    <a class="item" href="members.jsp">
    OUR MEMBERS
   </a>     
          
-         
-    <a class="item" href="downloads.html">
+           
+    <a class="item" href="downloads.jsp">
    DOWNLOADS
   </a>
          
-    <a class="item" href="contact-us.html">
+    <a class="item" href="contactUs.jsp">
     CONTACT
   </a>
   <div class="right menu">
@@ -87,7 +86,6 @@
 </div>
     
  </div>
-      
         
       
         <div class="main-body-container">
@@ -100,43 +98,44 @@
 
       
       
+      
              
 <div class="ui secondary vertical menu">
     <div class="sidebar-about">
   <p class="item" style="background-color: #45484c; color: white;">
     Our Members
   </p>
-  <a class="item" href="members.html">
+  <a class="item" href="members.jsp">
     A to Z
   </a>
-   <a class="item active"  href="members-elem.html">
+   <a class="item active"  href="membersElem.jsp">
    Elementary Education
   </a>
-   <a class="item" href="members-secondary.html">
+   <a class="item" href="membersSecondary.jsp">
    Secondary Education
   </a>
-  <a class="item" href="members-basic.html">
+  <a class="item" href="membersBasic.jsp">
    Integrated Basic Education
   </a>
         
-    <a class="item" href="members-tertiary.html">
+    <a class="item" href="membersTertiary.jsp">
    Tertiary Education
   </a>
         
-    <a class="item" href="members-grad.html">
+    <a class="item" href="membersGrad.jsp">
    Graduate Education
   </a>
         
-<a class="item" href="members-med.html">
+<a class="item" href="membersMed.jsp">
    Medical Education
   </a>
         
-<a class="item" href="members-eng.html">
+<a class="item" href="membersEng.jsp">
    Engineering, Computer Science & Technology Education
   </a>
         
         
-<a class="item" href="members-map.html">
+<a class="item" href="membersMap.jsp">
    Map View
   </a>
  

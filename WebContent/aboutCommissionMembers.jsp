@@ -57,30 +57,29 @@
   
    ABOUT  <i class="dropdown icon"></i>
     <div class="menu">
-      <a class="item" href="about-paascu.html">About PAASCU</a>
-      <a class="item"  href="about-board-members.html">Board Members</a>
-      <a class="item" href="about-commision-members.html">Commission Members</a>
-        <a class="item" href="about-international.html">International Affiliation</a>
+      <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
+      <a class="item"  href="aboutBoardMembers.jsp">Board Members</a>
+      <a class="item"href="aboutCommissionMembers.jsp">Commission Members</a>
+        <a class="item" href="aboutInternationalAffiliations.jsp">International Affiliation</a>
     </div>
   </div>
  
-  <a class="item" href="news.html">
+  <a class="item" href="newsList.jsp">
      NEWS
   </a>
-  <a class="item"  href="accreditation.html">
+  <a class="item"  href="accreditation.jsp">
      ACCREDITATION
   </a>
          
-    <a class="item" href="members.html">
+    <a class="item" href="members.jsp">
    OUR MEMBERS
   </a>     
          
-         
-    <a class="item" href="downloads.html">
+    <a class="item" href="downloads.jsp">
    DOWNLOADS
   </a>
          
-    <a class="item" href="contact-us.html">
+    <a class="item" href="contactUs.jsp">
     CONTACT
   </a>
   <div class="right menu">
@@ -95,6 +94,7 @@
 </div>
     
  </div>
+      
       
         
       
@@ -114,13 +114,13 @@
   <p class="item" style="background-color: #45484c; color: white;">
     About
   </p>
-  <a class="item" href="about-paascu.html">
+  <a class="item" href="aboutPaascu.jsp">
     About PAASCU
   </a>
-   <a class="item" href="about-board-members.html">
+   <a class="item" href="aboutBoardMembers.jsp">
    Board Members
   </a>
-   <a class="item active" href="about-commision-members.html">Commision Members</a>
+   <a class="item active" href="aboutCommissionMembers.jsp">Commission Members</a>
    <a class="item padded-menu-item" href="#elementary">Elementary Education</a>
    <a class="item padded-menu-item" href="#secondary">Secondary Education</a> 
    <a class="item padded-menu-item">Integrated Basic Education</a> 
@@ -129,7 +129,7 @@
         <a class="item padded-menu-item" href="#med">Medical Education</a> 
         <a class="item padded-menu-item" href="#cecste">Engineering, Computer Science & Technology Education</a> 
         
-  <a class="item" href="about-international.html">
+  <a class="item" href="internationalAffiliations.jsp">
    International Affiliations
   </a>
  

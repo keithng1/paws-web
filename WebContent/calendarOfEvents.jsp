@@ -4,41 +4,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Downloads</title> <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<title>Calendar of Events</title>  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         
       <!--Import sementic.css components-->
       <link type="text/css" rel="stylesheet" href="css/semantic.css"/> 
       
         <link type="text/css" rel="stylesheet" href="components/icon.css"/> 
       
-        
          <link type="text/css" rel="stylesheet" href="css/style.css"/> 
-      
-        
-         <meta charset="UTF-8">
-        
-        
 
-        
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-   
+<meta charset='utf-8' />
+<link href='css/fullcalendar.min.css' rel='stylesheet' />
+<link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+ <meta charset="UTF-8">
+<style>
 
-    <style>
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
     @viewport { width: auto; }
-</style>
 
-      </head>
-      
-      <body>
-      
-          
-          
-          
-          
-          
+
+</style>
+</head>
+<body>
+    
           
           
     <div class="ui nav" style="padding: 3%;">
@@ -92,6 +94,7 @@
 </div>
     
  </div>
+        
       
         
       
@@ -104,200 +107,48 @@
         
 
       
-      
-             
+          
 <div class="ui secondary vertical menu">
     <div class="sidebar-about">
   <p class="item" style="background-color: #45484c; color: white;">
-    Downloads
+   News
   </p>
-  <span class="item">
-      <b>Application for Survey Visit</b>
-  </span>
-   <a class="item" style="padding-left: 20%;" href="applicationGradeSchool.jsp"  >
-   Grade School
+  <a class="item active" href="newsList.jsp">
+    News
   </a>
-   <a class="item" style="padding-left: 20%;" href="applicationHighSchool.jsp" >
-   High School
+   <a class="item" href="calendarOfEvents.jsp">
+       Calendar of Events
   </a>
-        
-           
-    <a class="item" style="padding-left: 20%;" href="applicationBasic.jsp" >
-   Basic Education
+   <a class="item" href="annualReports.jsp">
+   Annual Reports
   </a>
-            
-        
-  <a class="item" style="padding-left: 20%;" href="applicationCollege.jsp" >
-   College
-  </a>
-        
-    <a class="item" style="padding-left: 20%;" href="applicationMed.jsp" >
-   Medical Education
-  </a>
-
- 
-   <span class="item">
-      <b>Checklist of Materials</b>
-  </span>
-   <a class="item" style="padding-left: 20%;" >
-   Grade School
-  </a>
-   <a class="item" style="padding-left: 20%;">
-   High School
-  </a>
-        
-           
-    <a class="item" style="padding-left: 20%;">
-   Basic Education
-  </a>
-            
-        
-  <a class="item" style="padding-left: 20%;">
-   College
-  </a>
-        
-    <a class="item" style="padding-left: 20%;">
-   Medical Education
-  </a>
-
- 
-   <span class="item">
-      <b>Materials in Headquarters</b>
-  </span>
-   <a class="item" style="padding-left: 20%;" >
-   Grade School
-  </a>
-   <a class="item" style="padding-left: 20%;">
-   High School
-  </a>
-      
-  <a class="item" style="padding-left: 20%;">
-   College
-  </a>
-        
+  
  
  
-        
 </div>
         
          </div>    
         
         </div>
         
+     
         
+  <div class="thirteen wide column">
         
+<h1 style="color: #45484c;">Calendar of Events</h1>        
+      <hr><br><br>
+       
+<br><br>
+	<div id='calendar'></div>
+        </div></div></div>
+
+    
+    
+    
+    <br><br>
+    
+       <br><br><br>
         
-  <div class="thirteen wide column body-text-about">
-      
-      
-      
-        
-<h1 style="color: #45484c;">Downloads</h1>        
-      <hr><br>
-      <br><br>
-  
-      
-      <div class="ui two column grid">
-  <div class="row">
-    <div class="column">
-      
-      
-      
-            
-          
-        
-<h3 style="color: #45484c;">Application for Survey Visit</h3>        
-      <hr><br>  
-      
-      
-        
-
-   <a class="institution-list" href="application-grade-school.html" >Grade School</a><br><br>
-
-   <a class="institution-list" href="application-high-school.html" >High School</a><br><br>
-
-   <a class="institution-list" href="application-basic.html" >Basic Education</a><br><br>
-
-   <a class="institution-list" href="application-college.html" >College</a><br><br>
-
-   <a class="institution-list" href="application-med.html" >Medical Education</a><br><br>
-
-
-      </div>
-      
-      
-      
-      
-    <div class="column">
-      
-          
-        
-<h3 style="color: #45484c;">Checklist of Materials</h3>        
-      <hr><br>  
-      
-
-   <a class="institution-list">Grade School</a><br><br>
-
-   <a class="institution-list">High School</a><br><br>
-
-   <a class="institution-list">Basic Education</a><br><br>
-
-   <a class="institution-list">College</a><br><br>
-
-   <a class="institution-list">Medical Education</a><br><br>
-
-
-      
-      </div>
-  
-  </div>
-  <div class="column">
-          
-          
-      
-          
-        
-<h3 style="color: #45484c;">Materials in Headquarters</h3>        
-      <hr><br>  
-
-   <a class="institution-list">Grade School</a><br><br>
-
-   <a class="institution-list">High School</a><br><br>
-
-
-
-   <a class="institution-list">College</a><br><br>
-
-
-
-
-</div>
-  <div class="column"></div>
-</div>
-      
-      
-      
-</div>
-
-            
-          
-        
-        
-        
-        
-        
-</div>
-            
-            
-            
-            
-          
-          
-          </div>
-          
-    <br><br><br>
-          
-                    
       
   <div class="ui inverted vertical footer segment footerbg">
              <br><br><br>
@@ -364,18 +215,24 @@ J.P. Rizal corner P. Tuazon Sts.,
       </div>
   </div>
           
-          
-      </body>
-      
-      
-      
+         
+    
+    
+    
+    
+    
+    </body>
+    
+    
+    
+<script src='js/moment.min.js'></script>
+<script src='js/jquery.min.js'></script>
+<script src='js/fullcalendar.min.js'></script>
 
-      
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script type="text/javascript" src="js/semantic.min.js"></script>
-   
-
-   <script type="text/javascript">
+    
+<script type="text/javascript" src="js/semantic.min.js"></script>
+     
+      <script type="text/javascript">
       
 if(screen.width>=1500){document.write("<style>body{zoom:80%;}</style>");}
 if(screen.width>=2000){document.write("<style>body{zoom:100%;}</style>");}
@@ -388,12 +245,94 @@ $('.ui.dropdown')
   .dropdown()
 ;    
     
+    
+$('.slider').glide({
+  autoplay: 2000,
+  arrowsWrapperClass: 'slider-arrows',
+  arrowRightText: '',
+  arrowLeftText: '',
 
+});
       
 </script>
       
-      
-      
-      
-      
+    
+   <script> 
+    
+
+	$(document).ready(function() {
+		
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,basicWeek,basicDay'
+			},
+			defaultDate: '2017-05-12',
+			navLinks: true, // can click day/week names to navigate views
+			editable: false,
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+				{
+					title: 'All Day Event',
+					start: '2017-05-01'
+				},
+				{
+					title: 'Long Event',
+					start: '2017-05-07',
+					end: '2017-05-10'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-05-09T16:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-05-16T16:00:00'
+				},
+				{
+					title: 'Conference',
+					start: '2017-05-11',
+					end: '2017-05-13'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-05-12T10:30:00',
+					end: '2017-05-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2017-05-12T12:00:00'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-05-12T14:30:00'
+				},
+				{
+					title: 'Happy Hour',
+					start: '2017-05-12T17:30:00'
+				},
+				{
+					title: 'Dinner',
+					start: '2017-05-12T20:00:00'
+				},
+				{
+					title: 'Birthday Party',
+					start: '2017-05-13T07:00:00'
+				},
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2017-05-28'
+				}
+			]
+		});
+		
+	});
+
+</script>
+    
+    
 </html>

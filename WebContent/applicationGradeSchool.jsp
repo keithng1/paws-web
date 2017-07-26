@@ -46,35 +46,36 @@
   
    ABOUT  <i class="dropdown icon"></i>
     <div class="menu">
-      <a class="item" href="about-paascu.html">About PAASCU</a>
-      <a class="item"  href="about-board-members.html">Board Members</a>
-      <a class="item" href="about-commision-members.html">Commission Members</a>
-        <a class="item" href="about-international.html">International Affiliation</a>
+      <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
+      <a class="item"  href="aboutBoardMembers.jsp">Board Members</a>
+      <a class="item"href="aboutCommissionMembers.jsp">Commission Members</a>
+        <a class="item" href="internationalAffiliations.jsp">International Affiliation</a>
     </div>
   </div>
  
-  <a class="item" href="news.html">
+  <a class="item" href="newsList.jsp">
      NEWS
   </a>
-  <a class="item" href="accreditation.html">
+  <a class="item"  href="accreditation.jsp">
      ACCREDITATION
   </a>
          
-    <a class="item" href="members.html">
+    <a class="item" href="members.jsp">
    OUR MEMBERS
   </a>     
          
-    <a class="item" href="downloads.html">
+           
+    <a class="item" href="downloads.jsp">
    DOWNLOADS
   </a>
          
-    <a class="item" href="contact-us.html">
+    <a class="item" href="contactUs.jsp">
     CONTACT
   </a>
   <div class="right menu">
     <div class="item">
       <div class="ui icon input">
-        <input  type="text" placeholder="Search...">
+        <input type="text" placeholder="Search...">
         <i class="search link icon"></i>
       </div>
     </div>
@@ -83,7 +84,7 @@
 </div>
     
  </div>
-      
+        
         
       
         <div class="main-body-container">
@@ -105,24 +106,24 @@
   <span class="item">
       <b>Application for Survey Visit</b>
   </span>
-   <a class="item active" style="padding-left: 20%;" href="application-grade-school.html" >
+   <a class="item active" style="padding-left: 20%;" href="applicationGradeSchool.jsp" >
    Grade School
   </a>
-   <a class="item" style="padding-left: 20%;" href="application-high-school.html">
+   <a class="item" style="padding-left: 20%;" href="applicationHighSchool.jsp">
    High School
   </a>
         
            
-    <a class="item" style="padding-left: 20%;" href="application-basic.html">
+    <a class="item" style="padding-left: 20%;" href="applicationBasic.jsp">
    Basic Education
   </a>
             
         
-  <a class="item" style="padding-left: 20%;" href="application-college.html">
+  <a class="item" style="padding-left: 20%;" href="applicationCollege.jsp">
    College
   </a>
         
-    <a class="item" style="padding-left: 20%;" href="application-med.html">
+    <a class="item" style="padding-left: 20%;" href="applicationMed.jsp">
    Medical Education
   </a>
 
@@ -130,24 +131,24 @@
    <span class="item">
       <b>Checklist of Materials</b>
   </span>
-   <a class="item" style="padding-left: 20%;" href="checklist-grade-school.html" >
+   <a class="item" style="padding-left: 20%;"  >
    Grade School
   </a>
-   <a class="item" style="padding-left: 20%;" href="checklist-high-school.html">
+   <a class="item" style="padding-left: 20%;" >
    High School
   </a>
         
            
-    <a class="item" style="padding-left: 20%;" href="checklist-basic.html">
+    <a class="item" style="padding-left: 20%;" >
    Basic Education
   </a>
             
         
-  <a class="item" style="padding-left: 20%;" href="checklist-college.html">
+  <a class="item" style="padding-left: 20%;" >
    College
   </a>
         
-    <a class="item" style="padding-left: 20%;" href="checklist-med.html">
+    <a class="item" style="padding-left: 20%;" >
    Medical Education
   </a>
 
@@ -155,14 +156,14 @@
    <span class="item">
       <b>Materials in Headquarters</b>
   </span>
-   <a class="item" style="padding-left: 20%;" href="materials-grade-school.html">
+   <a class="item" style="padding-left: 20%;" >
    Grade School
   </a>
-   <a class="item" style="padding-left: 20%;" href="materials-high-school.html">
+   <a class="item" style="padding-left: 20%;" >
    High School
   </a>
       
-  <a class="item" style="padding-left: 20%;" href="materials-college-school.html">
+  <a class="item" style="padding-left: 20%;" >
    College
   </a>
         

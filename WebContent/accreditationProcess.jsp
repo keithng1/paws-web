@@ -33,8 +33,7 @@
       
           
           
-          
-          
+           
     <div class="ui nav" style="padding: 3%;">
 
      <div class="ui secondary massive menu navmenu">
@@ -48,29 +47,30 @@
   
    ABOUT  <i class="dropdown icon"></i>
     <div class="menu">
-      <a class="item" href="about-paascu.html">About PAASCU</a>
-      <a class="item"  href="about-board-members.html">Board Members</a>
-      <a class="item" href="about-commision-members.html">Commission Members</a>
-        <a class="item" href="about-international.html">International Affiliation</a>
+      <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
+      <a class="item"  href="aboutBoardMembers.jsp">Board Members</a>
+      <a class="item"href="aboutCommissionMembers.jsp">Commission Members</a>
+        <a class="item" href="internationalAffiliations.jsp">International Affiliation</a>
     </div>
   </div>
  
-  <a class="item" href="news.html">
+  <a class="item" href="newsList.jsp">
      NEWS
   </a>
-  <a class="item" href="accreditation.html">
+  <a class="item"  href="accreditation.jsp">
      ACCREDITATION
   </a>
          
-    <a class="item" href="members.html">
+    <a class="item" href="members.jsp">
    OUR MEMBERS
   </a>     
          
-    <a class="item" href="downloads.html">
+           
+    <a class="item" href="downloads.jsp">
    DOWNLOADS
   </a>
          
-    <a class="item" href="contact-us.html">
+    <a class="item" href="contactUs.jsp">
     CONTACT
   </a>
   <div class="right menu">
@@ -85,7 +85,6 @@
 </div>
     
  </div>
-      
         
       
         <div class="main-body-container">
@@ -104,40 +103,41 @@
   <p class="item" style="background-color: #45484c; color: white;">
     Accreditation
   </p>
-  <a class="item" href="accreditation.html">
+ <a class="item" href="accreditation.jsp">
     What is Accreditation
   </a>
-   <a class="item"  href="accreditation-org.html">
+   <a class="item"  href="accreditationPaascuOrganization.jsp">
    PAASCU Organization
   </a>
-   <a class="item" href="accreditation-standards.html">
+   <a class="item" href="accreditationStandards.jsp">
    PAASCU Standards
   </a>
-  <a class="item" href="accreditation-advantage.html">
+  <a class="item"href="accreditationAdvantage.jsp">
    Advantages of Accreditation
   </a>
         
-    <a class="item active" href="accreditation-process.html">
+    <a class="item active" href="accreditationProcess.jsp">
    Accreditation Process
   </a>
         
-    <a class="item" href="accreditation-membership.html">
+    <a class="item" href="accreditationMembership.jsp">
    Categories of Membership
   </a>
         
-<a class="item" href="accreditation-benefits.html">
+<a class="item" href="accreditationBenefits.jsp">
    Member Benefits and Incentives
   </a>
         
-<a class="item" href="accreditation-programs.html">
+<a class="item" href="accreditationPrograms.jsp">
    Programs Accredited by PAASCU
   </a>
  
  
  
+ 
 </div>
         
-         </div>    
+         </div>          
         
         </div>
         
