@@ -83,6 +83,7 @@ public class NewsUtil {
 	}
 	
 	
+	
 	public void updateNews(int newsID, String title, String content, String date){
 
 		try{
