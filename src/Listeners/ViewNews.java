@@ -37,10 +37,12 @@ public class ViewNews extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int newsID = Integer.parseInt(request.getParameter("newsID"));
+		
 		NewsUtil nUtil = new NewsUtil();
-		ArrayList<News> news = nUtil.getAllNews();
+		News news = nUtil.getNews(newsID);
 		request.setAttribute("news", news);
-		RequestDispatcher rd = request.getRequestDispatcher("viewNews.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("news.jsp");
 		rd.forward(request, response);	
 	}
 

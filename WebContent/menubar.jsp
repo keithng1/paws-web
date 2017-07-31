@@ -19,7 +19,7 @@
              </div>
          </div>
 
-         <a class="item" href="newsList.jsp">NEWS</a>
+         <a class="item" href="NewsList">NEWS</a>
          <a class="item" href="accreditation.jsp">ACCREDITATION</a>
          <a class="item" href="members.jsp">OUR MEMBERS</a>
          <a class="item" href="downloads.jsp">DOWNLOADS</a>

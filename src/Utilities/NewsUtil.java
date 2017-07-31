@@ -82,7 +82,39 @@ public class NewsUtil {
 	    return temp;
 	}
 	
-	
+	public JSONArray getNewsInPageJSON(int page){
+		
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` LIMIT ?, ?");
+			
+			ps.setInt(1, (page-1)*5);
+			ps.setInt(2, (page-1)*5+5);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("newsID", rs.getInt(1));
+				job.put("title", rs.getString(2));
+				job.put("content", rs.getString(3));
+				job.put("date", rs.getString(4));
+				
+				
+
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getAllInstitutionsJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+		
+	}
 	
 	public void updateNews(int newsID, String title, String content, String date){
 
@@ -164,14 +196,21 @@ public ArrayList<News> getAllNews(){
 		return jArray;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int getTotalCountNews(){
+		int count = 0;
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM news");
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (Exception e){
+			System.out.println("Error in NewsUtil:getCountNews()");
+			e.printStackTrace();
+		}
+		
+	    return count;
+	}
 	
 	
 	
