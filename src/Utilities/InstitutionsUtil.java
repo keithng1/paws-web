@@ -20,6 +20,44 @@ public class InstitutionsUtil {
 		db = new DBUtil();
 	}
 	
+	public JSONArray getFilteredInstitutionsJSON(String startLetter, int level){
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		try{
+			Connection conn = db.getConnection();
+			if(level==0)
+			{
+				PreparedStatement ps = conn.prepareStatement("SELECT name, city, institutionID FROM institutions WHERE name LIKE ?");
+				ps.setString(1, startLetter + "%");
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					job = new JSONObject();
+					job.put("institutionID", rs.getInt(3));
+					job.put("institutionName", rs.getString(1) + " - " + rs.getString(2));
+					jArray.put(job);
+				}
+			}
+			else
+			{
+				PreparedStatement ps = conn.prepareStatement("SELECT name, city, institutionID FROM institutions WHERE name LIKE ? AND educLevelID = ?");
+				ps.setString(1, startLetter + "%");
+				ps.setInt(2, level);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					job = new JSONObject();
+					job.put("institutionID", rs.getInt(3));
+					job.put("institutionName", rs.getString(1) + " - " + rs.getString(2));
+					jArray.put(job);
+				}
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getInstitutionsStartingLetterJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
+
 
 	public JSONArray getInstitutionsJSON(int systemID){
 		JSONArray jArray = new JSONArray();
@@ -44,63 +82,6 @@ public class InstitutionsUtil {
 		
 		return jArray;
 	}
-	
-	public JSONArray getInvitationInstitutionsJSON(){
-		JSONArray jArray = new JSONArray();
-		JSONObject job = new JSONObject();
-		
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT institutionID, name, city, educLevelID FROM institutions");
-			
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				job = new JSONObject();
-				job.put("institutionID", rs.getInt(1));
-				job.put("institutionName", rs.getString(2));
-				job.put("city", rs.getString(3));
-				job.put("educLevel", getEducLevelName(rs.getInt(4)));
-				
-				
-				jArray.put(job);
-				
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInvitationInstitutionsJSON()");
-			e.printStackTrace();
-		}
-		
-		return jArray;
-	}
-	
-	
-	
-	public JSONArray getInstitutionForInvitationJSON(int instID){
-		JSONArray jArray = new JSONArray();
-		JSONObject job = new JSONObject();
-		
-		try{
-			Connection conn = db.getConnection();
-			//PreparedStatement ps = conn.prepareStatement("SELECT name, head, hPosition, city FROM `institutions` WHERE institutionID = (SELECT institutionID FROM `work` WHERE accreditorID = ? AND dateFinished IS NULL)");
-			PreparedStatement ps = conn.prepareStatement("SELECT name, city FROM `institutions` WHERE institutionID = ?");
-			ps.setInt(1, instID);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				job = new JSONObject();
-				job.put("name", rs.getString(1));
-				job.put("city", rs.getString(2));
-
-				jArray.put(job);
-				
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitutionForInvitationJSON()");
-			e.printStackTrace();
-		}
-		
-		return jArray;
-	}
-	
 	
 	public JSONArray getAllInstitutionsJSON(){
 		JSONArray jArray = new JSONArray();

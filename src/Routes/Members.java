@@ -1,4 +1,4 @@
-package JSONLoaders;
+package Routes;
 
 import java.io.IOException;
 
@@ -9,22 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-
-import Models.News;
 import Utilities.NewsUtil;
 
 /**
- * Servlet implementation class NewsLoader
+ * Servlet implementation class Members
  */
-@WebServlet("/NewsLoader")
-public class NewsLoader extends HttpServlet {
+@WebServlet("/Members")
+public class Members extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewsLoader() {
+    public Members() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,17 +31,23 @@ public class NewsLoader extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int page = 1;
 		
-		if(request.getParameter("page") != null)
-			page = Integer.parseInt(request.getParameter("page"));
+		int level = 0;
+		String startLetter = "A";
+		if(request.getParameter("educLevel")!=null)
+			level = Integer.parseInt(request.getParameter("educLevel"));
+		
+		if(request.getParameter("letter")!=null)
+			startLetter = request.getParameter("letter");
 		
 		
-		response.setContentType("application/json");
-		JSONArray jArray = new JSONArray();
-		NewsUtil newsUtil = new NewsUtil();
-		jArray = newsUtil.getNewsInPageJSON(page);
-		response.getWriter().write(jArray.toString());
+		NewsUtil nUtil = new NewsUtil();
+		int count = nUtil.getTotalCountNews();
+		request.setAttribute("educLevel", level);
+		request.setAttribute("letter", startLetter);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("members.jsp");
+		rd.forward(request, response);	
 	}
 
 	/**
