@@ -11,7 +11,10 @@
 
 
  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        
+            <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      
+      <script type="text/javascript" src="js/semantic.min.js"></script>
+ 
       <!--Import sementic.css components-->
       <link type="text/css" rel="stylesheet" href="css/semantic.css"/> 
       
@@ -34,6 +37,89 @@
     @viewport { width: auto; }
 </style>
 
+<script>
+	  $(document).ready(function() {
+  		$.getJSON("BoardMembersLoader?boardPositionID=1", function(data) {
+	  		$.each(data, function(key, value) {
+        		var span1 = document.createElement("b");
+        		var span2 = document.createElement("span");
+        		var span3 = document.createElement("span");
+        		var span4 = document.createElement("span");
+        	 	    
+            	span1.innerHTML = value.name;
+            	span2.innerHTML = value.position;
+            	span3.innerHTML = value.institution;
+            	span4.innerHTML = value.city;
+            	
+            	document.getElementById("containerPres").appendChild(span1);
+            	document.getElementById("containerPres").appendChild(document.createElement("br"));
+            	document.getElementById("containerPres").appendChild(span2);            	
+            	document.getElementById("containerPres").appendChild(document.createElement("br"));
+            	document.getElementById("containerPres").appendChild(span3);
+            	document.getElementById("containerPres").appendChild(document.createElement("br"));
+            	document.getElementById("containerPres").appendChild(span4);
+            	
+            	
+      		});
+	  
+	  	});
+  		
+  		$.getJSON("BoardMembersLoader?boardPositionID=2", function(data) {
+	  		$.each(data, function(key, value) {
+        		var span1 = document.createElement("b");
+        		var span2 = document.createElement("span");
+        		var span3 = document.createElement("span");
+        		var span4 = document.createElement("span");
+        	 	    
+            	span1.innerHTML = value.name;
+            	span2.innerHTML = value.position;
+            	span3.innerHTML = value.institution;
+            	span4.innerHTML = value.city;
+            	
+            	document.getElementById("containerVicePres").appendChild(span1);
+            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
+            	document.getElementById("containerVicePres").appendChild(span2);            	
+            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
+            	document.getElementById("containerVicePres").appendChild(span3);
+            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
+            	document.getElementById("containerVicePres").appendChild(span4);
+            	
+            	
+      		});
+	  
+	  	});
+  		
+  		$.getJSON("BoardMembersLoader?boardPositionID=3", function(data) {
+	  		$.each(data, function(key, value) {
+	  			var containerSec = document.getElementById("containerSecretary");
+        		var span1 = document.createElement("b");
+        		var span2 = document.createElement("span");
+        		var span3 = document.createElement("span");
+        		var span4 = document.createElement("span");
+        	 	    
+            	span1.innerHTML = value.name;
+            	span2.innerHTML = value.position;
+            	span3.innerHTML = value.institution;
+            	span4.innerHTML = value.city;
+            	
+            	containerSec.appendChild(span1);
+            	containerSec.appendChild(document.createElement("br"));
+            	containerSec.appendChild(span2);            	
+            	containerSec.appendChild(document.createElement("br"));
+            	containerSec.appendChild(span3);
+            	containerSec.appendChild(document.createElement("br"));
+            	containerSec.appendChild(span4);
+            	containerSec.appendChild(document.createElement("br"));
+            	containerSec.appendChild(document.createElement("br"));
+            	
+            	
+            	
+      		});
+	  
+	  	});
+	  });
+	  
+</script>
 
 
 </head>
@@ -94,23 +180,27 @@
       
 <center>
     <div class="directors">
-    
-        <span>PAASCU BOARD OF DIRECTORS</span><br>
+    	
+        <span style="font-size:18px;"><b>PAASCU BOARD OF DIRECTORS</b></span><br>
         <span id="board-year">2015</span><br><br>
-        <span>PRESIDENT</span><br><br>
-        <span id="president-name">FR. JOEL E. TABORA, SJ</span><br>
-        <span id="president-position">President</span><br>
-        <span id="president-school">Ateneo de Davao University</span><br>
-        <span id="president-address">Davao City</span><br>
+        <span><b>PRESIDENT</b></span><br><br>
+        <div id="containerPres">
+	        <!-- <span id="president-name">FR. JOEL E. TABORA, SJ</span><br>
+	        <span id="president-position">President</span><br>
+	        <span id="president-school">Ateneo de Davao University</span><br>
+	        <span id="president-address">Davao City</span><br> -->
+		</div>
         <br>
-        <span>VICE PRESIDENT</span><br>
+        <span><b>VICE PRESIDENT</b></span><br>
         <br>
-        <span id="vice-president-name">DR. RAMON L. ARCADIO</span><br>
-        <span id="vice-president-position">Professor Emeritus & Former Chancellor</span><br>
-        <span id="vice-president-school">University of the Philippines Manila</span><br>
-        <span id="vice-president-address">P.Gil St., Manila</span><br>
+        <div id="containerVicePres">
+	        <!-- <span id="vice-president-name">DR. RAMON L. ARCADIO</span><br>
+	        <span id="vice-president-position">Professor Emeritus & Former Chancellor</span><br>
+	        <span id="vice-president-school">University of the Philippines Manila</span><br>
+	        <span id="vice-president-address">P.Gil St., Manila</span><br> -->
+		</div>
         <br><br><br>
-        <span>CORPORATE SECRETARY/TREASURER</span><br><br><br>
+        <span><b>CORPORATE SECRETARY/TREASURER</b></span><br><br><br>
         
         
         
@@ -118,66 +208,16 @@
   </center>
 
    
-<div class="ui four column grid directors">
+<div class="ui thirteen wide column">
     
   <div class="row">
-      <div class="column">&nbsp;</div>
-      <div class="column"><center>
-        <span id=cst1-name>SR. JOSEFINA F. NEBRES, ICM</span><br>
-        <span id="cst1-position">Directress</span><br>
-        <span id="cst1-school">St. Theresa's College</span><br>
-        <span id="cst1-address">Quezon City</span><br>
-        <br>
-        
-           <span id=cst2-name>PROF> LEONIDA T. AFRICA</span><br>
-        <span id="cst2-position">Academic Consultant & Member, Board of Trustees</span><br>
-        <span id="cst2-school">Asia Pacific College</span><br>
-        <span id="cst2-address">Magallanes, Makati City</span><br>
-        <br>
-        
-        <span id=cst3-name>FR. BRIGIDO G. ANGNGASING, SVD</span><br>
-        <span id="cst3-position">Secretary of Studies</span><br>
-        <span id="cst3-school">SVD Philippines Northern Province</span><br>
-        <span id="cst3-address">City of San Fernando, La Union</span><br>
-        <br>
-        
-        <span id=cst4-name>MR. MARC V. HERNANDEZ</span><br>
-        <span id="cst4-position">Board Member</span><br>
-        <span id="cst4-school">St. Mary’s Academy of Caloocan</span><br>
-        <span id="cst4-address">Caloocan City</span><br>
-        <br>
-        
-        <span id=cst5-name>DR. MA. ROSARIO O. LAPUS</span><br>
-        <span id="cst5-position">President</span><br>
-        <span id="cst5-school">Miriam College</span><br>
-        <span id="cst5-address">Loyola Heights, Quezon City</span><br>
-        <br>
-        
-          
-        <span id=cst6-name>BR. DENNIS M. MAGBANUA, FSC</span><br>
-        <span id="cst6-position">President and Chancellor</span><br>
-        <span id="cst6-school">De La Salle – College of Saint Benilde</span><br>
-        <span id="cst6-address">Taft Avenue, Manila</span><br>
-        <br>
-        
-        <span id=cst7-name>FR. JAMES A. O’DONNELL, SJ</span><br>
-        <span id="cst7-position">Professor of Education</span><br>
-        <span id="cst7-school">Ateneo de Manila University</span><br>
-        <span id="cst7-address">Loyola Heights, Quezon City</span><br>
-        <br>
-        
-      
-      </center>
-    </div>
-    
-      
       
       
     <div class="column">
       
-      <center>
+      <center id="containerSecretary">
         
-        <span id=cst8-name>DR. CARMELITA I. QUEBENGCO</span><br>
+        <!-- <span id=cst8-name>DR. CARMELITA I. QUEBENGCO</span><br>
         <span id="cst8-position">Chancellor Emeritus</span><br>
         <span id="cst8-school">De La Salle University</span><br>
         <span id="cst8-address">Taft Avenue, Manila</span><br>
@@ -219,13 +259,12 @@
         <span id="cst14-position">Executive Director</span><br>
         <br>
           
-        
+         -->
         
         </center>
       
       
-      </div>
-       <div class="column">&nbsp;</div>
+      </div> 
   </div>      
       
       
@@ -252,10 +291,7 @@
 
 
       
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       
-      <script type="text/javascript" src="js/semantic.min.js"></script>
-     
       <script type="text/javascript">
       
 if(screen.width>=1500){document.write("<style>body{zoom:80%;}</style>");}

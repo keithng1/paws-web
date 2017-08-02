@@ -13,7 +13,7 @@
              ABOUT <i class="dropdown icon"></i>
              <div class="menu">
                  <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
-                 <a class="item" href="aboutBoardMembers.jsp">Board Members</a>
+                 <a class="item" href="BoardMembers">Board Members</a>
                  <a class="item" href="aboutCommissionMembers.jsp">Commission Members</a>
                  <a class="item" href="aboutInternationalAffiliations.jsp">International Affiliation</a>
              </div>
