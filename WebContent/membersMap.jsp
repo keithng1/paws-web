@@ -1,11 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Map of Member Institutions</title>
- <!--Import Google Icon Font-->
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         
       <!--Import sementic.css components-->
@@ -18,7 +13,7 @@
       
         
          <meta charset="UTF-8">
-        
+         
         
 
         
@@ -26,38 +21,56 @@
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
+           <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 50%;
+        width: 100%;
+        }
+    </style>
+  </head>
         
-        
-
-        
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script>
-    google.charts.load('current', { 'packages': ['map'] });
-    google.charts.setOnLoadCallback(drawMap);
 
-    function drawMap() {
-     var data = google.visualization.arrayToDataTable([
-    ['Lat', 'Long', 'Name'],
-    [14.5642946,120.9910141, 'De La Salle University'],
-         [14.6040632,121.0375133, 'Xavier School'],
-     [14.654562,121.0625378, 'University of The Philippines Diliman'],
-    [14.6394557,121.0759028, 'Ateneo de Manila University']
-  ]);
-        
-        
-      
+      function initMap() {
 
-    var options = {
-      showTooltip: true,
-      showInfoWindow: true
-    };
+          
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: {lat: 12.8797, lng: 121.7740}
+        });
 
-    var map = new google.visualization.Map(document.getElementById('chart_div'));
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-    map.draw(data, options);
-  };
-  </script>
-        
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
+      var locations = [
+        {lat: 14.6232186, lng: 121.0713203}, //PAASCU
+        {lat: 14.564282, lng: 120.993895}, //DLSU
+        {lat: 14.563838, lng: 120.995083}, //CSB 
+        {lat: 14.564415, lng: 120.996328} //STSCHO
+      ]
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&callback=initMap">
+    </script>
         
         
         
@@ -87,62 +100,62 @@
       
       <body>
       
-          
-          
-          
-          
+        
+
+
+
     <div class="ui nav" style="padding: 3%;">
 
-     <div class="ui secondary massive menu navmenu">
-    
-    <div style="padding-right:5%;"><a href="index.html"><img src="img/logo.png">     
-       </a>  </div>     
+        <div class="ui secondary menu navmenu" style="font-size: 12px;">
 
-      
+            <div style="padding-right:5%;">
+                <a href="index.html"><img src="img/logo.png" style=" width:200px; height: auto;"> </a>
+            </div>
 
-  <div class="ui dropdown item">
-  
-   ABOUT  <i class="dropdown icon"></i>
-    <div class="menu">
-      <a class="item" href="aboutPaascu.jsp">About PAASCU</a>
-      <a class="item"  href="aboutBoardMembers.jsp">Board Members</a>
-      <a class="item"href="aboutCommissionMembers.jsp">Commission Members</a>
-        <a class="item" href="internationalAffiliations.jsp">International Affiliation</a>
-    </div>
-  </div>
- 
-  <a class="item" href="newsList.jsp">
+
+
+            <div class="ui dropdown item">
+
+                ABOUT <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a class="item" href="about-paascu.html">About PAASCU</a>
+                    <a class="item" href="about-board-members.html">Board Members</a>
+                    <a class="item" href="about-commision-members.html">Commission Members</a>
+                    <a class="item" href="about-international.html">International Affiliation</a>
+                </div>
+            </div>
+
+            <a class="item" href="news.html">
      NEWS
   </a>
-  <a class="item"  href="accreditation.jsp">
+            <a class="item" href="accreditation.html">
      ACCREDITATION
   </a>
-         
-    <a class="item" href="members.jsp">
+
+            <a class="item" href="members.html">
    OUR MEMBERS
-  </a>     
-         
-           
-    <a class="item" href="downloads.jsp">
+  </a>
+
+            <a class="item" href="downloads.html">
    DOWNLOADS
   </a>
-         
-    <a class="item" href="contactUs.jsp">
+
+            <a class="item" href="contact-us.html">
     CONTACT
   </a>
-  <div class="right menu">
-    <div class="item">
-      <div class="ui icon input">
-        <input type="text" placeholder="Search...">
-        <i class="search link icon"></i>
-      </div>
+            <div class="right menu">
+                <div class="item">
+                    <div class="ui icon input">
+                        <input type="text" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-    
-  </div>
-</div>
-    
- </div>
-        
+
         
       
         <div class="main-body-container">
@@ -155,7 +168,6 @@
 
       
       
-             
 <div class="ui secondary vertical menu">
     <div class="sidebar-about">
   <p class="item" style="background-color: #45484c; color: white;">
@@ -199,7 +211,7 @@
  
 </div>
         
-         </div> 
+         </div>    
         
         </div>
         
@@ -223,9 +235,7 @@
       
       
       
-      
-      <div id="chart_div"></div>
-      
+           <div id="map"></div>
       
       <br>
     
@@ -348,7 +358,7 @@
         <div class="four wide column" style="padding-right:10%;">
    
           <div class="ui inverted link list">
-              <img class="item" width="350px" height="125px;" src="img/footer-logo.png">
+              <img class="item" width="250px" height="auto;" src="img/footer-logo.png">
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">History of PAASCU</a><br>
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Objectives</a><br>
             <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Board Memberss</a><br>
@@ -412,6 +422,7 @@ J.P. Rizal corner P. Tuazon Sts.,
 
       
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
       
       <script type="text/javascript" src="js/semantic.min.js"></script>
      
@@ -429,7 +440,13 @@ $('.ui.dropdown')
 ;    
     
     
+$('.slider').glide({
+  autoplay: 2000,
+  arrowsWrapperClass: 'slider-arrows',
+  arrowRightText: '',
+  arrowLeftText: '',
 
+});
       
 </script>
       
