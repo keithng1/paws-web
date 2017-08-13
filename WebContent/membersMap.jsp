@@ -9,6 +9,12 @@
         <link type="text/css" rel="stylesheet" href="components/icon.css"/> 
       
         
+
+      
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
+      
+      <script type="text/javascript" src="js/semantic.min.js"></script>
          <link type="text/css" rel="stylesheet" href="css/style.css"/> 
       
         
@@ -33,37 +39,42 @@
         
   <script>
 
-      function initMap() {
+  	  function initMap() {
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 6,
-          center: {lat: 12.8797, lng: 121.7740}
-        });
+    	  var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 6,
+              center: {lat: 11.8797, lng: 121.7740}
+            });
+    	  
+    	  
+    	  $.getJSON("LocationsLoader", function(data) {
+ 		  	 var locations = data; 
+ 		  	
+ 			 
+ 			 console.log(locations);
+       	   var markers = locations.map(function(location, i) {
+                    return new google.maps.Marker({
+                      position: location,
+                      map: map
+                    });
+                  });
+ 		         // Add a marker clusterer to manage the markers.
+                  var markerCluster = new MarkerClusterer(map, markers,
+                      {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+ 	  })
+    	  
+      }
+          
 
         // Create an array of alphabetical characters used to label the markers.
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
+       
         // Add some markers to the map.
         // Note: The code uses the JavaScript Array.prototype.map() method to
         // create an array of markers based on a given "locations" array.
         // The map() method here has nothing to do with the Google Maps API.
-        var markers = locations.map(function(location, i) {
-          return new google.maps.Marker({
-            position: location,
-            label: labels[i % labels.length]
-          });
-        });
-
-        // Add a marker clusterer to manage the markers.
-        var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-      }
-      var locations = [
-        {lat: 14.6232186, lng: 121.0713203}, //PAASCU
-        {lat: 14.564282, lng: 120.993895}, //DLSU
-        {lat: 14.563838, lng: 120.995083}, //CSB 
-        {lat: 14.564415, lng: 120.996328} //STSCHO
-      ]
+        
+   
+      
     </script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
@@ -302,12 +313,6 @@
       
       
       
-
-      
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
-      
-      <script type="text/javascript" src="js/semantic.min.js"></script>
      
    <script type="text/javascript">
       

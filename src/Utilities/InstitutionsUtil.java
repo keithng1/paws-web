@@ -58,6 +58,28 @@ public class InstitutionsUtil {
 		return jArray;
 	}
 
+	public JSONArray getLocationsJSON(){
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude FROM `institutions`");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("lat", rs.getDouble(1));
+				job.put("lng", rs.getDouble(2));
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getLocationsJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
 
 	public JSONArray getInstitutionsJSON(int systemID){
 		JSONArray jArray = new JSONArray();
@@ -176,7 +198,8 @@ public class InstitutionsUtil {
 				
 			
 				System.out.println(rs.getString(3));
-				temp = new Institution(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), getEducLevelName(rs.getInt(19)));
+				temp = new Institution(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), getEducLevelName(rs.getInt(19)), rs.getDouble(20), rs.getDouble(21));
+				
 				temp.setSchoolSystemName(getSchoolSystemName(rs.getInt(2)));
 				
 				institutions.add(temp);
@@ -295,7 +318,7 @@ public class InstitutionsUtil {
 				//secondaryAreaID, discipline
 			
 				System.out.println(rs.getString(3));
-				temp =  new Institution(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), getEducLevelName(rs.getInt(19)));;
+				temp = new Institution(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), getEducLevelName(rs.getInt(19)), rs.getDouble(20), rs.getDouble(21));;;
 				institutions.add(temp);
 			}
 		} catch (Exception e){
@@ -314,7 +337,7 @@ public class InstitutionsUtil {
 			ps.setInt(1,  instID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				temp =  new Institution(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), getEducLevelName(rs.getInt(19)));;
+				temp = new Institution(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), getEducLevelName(rs.getInt(19)), rs.getDouble(20), rs.getDouble(21));;;
 			}
 		} catch (Exception e){
 			System.out.println("Error in InstitutionsUtil:getInstitution()");

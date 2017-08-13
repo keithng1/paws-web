@@ -23,12 +23,31 @@ public class Institution {
 	private String country;
 	private String contactEmail;
 	private String dateAddedWord;
+	private Double longitude;
+	private Double latitude;
+	
 
 	private String educLevel;
 	
 	
 	
 	
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
 
 	public String getEducLevel() {
 		return educLevel;
@@ -210,7 +229,8 @@ public class Institution {
 	
 	public Institution(int institutionID, int schoolsystemID, String name, String head, String position, String email,
 			String address, String status, String date_added, String city, String fax,
-			String contact_person, String contact_position, String contact_number, String website, String country, String contact_email, String institutionAcronym, String educLevel) {
+			String contact_person, String contact_position, String contact_number, String website, String country, String contact_email, String institutionAcronym, String educLevel,
+			Double longitude, Double latitude) {
 		super();
 		this.institutionID = institutionID;
 		this.schoolSystemID = schoolsystemID;
@@ -230,8 +250,10 @@ public class Institution {
 		this.contactNumber = contact_number;
 		this.contactEmail = contact_email;
 		this.website = website;
-		this.contactPosition =contact_position;
+		this.contactPosition = contact_position;
 		this.educLevel = educLevel;
+		this.longitude = longitude;
+		this.latitude = latitude;
 		System.out.println(date_added+"CITY!!!!!!!!!!"+ institutionAcronym);
 	}
 	
