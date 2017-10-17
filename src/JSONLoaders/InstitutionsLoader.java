@@ -1,27 +1,32 @@
-package Routes;
+package JSONLoaders;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Utilities.NewsUtil;
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import Models.Institution;
+import Utilities.InstitutionsUtil;
+import Utilities.SchoolSystemUtil;
 
 /**
- * Servlet implementation class Members
+ * Servlet implementation class InstitutionsLoader
  */
-@WebServlet("/Members")
-public class Members extends HttpServlet {
+@WebServlet("/InstitutionsLoader")
+public class InstitutionsLoader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Members() {
+    public InstitutionsLoader() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +36,17 @@ public class Members extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.setContentType("application/json");
+		JSONArray jArray = new JSONArray();
+
+		InstitutionsUtil insUtil = new InstitutionsUtil();
+	
 		
-		int level = 0;
-		String startLetter = "A";
-		if(request.getParameter("educLevel")!=null)
-			level = Integer.parseInt(request.getParameter("educLevel"));
+		int systemID = Integer.parseInt(request.getParameter("systemID"));
 		
-		if(request.getParameter("letter")!=null)
-			startLetter = request.getParameter("letter");
+		jArray = insUtil.getInstitutionsJSON(systemID);
 		
-		request.setAttribute("educLevel", level);
-		request.setAttribute("letter", startLetter);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("members.jsp");
-		rd.forward(request, response);	
+		response.getWriter().write(jArray.toString());	
 	}
 
 	/**
@@ -54,5 +56,4 @@ public class Members extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

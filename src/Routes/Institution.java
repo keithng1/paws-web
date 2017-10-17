@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Utilities.InstitutionsUtil;
 import Utilities.NewsUtil;
 
 /**
- * Servlet implementation class Members
+ * Servlet implementation class Institution
  */
-@WebServlet("/Members")
-public class Members extends HttpServlet {
+@WebServlet("/Institution")
+public class Institution extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Members() {
+    public Institution() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +33,23 @@ public class Members extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int level = 0;
-		String startLetter = "A";
-		if(request.getParameter("educLevel")!=null)
-			level = Integer.parseInt(request.getParameter("educLevel"));
+		int ID = Integer.parseInt(request.getParameter("institutionID"));
+		InstitutionsUtil instUtil = new InstitutionsUtil();
 		
-		if(request.getParameter("letter")!=null)
-			startLetter = request.getParameter("letter");
+		String name = instUtil.getInstitutionName(ID);
+		Double lng = instUtil.getLatitude(ID);
+		Double lat = instUtil.getLongitude(ID);
 		
-		request.setAttribute("educLevel", level);
-		request.setAttribute("letter", startLetter);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("members.jsp");
+		request.setAttribute("instID", ID);
+		request.setAttribute("instName", name);
+		request.setAttribute("lat", lat);
+		request.setAttribute("lng", lng);
+		
+		
+		RequestDispatcher rd = request.getRequestDispatcher("membersPage.jsp");
 		rd.forward(request, response);	
+		
 	}
 
 	/**

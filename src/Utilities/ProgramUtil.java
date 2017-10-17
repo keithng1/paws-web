@@ -43,6 +43,54 @@ public class ProgramUtil {
 		return jArray;
 	}
 	
+	public JSONArray getInstitutionProgramsJSON(int instID){
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT degreeName, levelID, level, validUntil FROM `school-program` WHERE institutionID = ?");
+			ps.setInt(1, instID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("degreeName", rs.getString(1));
+				job.put("educLevel", getEducLevelName(rs.getInt(2)));
+				job.put("accLevel", rs.getString(3));
+				job.put("validUntil", rs.getString(4));
+				
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in ProgramUtil:getProgramsJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
+	
+	private String getEducLevelName(int educLevelID)
+	{
+		String name="";
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT `levelName` FROM `educationlevel` where `levelID`=?");
+			ps.setInt(1, educLevelID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){				
+			
+				name = rs.getString(1);
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getEducLevelName()");
+			e.printStackTrace();
+		}
+		
+		return name;
+	}
+	
 	public ArrayList<Program> getPrograms(){
 		ArrayList<Program> programs = new ArrayList<Program>();
 		Program temp = new Program();
@@ -86,6 +134,7 @@ public class ProgramUtil {
 		}
 		return sps;
 	}
+	
 	public ArrayList<SchoolProgram> getDisciplines(int programID){
 		ArrayList<SchoolProgram> sps = new ArrayList<SchoolProgram>();
 		SchoolProgram sp = new SchoolProgram();

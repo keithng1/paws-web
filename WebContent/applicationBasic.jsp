@@ -60,7 +60,7 @@
 				
 				doc.setFontSize(12);
 				doc.setFontType("bold");
-				doc.text(50, 25, "PHILIPPINE ACCREDITING ASSOCIATION OF SCHOOLS,");
+				doc.text(50, 20, "PHILIPPINE ACCREDITING ASSOCIATION OF SCHOOLS,");
 				doc.text(75, 30, "COLLEGES AND UNIVERSITIES");
 				doc.setFontType("normal");
 				doc.text(70, 35, "Unit 107 The Tower at Emerald Square");
@@ -88,16 +88,9 @@
 				doc.text(145, 150, prefDate2);
 				
 				doc.text(30, 170, "Type of Visit Expected: ");
-				if(preliminary)
-					doc.text(80, 170, "Preliminary");
-				else if(consultancy)
-					doc.text(80, 170, "Consultancy");
-				else if(formal)
-					doc.text(80, 170, "Formal");
-				else if(interim)
-					doc.text(80, 170, "Interim");
-				else if(survey)
-					doc.text(80, 170, "Survey");
+				
+				
+				doc.text(80, 170, $('input[name=radioVisit]:checked', '#visitExpected').val());
 				
 				
 				doc.text(40, 210, adminName);
@@ -351,14 +344,16 @@
 
                                             <div style="padding-bottom: 1%;">
                                                 <span style="color: black;"><b>Type of Visit Expected</b></span>
-                                                <br> </div>
+                                                <br> 
+                                            </div>
                                             <br>
+                                            <form id="visitExpected">
                                             <div class="ui three column grid">
                                                 <div class="row">
                                                     <div class="column">
 
                                                         <div class="ui radio checkbox">
-                                                            <input type="radio" name="radio" id="preliminary">
+                                                            <input type="radio" name="radioVisit" value="Preliminary">
                                                             <label>Preliminary</label>
                                                         </div>
 
@@ -367,7 +362,7 @@
 
 
                                                         <div class="ui radio checkbox">
-                                                            <input type="radio" name="radio" id="consultancy">
+                                                            <input type="radio" name="radioVisit" value="Consultancy">
                                                             <label>Consultancy</label>
                                                         </div>
 
@@ -382,7 +377,7 @@
                                                     <div class="column">
 
                                                         <div class="ui radio checkbox">
-                                                            <input type="radio" name="radio" id="formal">
+                                                            <input type="radio" name="radioVisit" value="Formal">
                                                             <label>Formal</label>
                                                         </div>
 
@@ -391,7 +386,7 @@
 
 
                                                         <div class="ui radio checkbox">
-                                                            <input type="radio" name="radio" id="interim">
+                                                            <input type="radio" name="radioVisit" value="Interim">
                                                             <label>Interim</label>
                                                         </div>
 
@@ -407,7 +402,7 @@
                                                     <div class="column">
 
                                                         <div class="ui radio checkbox">
-                                                            <input type="radio" name="radio" id="resurvey">
+                                                            <input type="radio" name="radio" value="Resurvey">
                                                             <label>Resurvey</label>
                                                         </div>
 
@@ -421,9 +416,9 @@
                                                 </div>
 
 
-
                                             </div>
-
+											</form>
+                                            
                                         </div>
                                     </div>
                                 </div>

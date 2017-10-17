@@ -16,6 +16,7 @@ import com.mysql.jdbc.Connection;
 import Models.News;
 import Models.Program;
 import Models.SchoolSystem;
+import Models.SearchResults;
 
 
 
@@ -143,26 +144,26 @@ public class NewsUtil {
 	
 	
 
-public ArrayList<News> getAllNews(){
-	ArrayList<News> news = new ArrayList<News>();
-	News temp = new News();
-	try{
-		Connection conn = db.getConnection();
-		PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` ORDER BY `newsID`");
-		ResultSet rs = ps.executeQuery();
-		
-		while(rs.next()){
-			temp = new News(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4));
-			news.add(temp);
+	public ArrayList<News> getAllNews(){
+		ArrayList<News> news = new ArrayList<News>();
+		News temp = new News();
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` ORDER BY `newsID`");
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				temp = new News(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4));
+				news.add(temp);
+			}
+		} catch (Exception e){
+			System.out.println("Error in NewsUtil:getAllNews()");
+			e.printStackTrace();
 		}
-	} catch (Exception e){
-		System.out.println("Error in NewsUtil:getAllNews()");
-		e.printStackTrace();
+		
+	    return news;
 	}
-	
-    return news;
-}
-	
+		
 	
 	
 	
@@ -213,13 +214,32 @@ public ArrayList<News> getAllNews(){
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public SearchResults getNewsResults(String searchWord)
+	{
+		SearchResults temp = null;
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT title, content, newsID FROM `news` WHERE title LIKE ? OR content LIKE ?");
+			ps.setString(1, "%" + searchWord + "%");
+			ps.setString(2, "%" + searchWord + "%");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.first())
+				if(rs.getString(2).length() > 430)
+					temp = new SearchResults(rs.getString(1), rs.getString(2).substring(0, 430) + "...", "ViewNews?newsID=" + rs.getInt(3), "News");
+				
+				else
+					temp = new SearchResults(rs.getString(1), rs.getString(2), "ViewNews?newsID=" + rs.getInt(3), "News");
+		
+		} catch (Exception e){
+			System.out.println("Error in NewsUtil:getNewsResults()");
+			e.printStackTrace();
+		}
+		
+		return temp;
+	}
 	
 }

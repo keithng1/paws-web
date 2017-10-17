@@ -1,4 +1,4 @@
-package Listeners;
+package JSONLoaders;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -13,16 +13,16 @@ import Utilities.InstitutionsUtil;
 import Utilities.ProgramUtil;
 
 /**
- * Servlet implementation class ProgramLoader
+ * Servlet implementation class ProgramsLoader
  */
-@WebServlet("/ProgramLoader")
-public class ProgramLoader extends HttpServlet {
+@WebServlet("/ProgramsLoader")
+public class ProgramsLoader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProgramLoader() {
+    public ProgramsLoader() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +33,12 @@ public class ProgramLoader extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("application/json");
+		int ID = Integer.parseInt(request.getParameter("institutionID"));
+		
 		JSONArray jArray = new JSONArray();
 		ProgramUtil progUtil = new ProgramUtil();
-		int institutionID = Integer.parseInt(request.getParameter("institutionID"));
-		System.out.println("HEREEEE" + institutionID);
-		jArray = progUtil.getProgramsJSON(institutionID);
-		response.getWriter().write(jArray.toString());	
+		jArray = progUtil.getInstitutionProgramsJSON(ID);
+		response.getWriter().write(jArray.toString());
 	}
 
 	/**

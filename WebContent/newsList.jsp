@@ -51,7 +51,7 @@
 
             $(document).ready(function() {
 				
- 				var pageCount =  ~~(${newsCount}/5);
+ 				var pageCount =  (parseInt(${newsCount}/5));
             	if(${newsCount}%5 > 0) 
             		pageCount+=1;
            		

@@ -42,52 +42,44 @@
         </style>
 
         <script>
-    	var x = 0;
-    	var department = "";
+            $(document).ready(function() {
 
-        $(document).ready(function() {
+                var level = ${level};
+              
+
+                if (level == 1) {
+                    alert("ASDAD");
+                }
+
                 $("#schoolLevel").html("Application for Survey Visit - Grade School");
-                x=70;
-                department = "GRADE SCHOOL DEPARTMENT";
-            
-                
+
                 $('#gradeSchool').click(function() {
                     $("#schoolLevel").html("Application for Survey Visit - Grade School");
-                    x=70;
-                    department = "GRADE SCHOOL DEPARTMENT";
                     return false;
                 });
 
                 $('#highSchool').click(function() {
                     $("#schoolLevel").html("Application for Survey Visit - High School");
-                    x=72;
-                    department = "HIGH SCHOOL DEPARTMENT";
                     return false;
                 });
 
                 $('#basic').click(function() {
                     $("#schoolLevel").html("Application for Survey Visit - Basic Education");
-                    x=67;
-                    department = "BASIC EDUCATION DEPARTMENT";
                     return false;
                 });
 
                 $('#med').click(function() {
                     $("#schoolLevel").html("Application for Survey Visit - MEDICAL EDUCATION");
-                    x=77;
-                    department = "MEDICAL DEPARTMENT";
                     return false;
                 });
 
                 $('#college').click(function() {
                     $("#schoolLevel").html("Application for Survey Visit - COLLEGE DEPARTMENT");
-                    x=76;
-                    department = "COLLEGE DEPARTMENT";
                     return false;
                 });
 
 
-                $('.sidebar-about a').click(function(e) {
+                $('a').click(function(e) {
                     e.preventDefault();
                     $('a').removeClass('active');
                     $(this).addClass('active');
@@ -95,7 +87,6 @@
 
             });
 
-        	
             function genPDF() {
                 var doc = new jsPDF();
                 var institution = $('#institution').val();
@@ -115,43 +106,34 @@
 
                 doc.setFontSize(12);
                 doc.setFontType("bold");
-                doc.text(45, 25, "PHILIPPINE ACCREDITING ASSOCIATION OF SCHOOLS,");
-                doc.text(70, 30, "COLLEGES AND UNIVERSITIES");
+                doc.text(50, 25, "PHILIPPINE ACCREDITING ASSOCIATION OF SCHOOLS,");
+                doc.text(75, 30, "COLLEGES AND UNIVERSITIES");
                 doc.setFontType("normal");
-                doc.text(65, 35, "Unit 107 The Tower at Emerald Square");
-                doc.text(53, 40, "J.P. Rizal cor. P. Tuazon Sts., Project 4, Quezon City");
+                doc.text(70, 35, "Unit 107 The Tower at Emerald Square");
+                doc.text(60, 40, "J.P. Rizal cor. P. Tuazon Sts., Project 4, Quezon City");
                 doc.setFontType("bold");
-                doc.text(65, 60, "APPLICATION FOR A SURVEY VISIT");
-                doc.text(x, 70, department);
-               
-                
+                doc.text(70, 60, "APPLICATION FOR A SURVEY VISIT");
+                doc.text(68, 70, "BASIC EDUCATION DEPARTMENT");
+
                 doc.setFontType("normal");
 
                 doc.text(30, 85, "INSTITUTION: ");
-                doc.text(65, 85, institution);
-                doc.text(60, 85, "__________________________________________________");
-                
-                
+                doc.text(60, 85, institution);
+
                 doc.text(30, 95, "ADDRESS: ");
                 doc.text(60, 95, address);
-                doc.text(55, 95, "____________________________________________________");
 
                 doc.text(30, 110, "Total Enrollment: ");
-                doc.text(70, 110, totalEnrollment);
-                doc.text(65, 110, "________________________________________________");
+                doc.text(80, 110, totalEnrollment);
 
                 doc.text(30, 125, "Number of Faculty Members: ");
-                doc.text(92, 125, nFaculty);
-                doc.text(87, 125, "_______________________________________");
+                doc.text(100, 125, nFaculty);
 
                 doc.text(30, 140, "Preferred Dates: ");
                 doc.text(40, 150, prefDate1);
-                doc.text(125, 150, prefDate2);
-				doc.text(30, 150, "___________________________");
-				doc.text(115, 150, "___________________________");
+                doc.text(145, 150, prefDate2);
 
                 doc.text(30, 170, "Type of Visit Expected: ");
-                doc.text(77, 170, "___________________________________________");
 
 
                 doc.text(80, 170, $('input[name=radioVisit]:checked', '#visitExpected').val());
@@ -159,11 +141,13 @@
 
                 doc.text(40, 210, adminName);
                 doc.text(125, 210, designation);
-				doc.text(30, 210, "___________________________");
-				doc.text(115, 210, "___________________________");
 
-                doc.text(46, 220, "Administrator");
-                doc.text(134, 220, "Designation");
+
+                doc.line(30, 215, 90, 215);
+                doc.line(115, 215, 175, 215);
+
+                doc.text(40, 220, "Administrator");
+                doc.text(125, 220, "Designation");
 
 
 
@@ -276,9 +260,12 @@
 
                 <div class="thirteen wide column body-text-about">
                     <h1 id="schoolLevel" style="color: #45484c;"></h1>
+
                     <hr>
                     <br>
-                  
+                    <br>
+                    <br>
+
 
 
                     <div class="ui one column grid">
@@ -456,7 +443,7 @@
                                                         <div class="column">
 
                                                             <div class="ui radio checkbox">
-                                                                <input type="radio" name="radioVisit" value="Resurvey">
+                                                                <input type="radio" name="radio" value="Resurvey">
                                                                 <label>Resurvey</label>
                                                             </div>
 
@@ -525,7 +512,7 @@
 
                         </div>
 
-                        <button class="ui green button" onclick="genPDF();">Generate PDF</button>
+                        <button onclick="genPDF();">Generate PDF</button>
                         <br>
                         <br>
                         <br>

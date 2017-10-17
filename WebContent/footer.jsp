@@ -1,4 +1,5 @@
-<div class="ui inverted vertical footer segment footerbg">
+
+ <div class="ui inverted vertical footer segment footerbg">
    <br>
    <br>
    <br>
@@ -7,16 +8,15 @@
    <div class="ui center aligned main-body-container">
        <div class="ui stackable inverted divided grid">
            <div class="four wide column" style="padding-right:10%;">
-
 		        <div class="ui inverted link list">
 		            <img class="item" width="250px" height="auto;" src="img/footer-logo.png">
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">History of PAASCU</a>
+		            <a href="AboutPAASCU" class="item footer-text">About PAASCU</a>
 		            <br>
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Objectives</a>
+		            <a href="BoardMembers" class="item footer-text">Board Members</a>
 		            <br>
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Board Memberss</a>
+		            <a href="CommissionMembers" class="item footer-text">Commission Members</a>
 		            <br>
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Commission Members</a>
+		        	<a href="InternationalAffiliations" class="item footer-text">International Affiliations</a>
 		            <br>
 		        </div>
 		    </div>
@@ -24,19 +24,14 @@
 		        <h4 class="ui inverted header green">Our Members</h4>
 		
 		        <div class="ui inverted link list">
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Elementary</a>
-		            <br>
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Highschool</a>
-		            <br>
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Basic Education</a>
-		            <br>
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Tertiary</a>
-		            <br>
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Graduate School</a>
-		            <br>
-		            <a href="http://semantic-ui.com/examples/fixed.html#" class="item footer-text">Medical School</a>
-		            <br>
-		        </div>
+		            <a href="Members" class="item footer-text">Grade School</a>
+		            <a href="Members" class="item footer-text">High School</a>
+		            <a href="Members" class="item footer-text">Basic Education</a>
+		            <a href="Members" class="item footer-text">Tertiary</a>
+		            <a href="Members" class="item footer-text">Graduate School</a>
+		            <a href="Members" class="item footer-text">Medical School</a>
+		            <a href="Members" class="item footer-text">CECSTE</a>
+		         </div>
 		    </div>
 		
 		    <div class="four wide column">
@@ -51,7 +46,7 @@
 		            <span class="item footer-text"><i class="print icon"></i>&nbsp;(63 2) 911 0807</span>
 		            <br>
 		        </div>
-		    </div>
+		    </div>	
 		    <div class="five wide column">
 		        <h4 class="ui inverted header green">Be Updated</h4>
 		        <p class=" footer-text">Signup for our newsletter!

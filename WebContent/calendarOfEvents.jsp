@@ -22,12 +22,6 @@
         <link href='css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
         <meta charset="UTF-8">
         <style>
-            body {
-                margin: 40px 10px;
-                padding: 0;
-                font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
-                font-size: 14px;
-            }
             #calendar {
                 max-width: 900px;
                 margin: 0 auto;
@@ -115,17 +109,6 @@
 
     <script type="text/javascript" src="js/semantic.min.js"></script>
 
-    <script type="text/javascript">
-        if (screen.width >= 1500) {
-            document.write("<style>body{zoom:80%;}</style>");
-        }
-        if (screen.width >= 2000) {
-            document.write("<style>body{zoom:100%;}</style>");
-        }
-        if (screen.width >= 2500) {
-            document.write("<style>body{zoom:120%;}</style>");
-        }
-    </script>
 
     <script>
         $('.ui.dropdown')

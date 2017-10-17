@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import com.mysql.jdbc.Connection;
 
 import Models.Institution;
+import Models.SearchResults;
 
 public class InstitutionsUtil {
 	private DBUtil db;
@@ -64,12 +65,38 @@ public class InstitutionsUtil {
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude FROM `institutions`");
+			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude, name, address, city FROM `institutions`");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				job = new JSONObject();
 				job.put("lat", rs.getDouble(1));
 				job.put("lng", rs.getDouble(2));
+				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getLocationsJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
+	
+	public JSONArray getLocationsLevelJSON(int level){
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude, name, address, city FROM `institutions` WHERE educLevelID = ?");
+			ps.setInt(1, level);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("lat", rs.getDouble(1));
+				job.put("lng", rs.getDouble(2));
+				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
 				jArray.put(job);
 				
 			}
@@ -103,6 +130,49 @@ public class InstitutionsUtil {
 		}
 		
 		return jArray;
+	}
+	
+
+	public ArrayList<SearchResults> getInstitutionsResults(String searchWord)
+	{
+		ArrayList<SearchResults> temp = new ArrayList<SearchResults>();
+		SearchResults tempResult = null;
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT institutionID, name, acronym, contactEmail, contactNumber FROM `institutions` WHERE name LIKE ?");
+			ps.setString(1, "%" + searchWord + "%");
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				String acronym = "";
+				String contactEmail = "-";
+				String contactNumber = "-";
+
+				if(rs.getString(3)==null);
+				else
+					acronym = " (" + rs.getString(3) + ")";
+				
+				if(rs.getString(4)==null);
+				else
+					contactEmail = rs.getString(4);
+				
+				if(rs.getString(5)==null);
+				else
+					contactNumber = rs.getString(5);
+				
+				tempResult = new SearchResults(rs.getString(2) + acronym, "Contact E-mail: " + contactEmail + "<br>Contact Number: " + contactNumber, "Institution?institutionID=" + rs.getInt(1), "Institution");
+				temp.add(tempResult);
+				System.out.print("asdaInstitutions");
+			}
+		
+		} catch (Exception e){
+			System.out.println("Error in BoardMembersUtil:getBMResults()");
+			e.printStackTrace();
+		}
+		
+		return temp;
 	}
 	
 	public JSONArray getAllInstitutionsJSON(){
@@ -155,6 +225,27 @@ public class InstitutionsUtil {
 		}
 		
 		return name;
+	}
+	
+	
+	public int getEducLevelID(int institutionID)
+	{
+		int ID = 0;
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT `educLevelID` FROM `institutions` where `institutionID`=?");
+			ps.setInt(1, institutionID);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){				
+				ID = rs.getInt(1);
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getEducLevelName()");
+			e.printStackTrace();
+		}
+		
+		return ID;
 	}
 	
 	
@@ -240,6 +331,32 @@ public class InstitutionsUtil {
 	    return institutions;
 	}
 	
+	public JSONArray getLocationsCityJSON(String city) 
+	{
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude, name, address, city FROM `institutions` WHERE city LIKE ?");
+			ps.setString(1, "%" + city + "%");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("lat", rs.getDouble(1));
+				job.put("lng", rs.getDouble(2));
+				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
+				
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getLocationsJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
 	
 	public JSONArray getInstitutionsForLevelJSON(int educLevelID){
 		JSONArray jArray = new JSONArray();
@@ -273,9 +390,65 @@ public class InstitutionsUtil {
 		return jArray;
 	}
 	
+	public JSONArray getCitiesJSON() {
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT DISTINCT city FROM `institutions` ORDER BY city asc");
+		
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("city", rs.getString(1));
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getCitiesJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
+	
+	public JSONArray getInstitutionInfo(int instID){
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT name, systemID, acronym, head, hPosition, contactEmail, contactNumber, website, address, educLevelID FROM `institutions` WHERE institutionID = ?");
+			ps.setInt(1, instID);
+		
+			ResultSet rs = ps.executeQuery();
+			if(rs.first()){
+				job = new JSONObject();
+				job.put("institutionName", rs.getString(1));
+				job.put("system", getSchoolSystemName(rs.getInt(2)));
+				job.put("acronym", rs.getString(3));
+				job.put("head", rs.getString(4));
+				job.put("hPosition", rs.getString(5));
+				job.put("contactEmail", rs.getString(6));
+				job.put("contactNumber", rs.getString(7));
+				job.put("website", rs.getString(8));
+				job.put("address", rs.getString(9));
+				job.put("educLevelID", rs.getInt(10));
+				
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getInstitutionsForLevelJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
+	
 	public String getInstitutionName(int institutionID){
 		String name = "";
-		Institution temp = new Institution();
 		try{
 			Connection conn = db.getConnection();
 			PreparedStatement ps = conn.prepareStatement("SELECT name FROM institutions WHERE `institutionID` = ?");
@@ -537,4 +710,44 @@ public class InstitutionsUtil {
 		format = year + " " + month + " "+ day;
 		return format;
 	}
+
+	public Double getLongitude(int ID) {
+		Double lng = 0.0;
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT longitude FROM institutions WHERE `institutionID` = ?");
+			ps.setInt(1, ID);
+			ResultSet rs = ps.executeQuery();
+			if(rs.first()){
+				lng = rs.getDouble(1);
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getSchoolSystemInstitutions()");
+			e.printStackTrace();
+		}
+		
+	    return lng;
+	}
+	
+	public Double getLatitude(int ID) {
+		Double lat = 0.0;
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT latitude FROM institutions WHERE `institutionID` = ?");
+			ps.setInt(1, ID);
+			ResultSet rs = ps.executeQuery();
+			if(rs.first()){
+				lat = rs.getDouble(1);
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getSchoolSystemInstitutions()");
+			e.printStackTrace();
+		}
+		
+	    return lat;
+	}
+
+
+
+	
 }

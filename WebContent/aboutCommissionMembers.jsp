@@ -45,6 +45,14 @@
 
 	
 		<script>
+
+		$(document).on('click', '.listOfCommission a', function(event){
+		    event.preventDefault();
+
+		    $('html, body').animate({
+		        scrollTop: $( $.attr(this, 'href') ).offset().top
+		    }, 500);
+		});
 		$(document).ready(function() {
   			for(var i = 1; i<8; i++)
 	  			for(var j = 1; j<6; j++)
@@ -608,22 +616,24 @@
                             <p class="item" style="background-color: #45484c; color: white;">
                                 About
                             </p>
-                            <a class="item" href="aboutPaascu.jsp">
+                            <a class="item" href="AboutPAASCU">
     About PAASCU
   </a>
-                            <a class="item" href="aboutBoardMembers.jsp">
+                            <a class="item" href="BoardMembers">
    Board Members
   </a>
-                            <a class="item active" href="aboutCommissionMembers.jsp">Commission Members</a>
+                            <a class="item active" href="CommissionMembers">Commission Members</a>
+                            <div class="listOfCommission">
                             <a class="item padded-menu-item" href="#elementary">Elementary Education</a>
                             <a class="item padded-menu-item" href="#secondary">Secondary Education</a>
-                            <a class="item padded-menu-item">Integrated Basic Education</a>
+                            <a class="item padded-menu-item" href="#basiced">Integrated Basic Education</a>
                             <a class="item padded-menu-item" href="#tertiary">Tertiary Education</a>
-                            <a class="item padded-menu-item" href="#med">Graduate Education</a>
+                            <a class="item padded-menu-item" href="#grad">Graduate Education</a>
                             <a class="item padded-menu-item" href="#med">Medical Education</a>
                             <a class="item padded-menu-item" href="#cecste">Engineering, Computer Science & Technology Education</a>
-
-                            <a class="item" href="internationalAffiliations.jsp">
+							</div>
+							
+                            <a class="item" href="InternationalAffiliations">
    International Affiliations
   </a>
 
@@ -640,7 +650,7 @@
 
                 <div class="thirteen wide column">
 
-                    <h1 style="color: #45484c;">Commision Members</h1>
+                    <h1 style="color: #45484c;">Commission Members</h1>
                     <hr>
                     <br>
                     <br>

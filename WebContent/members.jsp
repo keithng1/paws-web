@@ -5,10 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Institution Members</title>
-
-
-
- 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
    		<script type="text/javascript" src="js/semantic.min.js"></script>
    
 
@@ -63,7 +60,7 @@
 				  document.getElementById("divLetterPagination").appendChild(a);
 			  }
 			  
-			  loadFilteredInstitutions("A");
+			  loadFilteredInstitutions("A", ${educLevel});
 				  	
 		  
 		  });
@@ -118,6 +115,22 @@
 			  if(level == null)
 				  level = 0;
 			  
+			  $("#menuBarMembers a").each(function(){
+				  if($(this).attr('id') == level)
+				 {
+					  $(this).removeClass();
+					  $(this).addClass("active item");
+						 
+				 }
+				  else 
+				  {
+					  $(this).removeClass();
+				  	  $(this).addClass("item");
+			  	  }
+				  
+					  
+				});
+			  
 			  $("#divLetterPagination a").each(function(){
 				  if($(this).text() == letter)
 				 {
@@ -144,7 +157,8 @@
 	               			var aInst = document.createElement("a");
 	    					aInst.setAttribute("class", "institution-list");
 	  					    aInst.innerHTML = value.institutionName;
-	  					  
+	  					    aInst.setAttribute("href", "Institution?institutionID=" + value.institutionID);
+	  					    
 	    					document.getElementById("instList").appendChild(aInst);
 	  					    document.getElementById("instList").appendChild(document.createElement("br"));
 	    					document.getElementById("instList").appendChild(document.createElement("br"));
@@ -174,10 +188,6 @@
 
             <div class="ui grid">
                 <div class="three wide column">
-
-
-
-
 
                     <div class="ui secondary vertical menu">
                         <div class="sidebar-about" id="menuBarMembers">
@@ -264,7 +274,6 @@
                         <br>
                         <br>
                         <br>
-                    </center>
 
 
 
@@ -280,8 +289,6 @@
 
 
 
-
-        </div>
 
         <br>
         <br>

@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import Utilities.NewsUtil;
 
 /**
- * Servlet implementation class Members
+ * Servlet implementation class Application
  */
-@WebServlet("/Members")
-public class Members extends HttpServlet {
+@WebServlet("/Application")
+public class Application extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Members() {
+    public Application() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +31,16 @@ public class Members extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		int level = 0;
-		String startLetter = "A";
-		if(request.getParameter("educLevel")!=null)
-			level = Integer.parseInt(request.getParameter("educLevel"));
+		if(request.getParameter("level")!=null)
+			level = Integer.parseInt(request.getParameter("level"));
 		
-		if(request.getParameter("letter")!=null)
-			startLetter = request.getParameter("letter");
+		System.out.print(level);
+		request.setAttribute("level", level);
 		
-		request.setAttribute("educLevel", level);
-		request.setAttribute("letter", startLetter);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("members.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("application.jsp");
 		rd.forward(request, response);	
+		
 	}
 
 	/**

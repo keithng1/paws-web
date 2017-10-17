@@ -32,11 +32,32 @@ public class LocationsLoader extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		int level = 0;
+		String city = "";
+		
 		response.setContentType("application/json");
 		JSONArray jArray = new JSONArray();
 		InstitutionsUtil instUtil = new InstitutionsUtil();
-		jArray = instUtil.getLocationsJSON();
-		response.getWriter().write(jArray.toString());
+		
+		
+		if(Integer.parseInt(request.getParameter("level"))!=0)
+		{
+			level = Integer.parseInt(request.getParameter("level"));
+			jArray = instUtil.getLocationsLevelJSON(level);
+			response.getWriter().write(jArray.toString());
+		}
+		else if(request.getParameter("city")!="")
+		{
+			city = request.getParameter("city");
+			jArray = instUtil.getLocationsCityJSON(city);
+			response.getWriter().write(jArray.toString());
+		}
+		else
+		{
+			jArray = instUtil.getLocationsJSON();
+			response.getWriter().write(jArray.toString());
+		}
 	}
 
 	/**

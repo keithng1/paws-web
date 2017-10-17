@@ -8,6 +8,8 @@ import org.json.JSONObject;
 
 import com.mysql.jdbc.Connection;
 
+import Models.SearchResults;
+
 public class CommissionMembersUtil {
 	private DBUtil db;
 	public CommissionMembersUtil(){
@@ -45,5 +47,28 @@ public class CommissionMembersUtil {
 		}
 		
 		return jArray;
+	}
+	
+	public SearchResults getCMResults(String searchWord)
+	{
+		SearchResults temp = null;
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT firstname, lastname, position FROM `commission-members` WHERE firstname LIKE ? OR lastname LIKE ? OR position LIKE ?");
+			ps.setString(1, "%" + searchWord + "%");
+			ps.setString(2, "%" + searchWord + "%");
+			ps.setString(3, "%" + searchWord + "%");
+			
+			ResultSet rs = ps.executeQuery();
+			if(rs.first())
+				temp = new SearchResults("Commission Members", rs.getString(1) + " " + rs.getString(2) + " - " + rs.getString(3) + "<br>...", "CommissionMembers", "Commission Members");
+		
+		} catch (Exception e){
+			System.out.println("Error in CommissionMembersUtil:getCMResults()");
+			e.printStackTrace();
+		}
+		
+		return temp;
 	}
 }

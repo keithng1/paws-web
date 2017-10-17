@@ -38,6 +38,7 @@
 </style>
 
 <script>
+
 	  $(document).ready(function() {
   		$.getJSON("BoardMembersLoader?boardPositionID=1", function(data) {
 	  		$.each(data, function(key, value) {
@@ -149,16 +150,16 @@
   <p class="item" style="background-color: #45484c; color: white;">
     About
   </p>
-  <a class="item" href="aboutPaascu.jsp">
+  <a class="item" href="AboutPAASCU">
     About PAASCU
   </a>
-   <a class="item active" href="aboutBoardMembers.jsp">
+   <a class="item active" href="BoardMembers">
    Board Members
   </a>
-   <a class="item" href="aboutCommissionMembers.jsp">
+   <a class="item" href="CommissionMembers">
    Commission Members
   </a>
-  <a class="item" href="aboutInternationalAffiliations.jsp">
+  <a class="item" href="InternationalAffiliations">
    International Affiliations
   </a>
  
