@@ -7,7 +7,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
 public class DBUtil {
-	private static final String DB_URL = "jdbc:mysql://localhost:3306/paws-web1";
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/paws-web";
 	private static final String USER = "root";
 	private static final String PASS = "";
 	private Connection conn = null;
@@ -33,5 +33,6 @@ public class DBUtil {
 	public int getLastID(){
 		return 3;
 	}
+
 	
 }

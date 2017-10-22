@@ -224,7 +224,7 @@
   </a>
 
 
-                            <a class="item" href="membersMap.jsp">
+                            <a class="item" href="MembersMap">
    Map View
   </a>
 

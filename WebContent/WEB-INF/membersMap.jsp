@@ -20,7 +20,7 @@
 
 
     <meta charset="UTF-8">
-
+	<title>Members Map</title>
 
 
 
@@ -63,6 +63,10 @@
 </head>
 
 <script>
+	
+	$(document).on('change','#cities',function(){
+		initMap(null, $('#cities').val());
+	});
 
 	$(document).ready(function() {
 		  $.getJSON("CitiesLoader", function(data) {
@@ -70,11 +74,10 @@
          		if(data.length > 0)
          		{
          			$.each(data, function(key, value) {
-                   		var aCity = document.createElement("a");
-  						aCity.setAttribute("class", "bold");
-					    aCity.innerHTML = value.city;
-					    aCity.setAttribute("onclick", "return initMap(null, '" + value.city + "');");
-					    
+                   		var aCity = document.createElement("option");
+  						aCity.innerHTML = value.city;
+  						aCity.setAttribute("value", value.city);
+					   
 	  					document.getElementById("cities").appendChild(aCity);
 	  				    document.getElementById("cities").appendChild(document.createElement("br"));
 	  				    document.getElementById("cities").appendChild(document.createElement("br"));
@@ -83,15 +86,20 @@
          			});
          		}
           });
-	
+		 
 	});
 
+	function getMap(level)
+	{
+		initMap(level, $('#cities option:selected').val());
+	}
+	
     function initMap(level, city) {
     	
     	
 
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 6,
+            zoom: 5,
             center: {
                 lat: 11.8797,
                 lng: 121.7740
@@ -99,7 +107,6 @@
         });
 
         var infoWin = new google.maps.InfoWindow();
-
         
         if(level==null)
         	level = 0;
@@ -107,12 +114,24 @@
         if(city==null)
         	city = "";
         
-       
         
         $.getJSON("LocationsLoader?level="+level+"&city="+city, function(data) {
             var locations = data;
-
             
+        	document.getElementById("total").innerHTML = "Total institutions: " + data.length;
+             
+            
+            if(city!='' && city!=" ")
+            	document.getElementById("filterCity").innerHTML = "Results for " + city;
+            else
+            	document.getElementById("filterCity").innerHTML = "";
+                
+            if(level!=0)
+            {
+            	var levelName = document.getElementById(level).innerHTML;
+            	document.getElementById("filterLevel").innerHTML = "Results for " + levelName;
+            }	
+            	
             console.log(locations);
 
             var markers = locations.map(function(location, i) {
@@ -253,86 +272,25 @@
 
                 <h2 style="color: #45484c;">Filters</h2>
                 <br>
+                
+                <p id="total"></p>
+                <p id="filterCity"></p>
+                <p id="filterLevel"></p>
 
                 <div class="ui two column grid">
                     <div class="row">
-                        <div class="column">
+                    	<div class="column">
+                   		   <h3 style="color: #45484c;">City</h3>
+    	                   <hr>
+         	               <br>
+							<select class="ui fluid search dropdown" id="cities">
+	                    		<option></option>
+								<option> </option>
+							</select>
+            	   		</div>
 
 
-
-
-
-                            <h3 style="color: #45484c;">Region</h3>
-                            <hr>
-                            <br>
-
-
-
-
-                            <a class="bold">REGION I (Ilocos Region) in Luzon</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION II (Cagayan Valley) in Luzon</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION III (Central Luzon)</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION IV-A (CALABARZON) Luzon</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION IV-B(MIMAROPA) 17th region Visayas</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION V(Bicol Region) Luzon</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION VI (Western Visayas)</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION VII (Central Visayas)</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION VIII (Eastern Visayas)</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION IX (Zamboanga Peninsula)</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION X (Northern Mindanao)</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION XI (Davao Region)</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION XII (Soccsksargen)</a>
-                            <br>
-                            <br>
-                            <a class="bold">(NCR) National Capital Region in Luzon</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION XIV Cordillera Administrative Region (CAR) in Luzon</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION XV - Autonomous Region in Muslim Mindanao (ARMM)</a>
-                            <br>
-                            <br>
-                            <a class="bold">REGION XIII (CARAGA)</a>
-                            <br>
-                            <br>
-                            <a class="bold">Region XVIII - NIR - Negros Island Region    </a>
-                            <br>
-                            <br>
-
-
-
-
-                        </div>
-
-
-
-
-                        <div class="column">
+                        <div class="column" id="educLevels">
 
 
 
@@ -340,42 +298,32 @@
                             <hr>
                             <br>
 
-                            <a class="bold" onclick="initMap(1)">Elementary Education</a>
+                            <a class="bold" onclick="getMap(1)" id="1">Elementary Education</a>
                             <br>
                             <br>
-                            <a class="bold" onclick="initMap(2)">Secondary Education</a>
+                            <a class="bold" onclick="getMap(2)" id="2">Secondary Education</a>
                             <br>
                             <br>
-                            <a class="bold" onclick="initMap(3)">Integrated Basic Education</a>
+                            <a class="bold" onclick="getMap(3)" id="3">Integrated Basic Education</a>
                             <br>
                             <br>
-                            <a class="bold" onclick="initMap(4)">Tertiary Education</a>
+                            <a class="bold" onclick="getMap(4)" id="4">Tertiary Education</a>
                             <br>
                             <br>
-                            <a class="bold" onclick="initMap(5)">Graduate Education</a>
+                            <a class="bold" onclick="getMap(5)" id="5">Graduate Education</a>
                             <br>
                             <br>
-                            <a class="bold" onclick="initMap(6)">Medical Education</a>
+                            <a class="bold" onclick="getMap(6)" id="6">Medical Education</a>
                             <br>
                             <br>
-                            <a class="bold" onclick="initMap(7)">Engineering, Computer Science & Technology Education</a>
+                            <a class="bold" onclick="getMap(7)" id="7">Engineering, Computer Science & Technology Education</a>
                             <br>
                             <br>
 
                         </div>
 
                     </div>
-                    <div class="column" id="cities">
-
-
-
-
-
-                        <h3 style="color: #45484c;">City</h3>
-                        <hr>
-                        <br>
-
-                    </div>
+                
                 </div>
 
 

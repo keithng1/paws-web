@@ -25,6 +25,11 @@
 
 
 
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	    <script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
+	
+	    <script type="text/javascript" src="js/semantic.min.js"></script>
+
 
         <link type="text/css" rel="stylesheet" href="css/style.css" />
         <!--Let browser know website is optimized for mobile-->
@@ -35,6 +40,55 @@
                 width: auto;
             }
         </style>
+        
+        <script>
+        	function submitMessage()
+        	{	
+        		if($.trim($('#name').val()) == '' || $.trim($('#email').val()) == '' || $.trim($('#message').val()) == '')
+        		{
+        		   alert('Required fields cannot be left blank.');
+        		}     
+        		      
+        		else
+       			{
+        		    
+        			var ip = "0.0.0.0";
+	       		    try
+	       		    {
+	       		    	$.getJSON('//api.ipify.org?format=json', function(data) {
+	       		    		ip = data.ip;
+	            			  
+	       		    	});
+	       		    }
+	       		    catch(e)
+	       		    {
+	       		    	
+	       		    }
+        		    submit(ip);
+       				
+       		   }
+        		
+        		
+        	}
+        	
+        	function submit(ip)
+        	{
+        		$.ajax({
+        			url: 'Contact?' + $('#contactForm').serialize() + "&ip=" + ip,
+        			type: 'POST',
+        			async: false,
+        			dataType: 'json',
+        			success: function(result){
+	        		}
+        		 });
+
+        		alert("Message successfully sent!");
+  		      setTimeout(window.location.href = "contactUs.jsp", 5000);
+        	}
+        	
+        	
+        
+        </script>
 
 
 
@@ -63,8 +117,7 @@
 
 
 
-				<form action="mailto:joanna_lau@dlsu.edu.ph" method="post" enctype="text/plain">
-                <div class="thirteen wide column body-text-about">
+				<div class="thirteen wide column body-text-about">
 
 
 
@@ -101,60 +154,42 @@
                     <br>
 
 
+					<form id="contactForm">
+	                    
+
                     <div class="row">
-
-                        <div class="ui two column grid">
-                            <div class="column">
-                                <div style="padding-bottom: 1%;">
-                                    <span style="color:red;">*</span> <span style="color: black;"><b>Name</b></span>
-                                    <br> </div>
-                                <div class="ui input" style="width: 100%;">
-                                    <input style="width:100%;" type="text">
-                                </div>
-
-
-                            </div>
-
-
-                            <div class="column">
-                                <div style="padding-bottom: 1%;">
-                                    <span style="color:red;">*</span><span style="color: black;"><b>Email</b></span>
-                                    <br> </div>
-                                <div class="ui input" style="width: 100%;">
-                                    <input style="width:100%;" type="text">
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-
+                            <span style="color: red;"><b>*Required fields</b></span>
+					    	
+					    	<div class="ui two column grid">
+	                            <div class="column">
+	                                <div style="padding-bottom: 1%;">
+	                                    <span style="color:red;">*</span><span style="color: black;"><b>Name</b></span>
+	                                    <br></div>
+	                                <div class="ui input" style="width: 100%;">
+	                                    <input style="width:100%;" type="text" name="name" id="name">
+	                                </div>
+	
+	
+	                            </div>
+	
+	
+	                            <div class="column">
+	                                <div style="padding-bottom: 1%;">
+	                                    <span style="color:red;">*</span><span style="color: black;"><b>Email</b></span>
+	                                    <br> </div>
+	                                <div class="ui input" style="width: 100%;">
+	                                    <input style="width:100%;" type="email" id="email" name="email">
+	                                </div>
+	
+	
+	                            </div>
+	
+	                        </div>
+						
 
 
 
                         <br>
-
-
-
-                        <div class="row">
-
-                            <div class="column">
-                                <div style="padding-bottom: 1%;">
-                                    <span style="color:red;">*</span> <span style="color: black;"><b>Subject</b></span>
-                                    <br> </div>
-                                <div class="ui input" style="width: 100%;">
-                                    <input style="width:100%;" type="text">
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-
-                        <br>
-
 
                         <div class="row">
 
@@ -164,18 +199,20 @@
                                     <br> </div>
                                 <div class="field" style="width: 100%;">
 
-                                    <textarea style="width: 100%; height: 25%;"></textarea>
+                                    <textarea style="width: 100%; height: 25%;" id="message" name="message"></textarea>
                                 </div>
 
                             </div>
                         </div>
                     </div>
+                    	
+                      </form>
                     <br>
                     <br>
-                    <div class="ui primary huge button">Submit</div>
+                    <div class="ui primary huge button" onclick="submitMessage();">Submit</div>
+					
 
                 </div>
-				</form>
 
 
 
@@ -198,11 +235,6 @@
 
 
 
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
-
-    <script type="text/javascript" src="js/semantic.min.js"></script>
 
     <script type="text/javascript">
         if (screen.width >= 1500) {

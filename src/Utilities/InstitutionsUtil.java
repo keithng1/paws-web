@@ -69,8 +69,8 @@ public class InstitutionsUtil {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				job = new JSONObject();
-				job.put("lat", rs.getDouble(1));
-				job.put("lng", rs.getDouble(2));
+				job.put("lng", rs.getDouble(1));
+				job.put("lat", rs.getDouble(2));
 				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
 				jArray.put(job);
 				
@@ -93,9 +93,10 @@ public class InstitutionsUtil {
 			ps.setInt(1, level);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
+				System.out.print("waaat");
 				job = new JSONObject();
-				job.put("lat", rs.getDouble(1));
-				job.put("lng", rs.getDouble(2));
+				job.put("lng", rs.getDouble(1));
+				job.put("lat", rs.getDouble(2));
 				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
 				jArray.put(job);
 				
@@ -343,8 +344,36 @@ public class InstitutionsUtil {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				job = new JSONObject();
-				job.put("lat", rs.getDouble(1));
-				job.put("lng", rs.getDouble(2));
+				job.put("lng", rs.getDouble(1));
+				job.put("lat", rs.getDouble(2));
+				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
+				
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getLocationsJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
+	
+	public JSONArray getLocationsLevelCityJSON(int level, String city) {
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude, name, address, city FROM `institutions` WHERE city LIKE ? AND educLevelID = ?");
+			ps.setString(1, "%" + city + "%");
+			ps.setInt(2, level);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("lng", rs.getDouble(1));
+				job.put("lat", rs.getDouble(2));
 				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
 				
 				jArray.put(job);
@@ -746,6 +775,8 @@ public class InstitutionsUtil {
 		
 	    return lat;
 	}
+
+	
 
 
 

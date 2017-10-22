@@ -43,18 +43,35 @@ public class LocationsLoader extends HttpServlet {
 		
 		if(Integer.parseInt(request.getParameter("level"))!=0)
 		{
-			level = Integer.parseInt(request.getParameter("level"));
-			jArray = instUtil.getLocationsLevelJSON(level);
-			response.getWriter().write(jArray.toString());
+			if(request.getParameter("city")!="")
+			{
+				System.out.print("1" + request.getParameter("city") + "wot");
+				level = Integer.parseInt(request.getParameter("level"));
+				city = request.getParameter("city");
+				jArray = instUtil.getLocationsLevelCityJSON(level, city);
+				response.getWriter().write(jArray.toString());	
+			}
+			else
+			{	
+				System.out.print("2");
+			
+				level = Integer.parseInt(request.getParameter("level"));
+				jArray = instUtil.getLocationsLevelJSON(level);
+				response.getWriter().write(jArray.toString());
+			}
 		}
 		else if(request.getParameter("city")!="")
 		{
+			System.out.print("3");
+			
 			city = request.getParameter("city");
 			jArray = instUtil.getLocationsCityJSON(city);
 			response.getWriter().write(jArray.toString());
 		}
 		else
 		{
+			System.out.print("4");
+			
 			jArray = instUtil.getLocationsJSON();
 			response.getWriter().write(jArray.toString());
 		}

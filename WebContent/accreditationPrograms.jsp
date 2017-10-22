@@ -85,7 +85,7 @@
    Member Benefits and Incentives
   </a>
         
-<a class="item active" href="AccreditatedPrograms">
+<a class="item active" href="AccreditedPrograms">
    Programs Accredited by PAASCU
   </a>
  
@@ -103,7 +103,7 @@
         
   <div class="thirteen wide column body-text-about">
         
-<h1 style="color: #45484c;">Member Benefits and Incentives</h1>        
+<h1 style="color: #45484c;">Programs Accredited by PAASCU</h1>        
       <hr><br>
    
       <p>In 1957, PAASCU began accrediting in the tertiary level programs in Liberal Arts, Education and Commerce. Presently, PAASCU accredits the following programs:</p>

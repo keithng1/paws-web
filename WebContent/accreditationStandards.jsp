@@ -87,7 +87,7 @@
    Member Benefits and Incentives
   </a>
         
-<a class="item" href="AccreditatedPrograms">
+<a class="item" href="AccreditedPrograms">
    Programs Accredited by PAASCU
   </a>
  

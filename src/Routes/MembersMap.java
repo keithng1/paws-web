@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class BoardMembers
+ * Servlet implementation class MembersMap
  */
-@WebServlet("/BoardMembers")
-public class BoardMembers extends HttpServlet {
+@WebServlet("/MembersMap")
+public class MembersMap extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardMembers() {
+    public MembersMap() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +29,7 @@ public class BoardMembers extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/aboutBoardMembers.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/membersMap.jsp");
 		rd.forward(request, response);	
 	}
 

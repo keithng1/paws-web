@@ -37,8 +37,8 @@ public class Institution extends HttpServlet {
 		InstitutionsUtil instUtil = new InstitutionsUtil();
 		
 		String name = instUtil.getInstitutionName(ID);
-		Double lng = instUtil.getLatitude(ID);
-		Double lat = instUtil.getLongitude(ID);
+		Double lng = instUtil.getLongitude(ID);
+		Double lat = instUtil.getLatitude(ID);
 		
 		
 		request.setAttribute("instID", ID);
