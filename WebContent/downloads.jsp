@@ -42,58 +42,95 @@
         </style>
 
         <script>
-    	var x = 0;
-    	var department = "";
-
-        $(document).ready(function() {
-                $("#schoolLevel").html("Application for Survey Visit - Grade School");
-                x=70;
-                department = "GRADE SCHOOL DEPARTMENT";
-            
-                
-                $('#gradeSchool').click(function() {
-                    $("#schoolLevel").html("Application for Survey Visit - Grade School");
-                    x=70;
-                    department = "GRADE SCHOOL DEPARTMENT";
-                    return false;
-                });
-
-                $('#highSchool').click(function() {
-                    $("#schoolLevel").html("Application for Survey Visit - High School");
-                    x=72;
-                    department = "HIGH SCHOOL DEPARTMENT";
-                    return false;
-                });
-
-                $('#basic').click(function() {
-                    $("#schoolLevel").html("Application for Survey Visit - Basic Education");
-                    x=67;
-                    department = "BASIC EDUCATION DEPARTMENT";
-                    return false;
-                });
-
-                $('#med').click(function() {
-                    $("#schoolLevel").html("Application for Survey Visit - MEDICAL EDUCATION");
-                    x=77;
-                    department = "MEDICAL DEPARTMENT";
-                    return false;
-                });
-
-                $('#college').click(function() {
-                    $("#schoolLevel").html("Application for Survey Visit - COLLEGE DEPARTMENT");
-                    x=76;
-                    department = "COLLEGE DEPARTMENT";
-                    return false;
-                });
-
-
-                $('.sidebar-about a').click(function(e) {
-                    e.preventDefault();
-                    $('a').removeClass('active');
-                    $(this).addClass('active');
-                });
-
-            });
+	    	var x = 0;
+	    	var department = "";
+	
+	        $(document).ready(function() {
+	        	
+	        	 $('input[name=chooseOption]').on('input',function() {
+	        		    var selectedOption = $('option[value="'+$(this).val()+'"]');
+	        			var id = selectedOption.attr('id');
+	        		    
+	        		    if(id!=null)
+	        		    {
+	        				$.getJSON("AddressLoader?instID=" + selectedOption.attr('id') , function(data) {
+			       				
+			       				if(data.length > 0)
+			               		{
+			       					$.each(data, function(key, value) {
+			                         	
+				               			document.getElementById("address").value = value.address;
+			               			});
+			               		}
+			       				
+			       			});
+	        		    }
+	        	 });
+	        	 
+	       			$.getJSON("InstitutionsLoader", function(data) {
+	       				
+	       				if(data.length > 0)
+	               		{
+	               			$.each(data, function(key, value) {
+	                         	
+		               			var aInst = document.createElement("option");
+		               			aInst.setAttribute("value", value.institutionName);
+		  					    aInst.setAttribute("id", value.institutionID);
+		  					    
+		    					document.getElementById("institutionList").appendChild(aInst);
+	               			});
+	               		}
+	       				
+	       			});
+	       	
+	               $("#schoolLevel").html("Application for Survey Visit - Grade School");
+	               x=70;
+	               department = "GRADE SCHOOL DEPARTMENT";
+	           
+	               
+	               $('#gradeSchool').click(function() {
+	                   $("#schoolLevel").html("Application for Survey Visit - Grade School");
+	                   x=70;
+	                   department = "GRADE SCHOOL DEPARTMENT";
+	                   return false;
+	               });
+	
+	               $('#highSchool').click(function() {
+	                   $("#schoolLevel").html("Application for Survey Visit - High School");
+	                   x=72;
+	                   department = "HIGH SCHOOL DEPARTMENT";
+	                   return false;
+	               });
+	
+	               $('#basic').click(function() {
+	                   $("#schoolLevel").html("Application for Survey Visit - Basic Education");
+	                   x=67;
+	                   department = "BASIC EDUCATION DEPARTMENT";
+	                   return false;
+	               });
+	
+	               $('#med').click(function() {
+	                   $("#schoolLevel").html("Application for Survey Visit - MEDICAL EDUCATION");
+	                   x=77;
+	                   department = "MEDICAL DEPARTMENT";
+	                   return false;
+	               });
+	
+	               $('#college').click(function() {
+	                   $("#schoolLevel").html("Application for Survey Visit - COLLEGE DEPARTMENT");
+	                   x=76;
+	                   department = "COLLEGE DEPARTMENT";
+	                   return false;
+	               });
+	
+	
+	               $('.sidebar-about a').click(function(e) {
+	                   e.preventDefault();
+	                   $('a').removeClass('active');
+	                   $(this).addClass('active');
+	               });
+	
+	       });
 
         	
             function genPDF() {
@@ -153,8 +190,10 @@
                 doc.text(30, 170, "Type of Visit Expected: ");
                 doc.text(77, 170, "___________________________________________");
 
-
-                doc.text(80, 170, $('input[name=radioVisit]:checked', '#visitExpected').val());
+				var type = $('input[name=radioVisit]:checked', '#visitExpected').val();
+				if(type==null)
+					type = "";
+                doc.text(80, 170, type);
 
 
                 doc.text(40, 210, adminName);
@@ -288,7 +327,10 @@
                                     <span style="color: black;"><b>Institution</b></span>
                                     <br> </div>
                                 <div class="ui input" style="width: 100%;">
-                                    <input style="width:100%;" type="text" id="institution">
+                                    <input style="width:100%;" type="text" name="chooseOption" id="institution" list="institutionList">
+                                    <datalist id="institutionList">
+									    
+									</datalist>
                                 </div>
 
 

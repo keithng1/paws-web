@@ -42,10 +42,16 @@ public class InstitutionsLoader extends HttpServlet {
 		InstitutionsUtil insUtil = new InstitutionsUtil();
 	
 		
-		int systemID = Integer.parseInt(request.getParameter("systemID"));
-		
-		jArray = insUtil.getInstitutionsJSON(systemID);
-		
+		if(request.getParameter("systemID")!=null)
+		{
+			int systemID = Integer.parseInt(request.getParameter("systemID"));
+			jArray = insUtil.getInstitutionsOfSystemJSON(systemID);
+	
+		}
+		else
+			jArray = insUtil.getInstitutionsJSON();
+			
+			
 		response.getWriter().write(jArray.toString());	
 	}
 

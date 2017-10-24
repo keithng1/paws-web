@@ -132,26 +132,19 @@
        					document.getElementById("address").innerHTML = "-";
        				
        			
-       				if(value.educLevelID < 4)
-   					{
-   						$('#programsTable').empty();
-   					}
-       				else
-      				{
-			       			
-       					$.getJSON("ProgramsLoader?institutionID=" + "${instID}", function(data) {
-       						if(data.length > 0)
-       			       		{
-       							$.each(data, function(key, value) {
-       								var divRow = document.createElement("div");
-       			           			divRow.setAttribute("class", "row");
-       			           			
-       			           			var div1 = document.createElement("div");
-       			           			div1.setAttribute("class", "four wide column");
-   			           			
-       			           			var b1 = document.createElement("p");
-   			           				b1.innerHTML = value.degreeName;
-   			           				
+     					$.getJSON("ProgramsLoader?institutionID=" + "${instID}", function(data) {
+      						if(data.length > 0)
+      			       		{
+      							$.each(data, function(key, value) {
+      								var divRow = document.createElement("div");
+      			           			divRow.setAttribute("class", "row");
+      			           			
+      			           			var div1 = document.createElement("div");
+      			           			div1.setAttribute("class", "four wide column");
+  			           			
+      			           			var b1 = document.createElement("p");
+  			           				b1.innerHTML = value.degreeName;
+  			           				
 	   			           			var div2 = document.createElement("div");
 	   			           			div2.setAttribute("class", "four wide column");
 				           			
@@ -159,11 +152,11 @@
 			           				b2.innerHTML = value.educLevel;
 				           				
 			           				var div3 = document.createElement("div");
-       			           			div3.setAttribute("class", "four wide column");
-   			           			
-       			           			var b3 = document.createElement("p");
-   			           				b3.innerHTML = value.accLevel;
-   			           				
+      			           			div3.setAttribute("class", "four wide column");
+  			           			
+      			           			var b3 = document.createElement("p");
+  			           				b3.innerHTML = value.accLevel;
+  			           				
 	   			           			var div4 = document.createElement("div");
 	   			           			div4.setAttribute("class", "four wide column");
 				           			
@@ -181,17 +174,11 @@
 				           			divRow.appendChild(div4);
 				           			
 				           			document.getElementById("tableCell").appendChild(divRow);
-       			           			
-       			       			});
-       			       		}
-       						else
-   							{
-       							$('#programsTable').empty();
-       							
-   							}
+	      			           			
+   			       				});
+      			       		}
        					});
-      				}		
-       					
+      					
        			});
        		}
 
@@ -249,6 +236,7 @@
 							<p><b>Contact Number</b></p>
 							<p><b>Website</b></p>
 							<p><b>Address</b></p>
+							
 						</div>
 						    	
 				    	<div class="ten wide column">   

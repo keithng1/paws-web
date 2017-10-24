@@ -150,6 +150,8 @@
 			  
               $.getJSON("MembersLoader?letter=" + letter + "&educLevel=" + level, function(data) {
                  		
+            	  document.getElementById("totalInst").innerHTML = "Total institutions: " + data.length;
+         			
                		if(data.length > 0)
                		{
                			$.each(data, function(key, value) {
@@ -247,18 +249,14 @@
                     <h1 style="color: #45484c;">Members A-Z</h1>
                     <hr>
                     <br>
-
                     <center>
 
                         <div class="ui pagination menu" id="divLetterPagination">
                         
                         </div>
-                        <br>
-                        <br>
-                        <br>
+                        
                     </center>
-
-
+     				<h4 id="totalInst"></h4>
                     <h1 style="color: #45484c;" id="letter"></h1>
                    
 					<div id="instList">

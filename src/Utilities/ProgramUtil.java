@@ -49,7 +49,7 @@ public class ProgramUtil {
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT degreeName, levelID, level, validUntil FROM `school-program` WHERE institutionID = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT degreeName, levelID, accLevel, validUntil FROM `school-program` WHERE institutionID = ? ORDER BY levelID");
 			ps.setInt(1, instID);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){

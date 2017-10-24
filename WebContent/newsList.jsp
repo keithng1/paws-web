@@ -177,39 +177,11 @@
         <div class="main-body-container">
 
             <div class="ui grid">
-                <div class="three wide column">
+            
 
 
 
-
-
-                    <div class="ui secondary vertical menu">
-                        <div class="sidebar-about">
-                            <p class="item" style="background-color: #45484c; color: white;">
-                                News
-                            </p>
-                            <a class="item active" href="newsList.jsp">
-    News
-  </a>
-                            <a class="item" href="calendarOfEvents.jsp">
-       Calendar of Events
-  </a>
-                            <a class="item" href="annualReports.jsp">
-   Annual Reports
-  </a>
-
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-
-
-                <div class="thirteen wide column" id="divStart">
+                <div class="sixteen wide column" id="divStart">
 
                     <h1 style="color: #45484c;">News</h1>
                     <hr>

@@ -58,6 +58,45 @@ public class InstitutionsUtil {
 		
 		return jArray;
 	}
+	
+	
+	public JSONArray getFilteredInstitutionsJSON1(String startLetter, int level){
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		try{
+			Connection conn = db.getConnection();
+			if(level==0)
+			{
+				PreparedStatement ps = conn.prepareStatement("SELECT name, city, institutionID FROM institutions WHERE institutionID IN (SELECT institutionID FROM `school-program`) AND name LIKE ?");
+				ps.setString(1, startLetter + "%");
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					job = new JSONObject();
+					job.put("institutionID", rs.getInt(3));
+					job.put("institutionName", rs.getString(1) + " - " + rs.getString(2));
+					jArray.put(job);
+				}
+			}
+			else
+			{
+				PreparedStatement ps = conn.prepareStatement("SELECT name, city, institutionID FROM institutions WHERE institutionID IN (SELECT institutionID FROM `school-program` WHERE levelID = ?) AND name LIKE ?");
+				ps.setInt(1, level);
+				ps.setString(2, startLetter + "%");
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					job = new JSONObject();
+					job.put("institutionID", rs.getInt(3));
+					job.put("institutionName", rs.getString(1) + " - " + rs.getString(2));
+					jArray.put(job);
+				}
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getInstitutionsStartingLetterJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
 
 	public JSONArray getLocationsJSON(){
 		JSONArray jArray = new JSONArray();
@@ -109,7 +148,7 @@ public class InstitutionsUtil {
 		return jArray;
 	}
 
-	public JSONArray getInstitutionsJSON(int systemID){
+	public JSONArray getInstitutionsOfSystemJSON(int systemID){
 		JSONArray jArray = new JSONArray();
 		JSONObject job = new JSONObject();
 		
@@ -122,6 +161,29 @@ public class InstitutionsUtil {
 				job = new JSONObject();
 				job.put("institutionID", rs.getInt(1));
 				job.put("institutionName", rs.getString(2) + " - " + rs.getString(3));
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getInstitutionsJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
+	
+	public JSONArray getInstitutionsJSON(){
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT institutionID, name, city FROM `institutions` ORDER BY `name`");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("institutionID", rs.getInt(1));
+				job.put("institutionName", rs.getString(2));
 				jArray.put(job);
 				
 			}
@@ -774,6 +836,31 @@ public class InstitutionsUtil {
 		}
 		
 	    return lat;
+	}
+
+	public JSONArray getAddressOfInst(int instID) {
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT address FROM `institutions` WHERE institutionID = ?");
+			ps.setInt(1, instID);
+		
+			ResultSet rs = ps.executeQuery();
+			if(rs.first()){
+				job = new JSONObject();
+				job.put("address", rs.getString(1));
+				
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getInstitutionsForLevelJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
 	}
 
 	
