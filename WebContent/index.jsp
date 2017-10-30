@@ -113,17 +113,13 @@
             <br>
 
             <div class="call">
-
-
-
-                <div class="ui two column centered grid">
-
-
-                    <div class="pad-down"><span class="call-text">Be a member institution.</span>
-                    </div>
-                    <div class="">
-                        <button class="ui green button">CONTACT US</button>
-                    </div>
+				
+			
+                <div class="ui big center aligned secondary segment">
+					<span>
+						Be a member institution. &nbsp;
+						<a class="ui green button" style="margin: .5em;" href="ContactUs">Contact Us</a>
+					</span>
                 </div>
             </div>
 
@@ -136,7 +132,7 @@
 
 
 
-            <div class="ui two column grid">
+            <div class="ui stackable two column grid">
 
                 <div class="column">
                     <div class="ui fluid card">
@@ -145,11 +141,11 @@
                             <br>
                             <br>
                             <div class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie neque pulvinar,
+                            	PAASCU has accredited many quality institutions, accredited institutions have been certified to meet excellence and the standards of education.
                             </div>
+                          	<br>
                             <br>
-                            <br>
-                            <a style="color: black;"><h5 style="padding-left: 3%;"> VIEW PAASCU ACCREDITED INSTITUTIONS ></h5> </a>
+                            <a style="color: black; font-weight: bold;" href="Members"> VIEW PAASCU ACCREDITED INSTITUTIONS > </a>
 
                             <br>
                             <br>
@@ -163,11 +159,10 @@
                             <br>
                             <br>
                             <div class="description">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie neque pulvinar,
+	                            PAASCU Accredited programs have gone through extensive validation in order for accreditation. This ensures these educational programs are on par with today’s standard of education.
                             </div>
                             <br>
-                            <br>
-                            <a style="color: black;"><h5 style="padding-left: 3%;"> VIEW PAASCU ACCREDITED PROGRAMS ></h5> </a>
+							<a style="color: black; font-weight: bold;" href="AccreditedPrograms"> VIEW PAASCU ACCREDITED PROGRAMS > </a>
 
                             <br>
                             <br>

@@ -33,7 +33,7 @@
        * element that contains the map. */
         
         #map {
-            height: 50%;
+            height: 80%;
             width: 100%;
         }
         

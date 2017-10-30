@@ -35,10 +35,31 @@
             }
         </style>
 
+		<script>
+			function checkWidth(init)
+			{
+			    /*If browser resized, check width again */
+			    if ($(window).width() < 1080) {
+			        $('#divLetterPagination').addClass('vertical');
+			    }
+			    else {
+			        if (!init) {
+			            $('#divLetterPagination').removeClass('vertical');
+			        }
+			    }
+			}
+		</script>
 
 		<script>
 
 		  $(document).ready(function() {
+			  
+			  checkWidth(true);
+
+			    $(window).resize(function() {
+			        checkWidth(false);
+		    	});
+			  
 			  for (var i = 65; i <= 90; i++) 
 			  {
 				  var a = document.createElement("a");
@@ -188,7 +209,7 @@
 
         <div class="main-body-container">
 
-            <div class="ui grid">
+            <div class="ui stackable grid">
                 <div class="three wide column">
 
                     <div class="ui secondary vertical menu">
@@ -197,38 +218,38 @@
                                 Our Members
                             </p>
                             <a class="item active" id = "0" onclick = "loadFilteredByLevel(0);">
-    A to Z
-  </a>
+						  	  A to Z
+						 	 </a>
                             <a class="item" id = "1" onclick="loadFilteredByLevel(1);">
-   Elementary Education
-  </a>
-                            <a class="item" id = "2" onclick="loadFilteredByLevel(2);">
-   Secondary Education
-  </a>
-                            <a class="item" id = "3 "onclick="loadFilteredByLevel(3);">
-   Integrated Basic Education
-  </a>
-
-                            <a class="item" id = "4" onclick="loadFilteredByLevel(4);">
-   Tertiary Education
-  </a>
-
-                            <a class="item" id = "5" onclick="loadFilteredByLevel(5);">
-   Graduate Education
-  </a>
-
-                            <a class="item" id = "6" onclick="loadFilteredByLevel(6);">
-   Medical Education
-  </a>
-
-                            <a class="item" id = "7" onclick="loadFilteredByLevel(7);">
-   Engineering, Computer Science & Technology Education
-  </a>
-
-
-                            <a class="item" href="MembersMap">
-   Map View
-  </a>
+						   Elementary Education
+						  </a>
+                          <a class="item" id = "2" onclick="loadFilteredByLevel(2);">
+						   Secondary Education
+						  </a>
+               	          <a class="item" id = "3 "onclick="loadFilteredByLevel(3);">
+						   Integrated Basic Education
+						  </a>
+						
+                          <a class="item" id = "4" onclick="loadFilteredByLevel(4);">
+						   Tertiary Education
+						  </a>
+						
+                          <a class="item" id = "5" onclick="loadFilteredByLevel(5);">
+						   Graduate Education
+						  </a>
+						
+                          <a class="item" id = "6" onclick="loadFilteredByLevel(6);">
+						   Medical Education
+						  </a>
+						
+           	              <a class="item" id = "7" onclick="loadFilteredByLevel(7);">
+						   Engineering, Computer Science & Technology Education
+						  </a>
+						
+						
+						                            <a class="item" href="MembersMap">
+						   Map View
+						  </a>
 
 
 
@@ -257,9 +278,9 @@
                         
                     </center>
      				<h4 id="totalInst"></h4>
-                    <h1 style="color: #45484c;" id="letter"></h1>
+                    <!-- <h1 style="color: #45484c;" id="letter"></h1> -->
                    
-					<div id="instList">
+					<div id="instList" style="margin-top: 2em;">
 					
 					</div>
 

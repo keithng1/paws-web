@@ -134,6 +134,14 @@
                             a.setAttribute("href", "ViewNews?newsID=" + value.newsID);
                             a.innerHTML = "See More >";
 
+                            var div9 = document.createElement("div");
+                            div9.setAttribute("class", "meta");
+                            
+                            var span1 = document.createElement("span");
+                            span1.innerHTML = formatDate(value.date);
+                            
+                            div9.appendChild(span1);
+
 
                             div8.innerText = strip(value.content).substr(0, 430) + '...';;
                             div8.appendChild(span);
@@ -142,6 +150,10 @@
 
 
                             div6.appendChild(div7);
+                            div6.appendChild(div9);
+                            div6.appendChild(document.createElement("br"));
+
+                            
                             div6.appendChild(div8);
 
                             div4.appendChild(div5);
@@ -159,6 +171,19 @@
 
 
             });
+            
+            
+            function formatDate(date)
+            {
+            	var complete = date.split('-');
+            	var str_month = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            	if(complete[1] < 10)
+            		return str_month[complete[1].substring(1)] + ' ' + complete[2] + ', ' + complete[0];
+            	
+            	return str_month[complete[1]] + ' ' + complete[2] + ', ' + complete[0];
+            	
+            	
+            }
         </script>
 
 
@@ -179,7 +204,7 @@
             <div class="ui grid">
             
 
-
+				
 
                 <div class="sixteen wide column" id="divStart">
 
@@ -187,7 +212,11 @@
                     <hr>
                     <br>
                     <br>
-
+				<select class="ui dropdown">
+				  <option value="">Gender</option>
+				  <option value="1">Male</option>
+				  <option value="0">Female</option>
+				</select>
 
 
 
@@ -238,12 +267,7 @@
         }
     </script>
 
-    <script>
-        $('.ui.dropdown')
-            .dropdown();
-    </script>
-
-
+   
 
 
 

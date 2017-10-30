@@ -223,7 +223,7 @@
 	    <br>
 	    <br>
 		
-		<div class="ui grid">
+		<div class="ui stackable grid">
 		       
                <div class="eight wide column">
 					<div class="ui grid">

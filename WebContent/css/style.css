@@ -9,10 +9,9 @@ html{
     
    font-family: "opensans"; 
 
-
-    
     
 }
+
 
 
 /*home page */
@@ -84,9 +83,7 @@ input{
     font-size: 12px;
 }
 
-.pad-down{
-    padding-top: 1%;
-}
+
 
 .carousel-header{
     
@@ -114,15 +111,6 @@ input{
 }
 
 
-.call{
-    background-color: rgb(243, 241, 241);
-  padding: 2%;
-}
-
-.call-text{
-    font-size: 18px;
-    color: rgb(85, 82, 82)
-}
 
 /* glide */
 .slider {

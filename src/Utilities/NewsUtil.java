@@ -90,7 +90,7 @@ public class NewsUtil {
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` LIMIT ?, ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` ORDER BY `date` desc LIMIT ?, ?");
 			
 			ps.setInt(1, (page-1)*5);
 			ps.setInt(2, (page-1)*5+5);

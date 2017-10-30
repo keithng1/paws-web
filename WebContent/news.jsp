@@ -24,11 +24,27 @@
          <meta charset="UTF-8">
 
 
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+		<script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
+      
+      <script type="text/javascript" src="js/semantic.min.js"></script>
     <!--<link type="text/css" rel="stylesheet" href="css/style.css" />
     --><!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
+	<script>
+	
+		$(document).ready(function() {
+			var date = "${news.getDate()}";
+			var complete = date.split('-');
+			var str_month = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	    	if(complete[1] < 10)
+	    		document.getElementById("datePosted").innerHTML = "Posted on " + str_month[complete[1].substring(1)] + ' ' + complete[2] + ', ' + complete[0];
+	    	else
+		    	document.getElementById("datePosted").innerHTML = "Posted on " + str_month[complete[1]] + ' ' + complete[2] + ', ' + complete[0];
+	    	
+		});
+	</script>
 
 
 
@@ -42,45 +58,16 @@
         <div class="main-body-container">
         
     <div class="ui grid">
-  <div class="three wide column">
-        
-        
-        
 
-      
-   
-             
-<div class="ui secondary vertical menu">
-    <div class="sidebar-about">
-  <p class="item" style="background-color: #45484c; color: white;">
-   News
-  </p>
-  <a class="item active" href="newsList.jsp">
-    News
-  </a>
-   <a class="item" href="calendarOfEvents.jsp">
-       Calendar of Events
-  </a>
-   <a class="item" href="annualReports.jsp">
-   Annual Reports
-  </a>
-  
- 
- 
-</div>
-        
-         </div>    
-        
-        </div>
         
 
         
         
-  <div class="thirteen wide column">
+  <div class="sixteen wide column">
         
 <h1 style="color: #45484c;"><c:out value="${news.getTitle()}"/></h1>        
       <hr>
-           <div id="datePosted">Posted at <c:out value="${news.getDate()}"/></div>
+           <div id="datePosted"> </div>
       <br><br>
   
  
@@ -119,10 +106,6 @@
       
 
       
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
-      
-      <script type="text/javascript" src="js/semantic.min.js"></script>
      
       
 <script>
