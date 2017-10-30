@@ -39,6 +39,7 @@ public class Search extends HttpServlet {
 		
 		String searchWord = request.getParameter("query");
 		
+		
 		ArrayList<SearchResults> results = new ArrayList<SearchResults>();
 		
 		BoardMembersUtil bmUtil = new BoardMembersUtil();
@@ -61,7 +62,6 @@ public class Search extends HttpServlet {
 		request.setAttribute("results", results);
 		request.setAttribute("searchWord", searchWord);
 
-		System.out.print(request.getParameter("search"));
 		
 		RequestDispatcher rd = request.getRequestDispatcher("searchResults.jsp");
 		rd.forward(request, response);

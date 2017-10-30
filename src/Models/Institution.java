@@ -254,7 +254,6 @@ public class Institution {
 		this.educLevel = educLevel;
 		this.longitude = longitude;
 		this.latitude = latitude;
-		System.out.println(date_added+"CITY!!!!!!!!!!"+ institutionAcronym);
 	}
 	
 	public Institution(int institutionID, String name, String city, String educLevel)

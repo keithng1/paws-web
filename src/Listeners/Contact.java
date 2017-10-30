@@ -2,6 +2,8 @@ package Listeners;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.*;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,13 +44,17 @@ public class Contact extends HttpServlet {
 						String email = request.getParameter("email");
 						String message = request.getParameter("message");
 						String ip = request.getParameter("ip");
+						
+						name = StringEscapeUtils.escapeHtml4(name);
+						email = StringEscapeUtils.escapeHtml4(email);
+						message = StringEscapeUtils.escapeHtml4(message);
+						
 						if(ip == null)
 						{
 							ip = "0.0.0.0";
 						}
 						ContactUsUtil cuUtil = new ContactUsUtil();
 						
-						System.out.print("Contact.java" + cuUtil.isLastEntry(name, email, message));
 						if(!cuUtil.isLastEntry(name, email, message))
 							cuUtil.submitContactUs(name, email, message, ip);
 					

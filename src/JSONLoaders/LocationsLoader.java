@@ -45,7 +45,6 @@ public class LocationsLoader extends HttpServlet {
 		{
 			if(request.getParameter("city")!="")
 			{
-				System.out.print("1" + request.getParameter("city") + "wot");
 				level = Integer.parseInt(request.getParameter("level"));
 				city = request.getParameter("city");
 				jArray = instUtil.getLocationsLevelCityJSON(level, city);
@@ -53,8 +52,7 @@ public class LocationsLoader extends HttpServlet {
 			}
 			else
 			{	
-				System.out.print("2");
-			
+				
 				level = Integer.parseInt(request.getParameter("level"));
 				jArray = instUtil.getLocationsLevelJSON(level);
 				response.getWriter().write(jArray.toString());
@@ -62,7 +60,6 @@ public class LocationsLoader extends HttpServlet {
 		}
 		else if(request.getParameter("city")!="")
 		{
-			System.out.print("3");
 			
 			city = request.getParameter("city");
 			jArray = instUtil.getLocationsCityJSON(city);
@@ -70,7 +67,6 @@ public class LocationsLoader extends HttpServlet {
 		}
 		else
 		{
-			System.out.print("4");
 			
 			jArray = instUtil.getLocationsJSON();
 			response.getWriter().write(jArray.toString());
