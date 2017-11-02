@@ -99,7 +99,7 @@
        				else
        					document.getElementById("head").innerHTML = "-";
        				
-       				if(value.position!=null)
+       				if(value.hPosition!=null)
 	       				document.getElementById("position").innerHTML = value.hPosition;
        				else
        					document.getElementById("position").innerHTML = "-";
