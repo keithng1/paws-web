@@ -23,7 +23,7 @@ public class CommissionMembersUtil {
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `commission-members` WHERE commissionPositionID = ? AND educLevelID = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `commission-members` WHERE commissionPositionID = ? AND educLevelID = ? AND year = (SELECT MAX(year) FROM `commission-members`)");
 			ps.setInt(1, commissionPositionID);
 			ps.setInt(2, educLevelID);
 			
@@ -36,6 +36,7 @@ public class CommissionMembersUtil {
 				job.put("city", rs.getString(8));
 				job.put("commPosID", rs.getInt(10));
 				job.put("educLevelID", rs.getInt(11));
+				job.put("year", rs.getInt(9));
 				
 				
 				jArray.put(job);

@@ -110,14 +110,14 @@
 	               });
 	
 	               $('#med').click(function() {
-	                   $("#schoolLevel").html("Application for Survey Visit - MEDICAL EDUCATION");
+	                   $("#schoolLevel").html("Application for Survey Visit - Medical Education");
 	                   x=77;
 	                   department = "MEDICAL DEPARTMENT";
 	                   return false;
 	               });
 	
 	               $('#college').click(function() {
-	                   $("#schoolLevel").html("Application for Survey Visit - COLLEGE DEPARTMENT");
+	                   $("#schoolLevel").html("Application for Survey Visit - College Department");
 	                   x=76;
 	                   department = "COLLEGE DEPARTMENT";
 	                   return false;

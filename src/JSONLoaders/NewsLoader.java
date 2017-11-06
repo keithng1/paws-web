@@ -39,11 +39,15 @@ public class NewsLoader extends HttpServlet {
 		if(request.getParameter("page") != null)
 			page = Integer.parseInt(request.getParameter("page"));
 		
+		int year = 0;
+		
+		if(request.getParameter("year") != null)
+			year = Integer.parseInt(request.getParameter("year"));
 		
 		response.setContentType("application/json");
 		JSONArray jArray = new JSONArray();
 		NewsUtil newsUtil = new NewsUtil();
-		jArray = newsUtil.getNewsInPageJSON(page);
+		jArray = newsUtil.getNewsInPageJSON(page, year);
 		response.getWriter().write(jArray.toString());
 	}
 

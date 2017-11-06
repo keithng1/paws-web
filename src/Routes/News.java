@@ -1,28 +1,27 @@
-package JSONLoaders;
+package Routes;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-
-import Utilities.BoardMembersUtil;
-import Utilities.InstitutionsUtil;
+import Utilities.NewsUtil;
 
 /**
- * Servlet implementation class BoardMembersLoader
+ * Servlet implementation class NewsList
  */
-@WebServlet("/BoardMembersLoader")
-public class BoardMembersLoader extends HttpServlet {
+@WebServlet("/News")
+public class News extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardMembersLoader() {
+    public News() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +32,21 @@ public class BoardMembersLoader extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		response.setContentType("application/json");
-		JSONArray jArray = new JSONArray();
-		BoardMembersUtil bmUtil = new BoardMembersUtil();
-		jArray = bmUtil.getBoardMembersJSON();
-		response.getWriter().write(jArray.toString());
+		int page = 1;
+		if(request.getParameter("page") != null)
+			page = Integer.parseInt(request.getParameter("page"));
 		
+		int year = 0;
+		if(request.getParameter("year") != null)
+			year = Integer.parseInt(request.getParameter("year"));
+		
+		NewsUtil nUtil = new NewsUtil();
+		int count = nUtil.getTotalCountNews(year);
+		request.setAttribute("newsCount", count);
+		request.setAttribute("page", page);
+		request.setAttribute("year", year);
+		RequestDispatcher rd = request.getRequestDispatcher("newsList.jsp");
+		rd.forward(request, response);	
 	}
 
 	/**

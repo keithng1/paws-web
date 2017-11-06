@@ -135,9 +135,9 @@
                     <br>
                     <span>J.P. Rizal corner P. Tuazon Sts., 1109 Quezon City</span>
                     <br>
-                    <span>Tel. Nos: 02 -911-2845, 02 -913-1998, 02- 439-0934, 02- 421-6227</span>
+                    <span>Tel. Nos: 02-911-2845, 02-913-1998, 02-439-0934, 02-421-6227</span>
                     <br>
-                    <span>Fax: 02 – 911-0807</span>
+                    <span>Fax: 02–911-0807</span>
                     <br>
                     <span>E-mail: info@paascu.org.ph</span>
                     <br>

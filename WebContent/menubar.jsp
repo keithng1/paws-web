@@ -9,8 +9,6 @@
   		}
 	
 	}
-
-
 </script>
 
 
@@ -35,7 +33,7 @@
              </div>
          </div>
 
-         <a class="item" href="NewsList">NEWS</a>
+         <a class="item" href="News">NEWS</a>
          <a class="item" href="Accreditation">ACCREDITATION</a>
          <a class="item" href="Members">OUR MEMBERS</a>
          <a class="item" href="Downloads">DOWNLOADS</a>

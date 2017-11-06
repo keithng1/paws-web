@@ -1,21 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-    
     <html>
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>News</title>
-
-
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
-        <script type="text/javascript" src="js/semantic.min.js"></script>
-
-
-
+	
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   		
+		<script type="text/javascript" src="js/semantic.min.js"></script>
+   
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!--Import sementic.css components-->
@@ -43,15 +37,13 @@
         </style>
 
         <script>
-            function strip(html) {
-                var tmp = document.createElement("div");
-                tmp.innerHTML = html;
-                return tmp.textContent || tmp.innerText || "";
-            }
-
+           
             $(document).ready(function() {
-				
- 				var pageCount =  (parseInt(${newsCount}/5));
+            	$('.ui.dropdown').dropdown();
+            	
+            	
+            	var pageCount =  (parseInt(${newsCount}/5));
+ 				
             	if(${newsCount}%5 > 0) 
             		pageCount+=1;
            		
@@ -62,7 +54,7 @@
     					aPagination.setAttribute("class", "item");
     					if(${page} == i+1)
     						aPagination.setAttribute("class", "active item");
-    					aPagination.setAttribute("href", "NewsList?page="+(i+1));
+    					aPagination.setAttribute("href", "News?page="+(i+1));
     					$(aPagination).insertBefore('#nextPaginate');
     				}
          		
@@ -84,12 +76,26 @@
             		    });
             		});
             	}
-            		
-            		
-                $.getJSON("NewsLoader?page=" + ${page}, function(data) {
+            	
+            	$.getJSON("NewsYearsLoader", function(data) {
                     if (data.length > 0) {
                         $.each(data, function(key, value) {
+                      		var option = document.createElement("option");
+                            option.setAttribute("value", value.year);
+                            option.innerHTML = value.year;
+                            
+                            
+                            document.getElementById("yearSelect").appendChild(option);
+                        });
 
+                    }
+                });
+            	
+            
+                $.getJSON("NewsLoader?page=" + ${page} + "&year="+ ${year}, function(data) {
+                    if (data.length > 0) {
+                        $.each(data, function(key, value) {
+							
                             var div1 = document.createElement("div");
                             div1.setAttribute("class", "ui cards");
 
@@ -168,11 +174,19 @@
 
                     }
                 });
-
+                
+                $('#yearSelect').change(function() {
+                 	document.location.href = "News?year=" + $('#yearSelect :selected').val();
+                });
 
             });
             
-            
+ 			function strip(html) {
+                var tmp = document.createElement("div");
+                tmp.innerHTML = html;
+                return tmp.textContent || tmp.innerText || "";
+            }
+
             function formatDate(date)
             {
             	var complete = date.split('-');
@@ -184,17 +198,20 @@
             	
             	
             }
+            
+            $(document).on('change', '#yearSelect', function(e) { 
+            	 
+                e.preventDefault();
+                var option_val = $("#yearSelect").val(); //store the dynamic value of select option
+                 $( "#yearSelect" ).find( 'option[value="' + ${year} + '"]' ).prop( "selected", true ); //Set select option 'Selected'
+                                              
+           });
         </script>
 
 
     </head>
 
     <body>
-
-
-
-
-
         <jsp:include page="menubar.jsp" />
 
 
@@ -211,14 +228,22 @@
                     <h1 style="color: #45484c;">News</h1>
                     <hr>
                     <br>
-                    <br>
-				<select class="ui dropdown">
-				  <option value="">Gender</option>
-				  <option value="1">Male</option>
-				  <option value="0">Female</option>
-				</select>
-
-
+                   
+                   <div class="ui grid">
+                   		<div class="eight wide column">
+                   		 Showing news from the year:
+						
+						<select class="ui dropdown" id="yearSelect">
+						  <option value="0">All</option>
+						 
+						</select>
+						<br>
+                   		</div>
+                   		
+                   </div> 
+                   
+					<br>
+					<br>
 
 
                 </div>
@@ -233,9 +258,9 @@
 
 
                 <div class="ui pagination menu">
-                    <a class="item" id="backPaginate" href="NewsList?page=${page-1}">&#60;</a>
+                    <a class="item" id="backPaginate" href="News?page=${page-1}">&#60;</a>
                    
-   				    <a class="item" id="nextPaginate" href="NewsList?page=${page+1}">&#62;</a>
+   				    <a class="item" id="nextPaginate" href="News?page=${page+1}">&#62;</a>
                 </div>
 
 
@@ -243,7 +268,7 @@
 
 
         </div>
-
+   
         <br>
         <br>
         <br>
@@ -251,21 +276,6 @@
 
     </body>
 
-
-
-
-
-    <script type="text/javascript">
-        if (screen.width >= 1500) {
-            document.write("<style>body{zoom:80%;}</style>");
-        }
-        if (screen.width >= 2000) {
-            document.write("<style>body{zoom:100%;}</style>");
-        }
-        if (screen.width >= 2500) {
-            document.write("<style>body{zoom:120%;}</style>");
-        }
-    </script>
 
    
 

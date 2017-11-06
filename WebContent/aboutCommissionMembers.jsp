@@ -58,11 +58,21 @@
 	  			for(var j = 1; j<6; j++)
 	  				$.getJSON("CommissionMembersLoader?positionID="+ j + "&educLevelID="+ i, function(data) {
 	  				  	$.each(data, function(key, value) {
+	  				  		var year = value.year;
+			  		 		$("#commission-elem-year").text(year);
+				  		 	$("#commission-secondary-year").text(year);
+				  			$("#commission-basic-year").text(year);
+				  			$("#commission-tertiary-year").text(year);
+				  			$("#commission-med-year").text(year);
+				  			$("#commission-grad-year").text(year);
+				  			$("#commission-cecste-year").text(year);
 	  				  		if(value.educLevelID == 1)
 	  		        		{
 	  				  		 	if(value.commPosID == 1)
   				  		 		{
-		  				  		 	var chair = document.getElementById("elemChair");
+	  				  		 		
+	  				  		 	
+	  				  		 		var chair = document.getElementById("elemChair");
 		  		        			var span1 = document.createElement("b");
 		  		          			var span2 = document.createElement("span");
 			  		          		var span3 = document.createElement("span");
@@ -662,7 +672,7 @@
                             <br>
                             <span id="elementary"><b>COMMISSION ON ELEMENTARY EDUCATION</b></span>
                             <br>
-                            <span id="commission-elem-year">2015</span>
+                            <span id="commission-elem-year"></span>
                             <br>
                             <br>
                             <br>
@@ -675,7 +685,9 @@
 							</div>
                             
                             <div id="elemViceCoChair"> 
-                            	
+                            	<span>VICE CHAIR</span>
+	                            <br>
+	                            <br>
 							</div>
 
                             <div id="elemMembers"> 
@@ -698,7 +710,9 @@
 							</div>
                             
                             <div id="secondaryViceCoChair"> 
-                            	
+                            	<span>VICE CHAIR</span>
+	                            <br>
+	                            <br>
 							</div>
 
                             <div id="secondaryMembers"> 
@@ -723,7 +737,9 @@
 							</div>
                             
                             <div id="basicEdViceCoChair"> 
-                            	
+                            	<span>VICE CHAIR</span>
+	                            <br>
+	                            <br>
 							</div>
 
                             <div id="basicEdMembers"> 
@@ -749,7 +765,9 @@
 							</div>
                             
                             <div id="tertiaryViceCoChair"> 
-                            	
+                            	<span>VICE CHAIR</span>
+	                            <br>
+	                            <br>
 							</div>
 
                             <div id="tertiaryMembers"> 
@@ -775,7 +793,9 @@
 							</div>
                             
                             <div id="gradViceCoChair"> 
-                            	
+                            	<span>VICE CHAIR</span>
+	                            <br>
+	                            <br>
 							</div>
 
                             <div id="gradMembers"> 
@@ -799,7 +819,9 @@
 							</div>
                             
                             <div id="medViceCoChair"> 
-                            	
+                            	<span>VICE CHAIR</span>
+	                            <br>
+	                            <br>
 							</div>
 
                             <div id="medMembers"> 
@@ -829,7 +851,9 @@
 							</div>
                             
                             <div id="cecsteViceCoChair"> 
-                            	
+                            	<span>CO CHAIR</span>
+	                            <br>
+	                            <br>
 							</div>
 
                             <div id="cecsteMembers"> 

@@ -1,28 +1,27 @@
-package Routes;
+package JSONLoaders;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Models.News;
+import org.json.JSONArray;
+
 import Utilities.NewsUtil;
 
 /**
- * Servlet implementation class NewsList
+ * Servlet implementation class NewsYearsLoader
  */
-@WebServlet("/NewsList")
-public class NewsList extends HttpServlet {
+@WebServlet("/NewsYearsLoader")
+public class NewsYearsLoader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewsList() {
+    public NewsYearsLoader() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,20 +31,11 @@ public class NewsList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		int page = 1;
-		
-		if(request.getParameter("page") != null)
-			page = Integer.parseInt(request.getParameter("page"));
-		
-		
-		NewsUtil nUtil = new NewsUtil();
-		int count = nUtil.getTotalCountNews();
-		request.setAttribute("newsCount", count);
-		request.setAttribute("page", page);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("newsList.jsp");
-		rd.forward(request, response);	
+		response.setContentType("application/json");
+		JSONArray jArray = new JSONArray();
+		NewsUtil newsUtil = new NewsUtil();
+		jArray = newsUtil.getNewsYearsJSON();
+		response.getWriter().write(jArray.toString());
 	}
 
 	/**

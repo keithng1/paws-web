@@ -83,31 +83,57 @@ public class NewsUtil {
 	    return temp;
 	}
 	
-	public JSONArray getNewsInPageJSON(int page){
+	public JSONArray getNewsInPageJSON(int page, int year){
 		
 		JSONArray jArray = new JSONArray();
 		JSONObject job = new JSONObject();
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` ORDER BY `date` desc LIMIT ?, ?");
-			
-			ps.setInt(1, (page-1)*5);
-			ps.setInt(2, (page-1)*5+5);
-			
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				job = new JSONObject();
-				job.put("newsID", rs.getInt(1));
-				job.put("title", rs.getString(2));
-				job.put("content", rs.getString(3));
-				job.put("date", rs.getString(4));
+		
+			if(year==0)
+			{
+				PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` ORDER BY `date` desc LIMIT ?, ?");
 				
+				ps.setInt(1, (page-1)*5);
+				ps.setInt(2, (page-1)*5+5);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					job = new JSONObject();
+					job.put("newsID", rs.getInt(1));
+					job.put("title", rs.getString(2));
+					job.put("content", rs.getString(3));
+					job.put("date", rs.getString(4));
+					
+					
+
+					jArray.put(job);
+					
+				}	
+			}
+			else
+			{
+				PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` WHERE `date` LIKE ? ORDER BY `date` desc LIMIT ?, ?");
 				
 
-				jArray.put(job);
-				
+				ps.setString(1, String.valueOf(year) + "%");
+				ps.setInt(2, (page-1)*5);
+				ps.setInt(3, (page-1)*5+5);
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					job = new JSONObject();
+					job.put("newsID", rs.getInt(1));
+					job.put("title", rs.getString(2));
+					job.put("content", rs.getString(3));
+					job.put("date", rs.getString(4));
+					
+					
+
+					jArray.put(job);
+					
+				}
 			}
+			
 		} catch (Exception e){
 			System.out.println("Error in InstitutionsUtil:getAllInstitutionsJSON()");
 			e.printStackTrace();
@@ -197,14 +223,27 @@ public class NewsUtil {
 		return jArray;
 	}
 	
-	public int getTotalCountNews(){
+	public int getTotalCountNews(int year){
 		int count = 0;
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM news");
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			count = rs.getInt(1);
+			
+			if(year==0)
+			{
+				PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM news");
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				count = rs.getInt(1);
+			}
+			else
+			{
+				
+				PreparedStatement ps = conn.prepareStatement("SELECT COUNT(*) FROM news WHERE date LIKE ?");
+				ps.setString(1, year + "%");
+				ResultSet rs = ps.executeQuery();
+				rs.next();
+				count = rs.getInt(1);
+			}
 		} catch (Exception e){
 			System.out.println("Error in NewsUtil:getCountNews()");
 			e.printStackTrace();
@@ -240,6 +279,33 @@ public class NewsUtil {
 		}
 		
 		return temp;
+	}
+
+
+
+
+
+	public JSONArray getNewsYearsJSON() {
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT DISTINCT LEFT(date ,4) FROM news ORDER BY date desc");
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("year", rs.getString(1));
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getAllInstitutionsJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
 	}
 	
 }

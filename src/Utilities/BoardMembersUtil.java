@@ -19,14 +19,13 @@ public class BoardMembersUtil {
 		db = new DBUtil();
 	}
 
-	public JSONArray getBoardMembersJSON(int boardPositionID) {
+	public JSONArray getBoardMembersJSON() {
 		JSONArray jArray = new JSONArray();
 		JSONObject job = new JSONObject();
 
 		try {
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `board-members` WHERE boardPositionID = ?");
-			ps.setInt(1, boardPositionID);
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `paws-web`.`board-members` WHERE year = (SELECT MAX(year) FROM `paws-web`.`board-members`)");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				job = new JSONObject();
@@ -36,7 +35,10 @@ public class BoardMembersUtil {
 				job.put("position", rs.getString(6));
 				job.put("institution", rs.getString(7));
 				job.put("city", rs.getString(8));
-
+				job.put("year", rs.getInt(9));
+				job.put("boardPositionID", rs.getInt(10));
+				
+				
 				jArray.put(job);
 
 			}

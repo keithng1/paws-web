@@ -40,84 +40,73 @@
 <script>
 
 	  $(document).ready(function() {
-  		$.getJSON("BoardMembersLoader?boardPositionID=1", function(data) {
-	  		$.each(data, function(key, value) {
-        		var span1 = document.createElement("b");
-        		var span2 = document.createElement("span");
-        		var span3 = document.createElement("span");
-        		var span4 = document.createElement("span");
-        	 	    
-            	span1.innerHTML = value.name;
-            	span2.innerHTML = value.position;
-            	span3.innerHTML = value.institution;
-            	span4.innerHTML = value.city;
+		  
+  		$.getJSON("BoardMembersLoader", function(data) {
+	  		if(data.length>0)
+  			{
+	  			
+	  			$.each(data, function(key, value) {
+	  				var year = value.year;
+	  				$("#board-year").text(year);
+	  				
+		  			var span1 = document.createElement("b");
+	        		var span2 = document.createElement("span");
+	        		var span3 = document.createElement("span");
+	        		var span4 = document.createElement("span");
+	        	 	    
+	            	span1.innerHTML = value.name;
+	            	span2.innerHTML = value.position;
+	            	span3.innerHTML = value.institution;
+	            	span4.innerHTML = value.city;
+	            	
+	            	if(value.boardPositionID == 1)
+		            {
+	            		document.getElementById("containerPres").appendChild(span1);
+		            	document.getElementById("containerPres").appendChild(document.createElement("br"));
+		            	document.getElementById("containerPres").appendChild(span2);            	
+		            	document.getElementById("containerPres").appendChild(document.createElement("br"));
+		            	document.getElementById("containerPres").appendChild(span3);
+		            	document.getElementById("containerPres").appendChild(document.createElement("br"));
+		            	document.getElementById("containerPres").appendChild(span4);
+		            	document.getElementById("containerPres").appendChild(document.createElement("br"));		            	
+		            	document.getElementById("containerPres").appendChild(document.createElement("br"));
+		            }
+	            	else if(value.boardPositionID == 2)
+		            {
+	            		document.getElementById("containerVicePres").appendChild(span1);
+		            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
+		            	document.getElementById("containerVicePres").appendChild(span2);            	
+		            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
+		            	document.getElementById("containerVicePres").appendChild(span3);
+		            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
+		            	document.getElementById("containerVicePres").appendChild(span4);
+		            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
+		            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
+		            }
+	            	if(value.boardPositionID == 3)
+		            {
+	            		document.getElementById("containerSecretary").appendChild(span1);
+		            	document.getElementById("containerSecretary").appendChild(document.createElement("br"));
+		            	document.getElementById("containerSecretary").appendChild(span2);            	
+		            	document.getElementById("containerSecretary").appendChild(document.createElement("br"));
+		            	document.getElementById("containerSecretary").appendChild(span3);
+		            	document.getElementById("containerSecretary").appendChild(document.createElement("br"));
+		            	document.getElementById("containerSecretary").appendChild(span4);
+		            	document.getElementById("containerSecretary").appendChild(document.createElement("br"));
+		            	document.getElementById("containerSecretary").appendChild(document.createElement("br"));
+			               
+		            }
+	            	
             	
-            	document.getElementById("containerPres").appendChild(span1);
-            	document.getElementById("containerPres").appendChild(document.createElement("br"));
-            	document.getElementById("containerPres").appendChild(span2);            	
-            	document.getElementById("containerPres").appendChild(document.createElement("br"));
-            	document.getElementById("containerPres").appendChild(span3);
-            	document.getElementById("containerPres").appendChild(document.createElement("br"));
-            	document.getElementById("containerPres").appendChild(span4);
-            	
-            	
-      		});
+      			});
+  			}
+	  		else
+  			{
+  				
+  			}
 	  
 	  	});
   		
-  		$.getJSON("BoardMembersLoader?boardPositionID=2", function(data) {
-	  		$.each(data, function(key, value) {
-        		var span1 = document.createElement("b");
-        		var span2 = document.createElement("span");
-        		var span3 = document.createElement("span");
-        		var span4 = document.createElement("span");
-        	 	    
-            	span1.innerHTML = value.name;
-            	span2.innerHTML = value.position;
-            	span3.innerHTML = value.institution;
-            	span4.innerHTML = value.city;
-            	
-            	document.getElementById("containerVicePres").appendChild(span1);
-            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
-            	document.getElementById("containerVicePres").appendChild(span2);            	
-            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
-            	document.getElementById("containerVicePres").appendChild(span3);
-            	document.getElementById("containerVicePres").appendChild(document.createElement("br"));
-            	document.getElementById("containerVicePres").appendChild(span4);
-            	
-            	
-      		});
-	  
-	  	});
-  		
-  		$.getJSON("BoardMembersLoader?boardPositionID=3", function(data) {
-	  		$.each(data, function(key, value) {
-	  			var containerSec = document.getElementById("containerSecretary");
-        		var span1 = document.createElement("b");
-        		var span2 = document.createElement("span");
-        		var span3 = document.createElement("span");
-        		var span4 = document.createElement("span");
-        	 	    
-            	span1.innerHTML = value.name;
-            	span2.innerHTML = value.position;
-            	span3.innerHTML = value.institution;
-            	span4.innerHTML = value.city;
-            	
-            	containerSec.appendChild(span1);
-            	containerSec.appendChild(document.createElement("br"));
-            	containerSec.appendChild(span2);            	
-            	containerSec.appendChild(document.createElement("br"));
-            	containerSec.appendChild(span3);
-            	containerSec.appendChild(document.createElement("br"));
-            	containerSec.appendChild(span4);
-            	containerSec.appendChild(document.createElement("br"));
-            	containerSec.appendChild(document.createElement("br"));
-            	
-            	
-            	
-      		});
-	  
-	  	});
 	  });
 	  
 </script>
@@ -183,7 +172,7 @@
     <div class="directors">
     	
         <span style="font-size:18px;"><b>PAASCU BOARD OF DIRECTORS</b></span><br>
-        <span id="board-year">2015</span><br><br>
+        <span id="board-year"></span><br><br>
         <span><b>PRESIDENT</b></span><br><br>
         <div id="containerPres">
 	        <!-- <span id="president-name">FR. JOEL E. TABORA, SJ</span><br>
