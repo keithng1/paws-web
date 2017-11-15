@@ -291,7 +291,7 @@ public class NewsUtil {
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT DISTINCT LEFT(date ,4) FROM news ORDER BY date desc");
+			PreparedStatement ps = conn.prepareStatement("SELECT DISTINCT LEFT(date, 4) FROM news ORDER BY LEFT(date, 4) DESC");
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){

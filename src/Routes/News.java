@@ -45,7 +45,7 @@ public class News extends HttpServlet {
 		request.setAttribute("newsCount", count);
 		request.setAttribute("page", page);
 		request.setAttribute("year", year);
-		RequestDispatcher rd = request.getRequestDispatcher("newsList.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/newsList.jsp");
 		rd.forward(request, response);	
 	}
 

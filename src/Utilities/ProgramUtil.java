@@ -154,18 +154,7 @@ public class ProgramUtil {
 		}
 		return sps;
 	}
-	public void updateProgram(int programID, String programName){
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("UPDATE programs SET name = ? WHERE programID=?");
-			ps.setInt(2, programID);
-			ps.setString(1, programName);
-			ps.executeUpdate();
-		} catch (Exception e){
-			System.out.println("Error in ProgramUtil:updateProgram()");
-			e.printStackTrace();
-		}
-	}
+	
 	public Program getProgram(int programID){
 		Program temp = new Program();
 		try{

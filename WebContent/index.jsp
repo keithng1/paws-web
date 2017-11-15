@@ -40,7 +40,7 @@
 
 
 
-        <jsp:include page="menubar.jsp" />
+        <jsp:include page="WEB-INF/menubar.jsp" />
 
 
         <div class="main-body-container">
@@ -185,7 +185,7 @@
 
 
 
-		<jsp:include page="footer.jsp" />
+		<jsp:include page="WEB-INF/footer.jsp" />
 
 
 

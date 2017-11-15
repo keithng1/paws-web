@@ -10,12 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Models.Institution;
 import Models.News;
-import Models.SchoolSystem;
-import Utilities.InstitutionsUtil;
 import Utilities.NewsUtil;
-import Utilities.SchoolSystemUtil;
 
 /**
  * Servlet implementation class ViewNews
@@ -42,7 +38,7 @@ public class ViewNews extends HttpServlet {
 		NewsUtil nUtil = new NewsUtil();
 		News news = nUtil.getNews(newsID);
 		request.setAttribute("news", news);
-		RequestDispatcher rd = request.getRequestDispatcher("news.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/news.jsp");
 		rd.forward(request, response);	
 	}
 

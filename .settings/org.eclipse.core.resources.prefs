@@ -1,6 +1,4 @@
 eclipse.preferences.version=1
-encoding//WebContent/aboutPaascu.jsp=UTF-8
-encoding//WebContent/contactUs.jsp=UTF-8
-encoding//WebContent/members.jsp=UTF-8
-encoding//WebContent/membersGrad.jsp=UTF-8
-encoding//WebContent/membersSecondary.jsp=UTF-8
+encoding//WebContent/WEB-INF/aboutPaascu.jsp=UTF-8
+encoding//WebContent/WEB-INF/contactUs.jsp=UTF-8
+encoding//WebContent/WEB-INF/members.jsp=UTF-8

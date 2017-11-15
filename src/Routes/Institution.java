@@ -47,7 +47,7 @@ public class Institution extends HttpServlet {
 		request.setAttribute("lng", lng);
 		
 		
-		RequestDispatcher rd = request.getRequestDispatcher("membersPage.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/membersPage.jsp");
 		rd.forward(request, response);	
 		
 	}

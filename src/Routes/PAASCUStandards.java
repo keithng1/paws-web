@@ -29,7 +29,7 @@ public class PAASCUStandards extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher rd = request.getRequestDispatcher("accreditationStandards.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/accreditationStandards.jsp");
 		rd.forward(request, response);	
 	}
 

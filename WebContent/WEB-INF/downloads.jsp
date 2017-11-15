@@ -196,13 +196,22 @@
                 doc.text(80, 170, type);
 
 
-                doc.text(40, 210, adminName);
-                doc.text(125, 210, designation);
+                var adminLength = adminName.length;
+                var adminX = 60 - adminLength;
+                
+                var desLength = designation.length;
+                var desX = 145 - desLength;
+
+                doc.text(adminX, 210, adminName);
+                doc.text(desX, 210, designation);
+                
+                
 				doc.text(30, 210, "___________________________");
+				
 				doc.text(115, 210, "___________________________");
 
-                doc.text(46, 220, "Administrator");
-                doc.text(134, 220, "Designation");
+                doc.text(49, 220, "Administrator");
+                doc.text(137, 220, "Designation");
 
 
 

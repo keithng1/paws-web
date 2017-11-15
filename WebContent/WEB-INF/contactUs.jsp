@@ -52,20 +52,18 @@
         		else
        			{
         		    
-        			var ip = "0.0.0.0";
-	       		    try
-	       		    {
-	       		    	$.getJSON('//api.ipify.org?format=json', function(data) {
-	       		    		ip = data.ip;
-	            			  
-	       		    	});
-	       		    }
-	       		    catch(e)
-	       		    {
-	       		    	
-	       		    }
-        		    submit(ip);
-       				
+        			var ip = "";
+       		    	$.getJSON('//freegeoip.net/json/?callback=?', function(data) {
+       		    	  	while(ip == "")
+            			{
+            				ip = data.ip;
+               			}	
+            			
+       		    	})
+       		    	.success(function() {submit(ip); alert("Message successfully sent!"); })
+       		    	.error(function() { submit("No IP provided"); alert("Message successfully sent!");})
+       		    	.complete(function() { submit("No IP provided");});
+       		    	
        		   }
         		
         		
@@ -73,20 +71,18 @@
         	
         	function submit(ip)
         	{
-        		$.ajax({
+        		  $.ajax({
         			url: 'Contact?' + $('#contactForm').serialize() + "&ip=" + ip,
         			type: 'POST',
         			async: false,
         			dataType: 'json',
         			success: function(result){
 	        		}
-        		 });
-
-        		alert("Message successfully sent!");
-  		      setTimeout(window.location.href = "contactUs.jsp", 5000);
+        		 }); 
+				
+        		
+  		      setTimeout(window.location.href = "ContactUs", 5000); 
         	}
-        	
-        	
         
         </script>
 
@@ -158,7 +154,7 @@
 	                    
 
                     <div class="row">
-                            <span style="color: red;"><b>*Required fields</b></span>
+                            <span style="color: red;"><b>*All fields are required.</b></span>
 					    	
 					    	<div class="ui two column grid">
 	                            <div class="column">

@@ -126,11 +126,8 @@
             else
             	document.getElementById("filterCity").innerHTML = "";
                 
-            if(level!=0)
-            {
-            	var levelName = document.getElementById(level).innerHTML;
-            	document.getElementById("filterLevel").innerHTML = "Results for " + levelName;
-            }	
+           	var levelName = document.getElementById(level).innerHTML;
+           	document.getElementById("filterLevel").innerHTML = "Results for " + levelName;
             	
             console.log(locations);
 
@@ -298,6 +295,10 @@
                             <hr>
                             <br>
 
+
+                            <a class="bold" onclick="getMap(0)" id="0">All levels</a>
+							<br>
+							<br>
                             <a class="bold" onclick="getMap(1)" id="1">Elementary Education</a>
                             <br>
                             <br>

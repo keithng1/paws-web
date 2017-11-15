@@ -29,7 +29,7 @@ public class InternationalAffiliations extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher rd = request.getRequestDispatcher("aboutInternationalAffiliations.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/aboutInternationalAffiliations.jsp");
 		rd.forward(request, response);		}
 
 	/**

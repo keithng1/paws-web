@@ -29,7 +29,7 @@ public class MembershipCategories extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher rd = request.getRequestDispatcher("accreditationMembership.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/accreditationMembership.jsp");
 		rd.forward(request, response);	
 	}
 

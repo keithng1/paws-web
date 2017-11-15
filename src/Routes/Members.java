@@ -43,7 +43,7 @@ public class Members extends HttpServlet {
 		request.setAttribute("educLevel", level);
 		request.setAttribute("letter", startLetter);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("members.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/members.jsp");
 		rd.forward(request, response);	
 	}
 

@@ -29,7 +29,7 @@ public class ContactUs extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher rd = request.getRequestDispatcher("contactUs.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/contactUs.jsp");
 		rd.forward(request, response);	
 	}
 

@@ -14,8 +14,6 @@ import org.json.JSONException;
 
 import Models.Institution;
 import Utilities.InstitutionsUtil;
-import Utilities.SchoolSystemUtil;
-
 /**
  * Servlet implementation class InstitutionsLoader
  */

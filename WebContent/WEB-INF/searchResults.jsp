@@ -44,7 +44,7 @@
 
 	document.getElementById("headerTitle").innerHTML = "Search results for ${searchWord}";
 
-	 $.getJSON('search.json', function(data) {
+	 $.getJSON('./search.json', function(data) {
 		 
 		 
 		 if(data.length > 0)

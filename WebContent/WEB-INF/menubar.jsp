@@ -9,8 +9,6 @@
   		}
 	
 	}
-
-
 </script>
 
 
@@ -19,7 +17,7 @@
      <div class="ui secondary menu navmenu">
 
          <div style="padding-right:5%; min-width: 100px; width: 240px;">
-             <a href="index.jsp"><img src="img/logo.png" style=" width:200px; height: auto;"> </a>
+             <a href="./"><img src="img/logo.png" style=" width:200px; height: auto;"> </a>
          </div>
 
 
@@ -31,7 +29,7 @@
                  <a class="item" href="AboutPAASCU">About PAASCU</a>
                  <a class="item" href="BoardMembers">Board Members</a>
                  <a class="item" href="CommissionMembers">Commission Members</a>
-                 <a class="item" href="InternationalAffiliations">International Affiliation</a>
+                 <a class="item" href="InternationalAffiliations">International Affiliations</a>
              </div>
          </div>
 

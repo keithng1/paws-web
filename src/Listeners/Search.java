@@ -58,12 +58,15 @@ public class Search extends HttpServlet {
 		if(instUtil.getInstitutionsResults(searchWord)!=null)
 			results.addAll(instUtil.getInstitutionsResults(searchWord));
 		
+		if(instUtil.getInstitutionsWithProgram(searchWord)!=null)
+			results.addAll(instUtil.getInstitutionsWithProgram(searchWord));
+		
 		
 		request.setAttribute("results", results);
 		request.setAttribute("searchWord", searchWord);
 
 		
-		RequestDispatcher rd = request.getRequestDispatcher("searchResults.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/searchResults.jsp");
 		rd.forward(request, response);
 	}
 

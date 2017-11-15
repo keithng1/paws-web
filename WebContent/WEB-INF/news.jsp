@@ -75,7 +75,7 @@
       
       <div id="image">
       
-     <center> <img src="http://paascu.org.ph/wp-content/uploads/2015/09/asean-qa-700x350.jpg" style="width:100%; height:40%;"></center>
+     <center> <img src="/static/finnjake.jpg" style="width:100%; height:40%;"></center>
       
       </div>
       <br><br>

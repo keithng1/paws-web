@@ -227,7 +227,49 @@ public class InstitutionsUtil {
 				
 				tempResult = new SearchResults(rs.getString(2) + acronym, "Contact E-mail: " + contactEmail + "<br>Contact Number: " + contactNumber, "Institution?institutionID=" + rs.getInt(1), "Institution");
 				temp.add(tempResult);
-				System.out.print("asdaInstitutions");
+			}
+		
+		} catch (Exception e){
+			System.out.println("Error in BoardMembersUtil:getBMResults()");
+			e.printStackTrace();
+		}
+		
+		return temp;
+	}
+	
+	public ArrayList<SearchResults> getInstitutionsWithProgram(String searchWord)
+	{
+		ArrayList<SearchResults> temp = new ArrayList<SearchResults>();
+		SearchResults tempResult = null;
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT institutionID, name, acronym, contactEmail, contactNumber FROM `institutions` WHERE institutionID IN (SELECT institutionID FROM `school-program` WHERE degreeName LIKE ?)");
+			ps.setString(1, "%" + searchWord + "%");
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				String acronym = "";
+				String contactEmail = "-";
+				String contactNumber = "-";
+
+				if(rs.getString(3)==null);
+				else
+					acronym = " (" + rs.getString(3) + ")";
+				
+				if(rs.getString(4)==null);
+				else
+					contactEmail = rs.getString(4);
+				
+				if(rs.getString(5)==null);
+				else
+					contactNumber = rs.getString(5);
+				
+				tempResult = new SearchResults(rs.getString(2) + acronym, rs.getString(2) + " has programs related to your search query: \"" + searchWord + "\"", "Institution?institutionID=" + rs.getInt(1), "Institution");
+				temp.add(tempResult);
+				
+				System.out.print("asasd");
 			}
 		
 		} catch (Exception e){

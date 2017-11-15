@@ -20,21 +20,27 @@
 		            <br>
 		        </div>
 		    </div>
-		    <div class="three wide column">
+		    <div class="four wide column">
 		        <h4 class="ui inverted header green">Our Members</h4>
 		
 		        <div class="ui inverted link list">
-		            <a href="Members" class="item footer-text">Grade School</a>
-		            <a href="Members" class="item footer-text">High School</a>
-		            <a href="Members" class="item footer-text">Basic Education</a>
-		            <a href="Members" class="item footer-text">Tertiary</a>
-		            <a href="Members" class="item footer-text">Graduate School</a>
-		            <a href="Members" class="item footer-text">Medical School</a>
-		            <a href="Members" class="item footer-text">CECSTE</a>
+		            <a href="Members?educLevel=1" class="item footer-text">Elementary School</a>
+		            <br>
+		            <a href="Members?educLevel=2" class="item footer-text">Secondary School</a>
+		            <br>
+		            <a href="Members?educLevel=3" class="item footer-text">Integrated Basic Education</a>
+		            <br>
+		            <a href="Members?educLevel=4" class="item footer-text">Tertiary Education</a>
+		            <br>
+		            <a href="Members?educLevel=5" class="item footer-text">Graduate Education</a>
+		            <br>
+		            <a href="Members?educLevel=6" class="item footer-text">Medical Education</a>
+		            <br>
+		            <a href="Members?educLevel=7" class="item footer-text">CECSTE</a>
 		         </div>
 		    </div>
 		
-		    <div class="four wide column">
+		    <div class="six wide column">
 		        <h4 class="ui inverted header green">Contact Us</h4>
 		        <div class="ui inverted link list">
 		            <span class="item footer-text"><i class="mail outline icon"></i>&nbsp;info@paascu.org.ph</span>
@@ -47,7 +53,7 @@
 		            <br>
 		        </div>
 		    </div>	
-		    <div class="five wide column">
+		    <!-- <div class="five wide column">
 		        <h4 class="ui inverted header green">Be Updated</h4>
 		        <p class=" footer-text">Signup for our newsletter!
 		        </p>
@@ -66,7 +72,7 @@
 		        <br>
 		        <br>
 		        <button class="ui green button">SIGN UP</button>
-		    </div>
+		    </div> -->
 		</div>
 
         <br>
