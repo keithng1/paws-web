@@ -5,6 +5,7 @@ public class News {
 	private int newsID;
 	private String title;
 	private String content;
+	private String image;
 	private String date;
 	
 	
@@ -41,16 +42,28 @@ public class News {
 		this.newsID = newsID;
 	}
 	
+		
+	public News(int newsID, String title, String content, String date, String image){
+			
+			super();
+			this.newsID = newsID;
+			this.title = title;
+			this.content = content;
+			this.date = date;
+			this.image = image;
+			
+			
+			
+		}
 	
-public News(int newsID, String title, String content, String date){
-		
-		super();
-		this.newsID = newsID;
-		this.title = title;
-		this.content = content;
-		this.date = date;
-		
-		
+	
+	public String getImage() {
+		return image;
+	}
+	
+	
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	

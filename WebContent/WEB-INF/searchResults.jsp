@@ -42,75 +42,242 @@
 
  $(document).ready(function() {
 
-	document.getElementById("headerTitle").innerHTML = "Search results for ${searchWord}";
+	document.getElementById("headerTitle").innerHTML = "Search results for: ${searchWord}";
 
-	 $.getJSON('./search.json', function(data) {
-		 
-		 
-		 if(data.length > 0)
-		  $.each(data, function(key, value) {
-			 if(value.content.toLowerCase().includes("${searchWord}".toLowerCase()))
-			 {	 
+	if("${cat}" == "institutions")
+	{
+		var pageCount =  (parseInt(${pages}));
+		
+		if(pageCount < 1)
+			$('#pagination').remove();
+		
+		
+		for(var i = 0; i<pageCount; i++)
+		{
+			if (pageCount < 25)
+			{
+				var aPagination = document.createElement("a");
+				aPagination.innerHTML = i+1;
+				aPagination.setAttribute("class", "item");
+				if(${page} == i+1)
+					aPagination.setAttribute("class", "active item");
+				aPagination.setAttribute("href", "Search?query=${searchWord}&cat=institutions&page="+(i+1));
+				$(aPagination).insertBefore('#nextPaginate');
+			} 
+			else if(pageCount >= 25)
+			{
+				if(i == 0 || i == pageCount-1)
+				{
+					var aPagination = document.createElement("a");
+					aPagination.innerHTML = i+1;
+					aPagination.setAttribute("class", "item");
+					if(${page} == i+1)
+						aPagination.setAttribute("class", "active item");
+					aPagination.setAttribute("href", "Search?query=${searchWord}&cat=institutions&page="+(i+1));
+					$(aPagination).insertBefore('#nextPaginate');
+				}
+				else
+				{
+					if (${page} <= pageCount/2) 
+					{
+						if(i == 25)
+						{
+							var aPagination = document.createElement("a");
+							aPagination.innerHTML = "...";
+							aPagination.setAttribute("class", "item");
+							if(${page} == i+1)
+								aPagination.setAttribute("class", "active item");
+							$(aPagination).insertBefore('#nextPaginate');
+						}
+						else if(i < 25)
+						{
+							var aPagination = document.createElement("a");
+							aPagination.innerHTML = i+1;
+							aPagination.setAttribute("class", "item");
+							if(${page} == i+1)
+								aPagination.setAttribute("class", "active item");
+							aPagination.setAttribute("href", "Search?query=${searchWord}&cat=institutions&page="+(i+1));
+							$(aPagination).insertBefore('#nextPaginate');
+						}
+						
+					}
+					else if(${page} > pageCount/2)
+					{
+						if(i == 1)
+						{
+							var aPagination = document.createElement("a");
+							aPagination.innerHTML = "...";
+							aPagination.setAttribute("class", "item");
+							if(${page} == i+1)
+								aPagination.setAttribute("class", "active item");
+							$(aPagination).insertBefore('#nextPaginate');
+						}
+						else if(i > pageCount - 25)
+						{
+							var aPagination = document.createElement("a");
+							aPagination.innerHTML = i+1;
+							aPagination.setAttribute("class", "item");
+							if(${page} == i+1)
+								aPagination.setAttribute("class", "active item");
+							aPagination.setAttribute("href", "Search?query=${searchWord}&cat=institutions&page="+(i+1));
+							$(aPagination).insertBefore('#nextPaginate');
+						}
+						
+					}
+				}
+			}
 				
-				if(document.getElementById("noResults")!=null)
-					document.getElementById("noResults").innerHTML = "";
-				var item = document.createElement("div");
-			 	item.setAttribute("class", "item");
-			 	 
-			 	var content = document.createElement("div");
-			 	content.setAttribute("class", "content");
-			 	 
-			 	var a = document.createElement("a");
-			 	a.setAttribute("class", "header");
-				a.innerHTML = value.title;
-				
-				var meta = document.createElement("div");
-			 	meta.setAttribute("class", "meta");
-			 	
-			 	var cinema = document.createElement("span");
-			 	cinema.setAttribute("class", "cinema");
-			 	
-			 	if(value.href == "Downloads")
-			 		cinema.innerHTML = "Downloads";
-			 			
-		 		else	
-			 		cinema.innerHTML = "Accreditation";
-						 	
-			 	var description = document.createElement("div");
-			 	description.setAttribute("class", "description");
-			 	
-			 	var p = document.createElement("p");
-			 	if(value.content.length > 430)
-			 		p.innerHTML = value.content.substring(0, 430) + "...";
-			 	else
-			 		p.innerHTML = value.content;
-			 		
-			 	var extra = document.createElement("div");
-			 	extra.setAttribute("onclick", "location.href='"+value.href+"'");
-			 	
-			 	var uiLeft = document.createElement("div");
-			 	uiLeft.setAttribute("class", "ui left floated primary button");
-			 	uiLeft.innerHTML = "See More";
-			 	
-			 	var i = document.createElement("i");
-			 	i.setAttribute("class", "right chevron icon");
-			 	
-			 	
-			 	meta.appendChild(cinema);
-			 	description.appendChild(p);
-			 	uiLeft.appendChild(i);
-			 	extra.appendChild(uiLeft);
-			 	content.appendChild(a);
-			 	content.appendChild(meta);
-			 	content.appendChild(description);
-			 	content.appendChild(document.createElement("br"));
-			 	content.appendChild(extra);
-			 	item.appendChild(content);
-			 	
-			 	document.getElementById("searchContents").appendChild(item);
-			 }
-		  });
-		});
+		}
+    	
+    	if(pageCount == ${page})
+    	{
+    		$(function () {
+    		    $('#nextPaginate').on("click", function (e) {
+    		        e.preventDefault();
+    		    });
+    		});
+    	}
+    	
+    	if(${page} == 1)
+    	{
+    		$(function () {
+    		    $('#backPaginate').on("click", function (e) {
+    		        e.preventDefault();
+    		    });
+    		});
+    	}
+		
+		
+		$('#instBtn').removeClass();
+		$('#instBtn').addClass("ui green button");
+		
+		$('#membersBtn').removeClass();
+		$('#membersBtn').addClass("ui basic green button");
+		
+		$('#newsBtn').removeClass();
+		$('#newsBtn').addClass("ui basic green button");
+		
+		$('#accBtn').removeClass();
+		$('#accBtn').addClass("ui basic green button");
+	}
+	else if("${cat}" == "members")
+	{
+		$('#pagination').remove();
+		
+		$('#membersBtn').removeClass();
+		$('#membersBtn').addClass("ui green button");
+		
+		$('#instBtn').removeClass();
+		$('#instBtn').addClass("ui basic green button");
+		
+		$('#newsBtn').removeClass();
+		$('#newsBtn').addClass("ui basic green button");
+		
+		$('#accBtn').removeClass();
+		$('#accBtn').addClass("ui basic green button");
+	}
+	else if("${cat}" == "news")
+	{
+
+		$('#pagination').remove();
+		$('#newsBtn').removeClass();
+		$('#newsBtn').addClass("ui green button");
+		
+		$('#instBtn').removeClass();
+		$('#instBtn').addClass("ui basic green button");
+		
+		$('#membersBtn').removeClass();
+		$('#membersBtn').addClass("ui basic green button");
+		
+		$('#accBtn').removeClass();
+		$('#accBtn').addClass("ui basic green button");
+	}
+	else if("${cat}" == "null")
+	{
+
+		$('#pagination').remove();
+		$('#accBtn').removeClass();
+		$('#accBtn').addClass("ui green button");
+		
+		$('#instBtn').removeClass();
+		$('#instBtn').addClass("ui basic green button");
+		
+		$('#membersBtn').removeClass();
+		$('#membersBtn').addClass("ui basic green button");
+		
+		$('#newsBtn').removeClass();
+		$('#newsBtn').addClass("ui basic green button");
+		
+		
+		 $.getJSON('./search.json', function(data) {
+			if(data.length > 0)
+			  $.each(data, function(key, value) {
+				 if(value.content.toLowerCase().includes("${searchWord}".toLowerCase()))
+				 {	 
+					
+					if(document.getElementById("noResults")!=null)
+						document.getElementById("noResults").innerHTML = "";
+					
+					var item = document.createElement("div");
+				 	item.setAttribute("class", "item");
+				 	 
+				 	var content = document.createElement("div");
+				 	content.setAttribute("class", "content");
+				 	 
+				 	var a = document.createElement("a");
+				 	a.setAttribute("class", "header");
+				 	a.setAttribute("href", value.href);
+				 	
+					a.innerHTML = value.title;
+					
+					var meta = document.createElement("div");
+				 	meta.setAttribute("class", "meta");
+				 	
+				 	var cinema = document.createElement("span");
+				 	cinema.setAttribute("class", "cinema");
+				 	
+				 	if(value.href == "Downloads")
+				 		cinema.innerHTML = "Downloads";
+				 			
+			 		else	
+				 		cinema.innerHTML = "Accreditation";
+							 	
+				 	var description = document.createElement("div");
+				 	description.setAttribute("class", "description");
+				 	
+				 	var p = document.createElement("p");
+				 	if(value.content.length > 430)
+				 		p.innerHTML = value.content.substring(0, 430) + "...";
+				 	else
+				 		p.innerHTML = value.content;
+				 		
+				 	var extra = document.createElement("div");
+				 	extra.setAttribute("onclick", "location.href='"+value.href+"'");
+				 	
+				 	var uiLeft = document.createElement("div");
+				 	uiLeft.setAttribute("class", "ui left floated primary button");
+				 	uiLeft.innerHTML = "See More";
+				 	
+				 	var i = document.createElement("i");
+				 	i.setAttribute("class", "right chevron icon");
+				 	
+				 	
+				 	meta.appendChild(cinema);
+				 	description.appendChild(p);
+				 	uiLeft.appendChild(i);
+				 	extra.appendChild(uiLeft);
+				 	content.appendChild(a);
+				 	content.appendChild(meta);
+				 	content.appendChild(description);
+				 	content.appendChild(document.createElement("br"));
+				 	content.appendChild(extra);
+				 	item.appendChild(content);
+				 	
+				 	document.getElementById("searchContents").appendChild(item);
+				 }
+			  });
+			});
+	}
  });
   
 </script>
@@ -129,15 +296,30 @@
 
      <div class="main-body-container">
 
-		<h1 id="headerTitle"></h1>
+	
+		<div class = "ui grid">
+				<div class = "left floated left aligned eight wide column"> 
+							<h1 id="headerTitle"></h1>
+				</div>
+				<div class = "right floated right aligned eight wide column">
+					<div class="ui buttons" >
+					  <button class="ui basic green button" id="accBtn" onclick="location.href='Search?query=${searchWord}'">Accreditation</button>
+					  <button class="ui basic green button" id="instBtn" onclick="location.href='Search?cat=institutions&query=${searchWord}'">Institutions</button>
+					  <button class="ui basic green button" id="membersBtn" onclick="location.href='Search?cat=members&query=${searchWord}'">Members</button>
+					  <button class="ui basic green button" id="newsBtn" onclick="location.href='Search?cat=news&query=${searchWord}'">News</button>
+					</div>
+				</div>
+				
+			
+		</div>
+		
 		<hr>
-		<br>
 		
 		<c:if test = "${results.isEmpty()}">
         	<h5 id="noResults">No results found.</h5>
         </c:if>
        
-      	<div class="ui sixteen wide column">
+      	<div class="ui sixteen wide column" style="padding-top: 2em;">
       		<div class="four wide column"></div>
       		<div class="twelve wide column">
 		        <div class="ui divided items" id="searchContents">
@@ -168,7 +350,10 @@
         <br>
         <br>
         <br>
-
+		<div class="ui pagination menu" id="pagination">
+				<a class="item" id="backPaginate" href="Search?query=${searchWord}&cat=institutions&page=${page-1}">&#60;</a>
+				<a class="item" id="nextPaginate" href="Search?query=${searchWord}&cat=institutions&page=${page+1}">&#62;</a>
+		</div>
 
     </div>
 

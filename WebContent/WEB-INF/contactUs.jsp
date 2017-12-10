@@ -99,21 +99,9 @@
         <div class="main-body-container">
 
             <div class="ui grid">
-                <div class="three wide column">
+                
 
-
-
-
-                    &nbsp;
-
-
-
-
-                </div>
-
-
-
-				<div class="thirteen wide column body-text-about">
+				<div class="eight wide column body-text-about">
 
 
 
@@ -142,9 +130,9 @@
                     <br>
                     <br>
                     <br>
-
-
-
+              </div>
+              <div class="eight wide column body-text-about">
+              
                     <h2 style="color: #45484c;">Leave Us a Message</h2>
                     <hr>
                     <br>
@@ -195,7 +183,7 @@
                                     <br> </div>
                                 <div class="field" style="width: 100%;">
 
-                                    <textarea style="width: 100%; height: 25%;" id="message" name="message"></textarea>
+                                    <textarea style="width: 100%; height: 25%; max-width: 100%;" id="message" name="message"></textarea>
                                 </div>
 
                             </div>
@@ -205,10 +193,11 @@
                       </form>
                     <br>
                     <br>
-                    <div class="ui primary huge button" onclick="submitMessage();">Submit</div>
+                    <div class="ui green button" onclick="submitMessage();">Submit</div>
 					
+              </div>
 
-                </div>
+
 
 
 

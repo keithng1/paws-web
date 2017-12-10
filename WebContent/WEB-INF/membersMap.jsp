@@ -33,7 +33,7 @@
        * element that contains the map. */
         
         #map {
-            height: 80%;
+            height: 65%;
             width: 100%;
         }
         
@@ -92,6 +92,10 @@
 	function getMap(level)
 	{
 		initMap(level, $('#cities option:selected').val());
+		$('#levels').find('.active').removeClass().addClass("item bold");
+		$('#'+level).removeClass();
+		$('#'+level).addClass("item bold active");
+		
 	}
 	
     function initMap(level, city) {
@@ -120,7 +124,7 @@
             
         	document.getElementById("total").innerHTML = "Total institutions: " + data.length;
              
-            
+          /*   
             if(city!='' && city!=" ")
             	document.getElementById("filterCity").innerHTML = "Results for " + city;
             else
@@ -128,8 +132,7 @@
                 
            	var levelName = document.getElementById(level).innerHTML;
            	document.getElementById("filterLevel").innerHTML = "Results for " + levelName;
-            	
-            console.log(locations);
+            	 */
 
             var markers = locations.map(function(location, i) {
                 var marker = new google.maps.Marker({
@@ -139,7 +142,7 @@
                 google.maps.event.addListener(marker, 'click', function(evt) {
                   infoWin.setContent(location.info);
                   infoWin.open(map, marker);
-                })
+                });
                 return marker;
               });
             
@@ -191,60 +194,132 @@
 
     <div class="main-body-container">
 
+		<div class = "ui grid">
+				<div class = "left floated left aligned eight wide column"> 
+							<h1 style="color: #45484c;">Members Map</h1>
+				</div>
+				<div class = "right floated right aligned eight wide column">
+					<div class="ui buttons" >
+					  <button class="ui green button" id="accBtn" onclick="location.href='Members'">View Members A-Z</button>
+					</div>
+				</div>
+			
+		</div>
+                <hr>
         <div class="ui grid">
-            <div class="three wide column">
-
-
-
-
+           <div class="three wide column">
 
                 <div class="ui secondary vertical menu">
                     <div class="sidebar-about">
+                    <br>
                         <p class="item" style="background-color: #45484c; color: white;">
-                            Our Members
+                            Filters
                         </p>
-                        <a class="item" href="Members">
-    A to Z
-  </a>
-                        <a class="item" href="Members?educLevel=1">
-   Elementary Education
-  </a>
-                        <a class="item" href="Members?educLevel=2">
-   Secondary Education
-  </a>
-                        <a class="item" href="Members?educLevel=3">
-   Integrated Basic Education
-  </a>
-
-                        <a class="item" href="Members?educLevel=4">
-   Tertiary Education
-  </a>
-
-                        <a class="item" href="Members?educLevel=5">
-   Graduate Education
-  </a>
-
-                        <a class="item" href="Members?educLevel=6">
-   Medical Education
-  </a>
-
-                        <a class="item" href="Members?educLevel=7">
-   Engineering, Computer Science & Technology Education
-  </a>
-
-
-                        <a class="item active" href="membersMap.jsp">
-   Map View
-  </a>
-
-
-
+						                       
+						
+						<div class="ui vertical menu">
+						<br>
+						<h5 id="total" style="padding-left:2em;"></h5>
+						 <div class="header item">Education Level</div>
+						 <div id="levels">
+						 	  <a class="item bold" onclick="getMap(0)" id="0">All levels</a>
+						      <a class="item bold" onclick="getMap(1)" id="1">Elementary Education</a>
+	                          <a class="item bold" onclick="getMap(2)" id="2">Secondary Education</a>
+	                          <a class="item bold" onclick="getMap(3)" id="3">Integrated Basic Education</a>
+	                          <a class="item bold" onclick="getMap(4)" id="4">Tertiary Education</a>
+	                          <a class="item bold" onclick="getMap(5)" id="5">Graduate Education</a>
+	                          <a class="item bold" onclick="getMap(6)" id="6">Medical Education</a>
+	                          <a class="item bold" onclick="getMap(7)" id="7">Engineering, Computer Science & Technology Education</a>
+	                   </div>
+	                     <br>
+	                      <div class="header item">City</div>
+						  <div class="ui item">
+						    <select class="ui search dropdown" id="cities">
+		                    		<option></option>
+									<option> </option>
+								</select>
+	            	   		
+						  </div>
+						</div>
+						
+						<!-- <div class="ui vertical menu">
+						  <a class="item bold" onclick="getMap(0)" id="0">All levels</a>
+							<br>
+							<br>
+	                           <a class="item bold" onclick="getMap(1)" id="1">Elementary Education</a>
+	                           <br>
+	                           <br>
+	                           <a class="item bold" onclick="getMap(2)" id="2">Secondary Education</a>
+	                           <br>
+	                           <br>
+	                           <a class="item bold" onclick="getMap(3)" id="3">Integrated Basic Education</a>
+	                           <br>
+	                           <br>
+	                           <a class="item bold" onclick="getMap(4)" id="4">Tertiary Education</a>
+	                           <br>
+	                           <br>
+	                           <a class="item bold" onclick="getMap(5)" id="5">Graduate Education</a>
+	                           <br>
+	                           <br>
+	                           <a class="item bold" onclick="getMap(6)" id="6">Medical Education</a>
+	                           <br>
+	                           <br>
+	                           <a class="item bold" onclick="getMap(7)" id="7">Engineering, Computer Science & Technology Education</a>
+	                           <br>
+	                           <br>
+						  <div class="header item">All Sections</div>
+						  <div class="ui item">
+						    <select class="ui compact search dropdown" id="cities">
+		                    		<option>Choose a city</option>
+									<option> </option>
+								</select>
+	            	   		
+						  </div>
+						</div> -->
+						
+						<!-- <div class="ui grid">
+	                    	   <h6 style="color: #45484c;">City</h6>
+	    	                   <br>
+	    	                   <br>
+								
+	            	   			<h6 style="color: #45484c;">Education Level</h6>
+	                            <br>
+	
+	
+	                            <a class="bold" onclick="getMap(0)" id="0">All levels</a>
+								<br>
+								<br>
+	                            <a class="bold" onclick="getMap(1)" id="1">Elementary Education</a>
+	                            <br>
+	                            <br>
+	                            <a class="bold" onclick="getMap(2)" id="2">Secondary Education</a>
+	                            <br>
+	                            <br>
+	                            <a class="bold" onclick="getMap(3)" id="3">Integrated Basic Education</a>
+	                            <br>
+	                            <br>
+	                            <a class="bold" onclick="getMap(4)" id="4">Tertiary Education</a>
+	                            <br>
+	                            <br>
+	                            <a class="bold" onclick="getMap(5)" id="5">Graduate Education</a>
+	                            <br>
+	                            <br>
+	                            <a class="bold" onclick="getMap(6)" id="6">Medical Education</a>
+	                            <br>
+	                            <br>
+	                            <a class="bold" onclick="getMap(7)" id="7">Engineering, Computer Science & Technology Education</a>
+	                            <br>
+	                            <br>
+	
+	
+	                    </div> -->
+                
+                	</div>
+						
                     </div>
 
-                </div>
 
             </div>
-
 
 
 
@@ -253,8 +328,7 @@
 
 
 
-                <h1 style="color: #45484c;">Members Map</h1>
-                <hr>
+               
                 <br>
 
 
@@ -267,66 +341,7 @@
 
 
 
-                <h2 style="color: #45484c;">Filters</h2>
-                <br>
-                
-                <p id="total"></p>
-                <p id="filterCity"></p>
-                <p id="filterLevel"></p>
-
-                <div class="ui two column grid">
-                    <div class="row">
-                    	<div class="column">
-                   		   <h3 style="color: #45484c;">City</h3>
-    	                   <hr>
-         	               <br>
-							<select class="ui fluid search dropdown" id="cities">
-	                    		<option></option>
-								<option> </option>
-							</select>
-            	   		</div>
-
-
-                        <div class="column" id="educLevels">
-
-
-
-                            <h3 style="color: #45484c;">Education Level</h3>
-                            <hr>
-                            <br>
-
-
-                            <a class="bold" onclick="getMap(0)" id="0">All levels</a>
-							<br>
-							<br>
-                            <a class="bold" onclick="getMap(1)" id="1">Elementary Education</a>
-                            <br>
-                            <br>
-                            <a class="bold" onclick="getMap(2)" id="2">Secondary Education</a>
-                            <br>
-                            <br>
-                            <a class="bold" onclick="getMap(3)" id="3">Integrated Basic Education</a>
-                            <br>
-                            <br>
-                            <a class="bold" onclick="getMap(4)" id="4">Tertiary Education</a>
-                            <br>
-                            <br>
-                            <a class="bold" onclick="getMap(5)" id="5">Graduate Education</a>
-                            <br>
-                            <br>
-                            <a class="bold" onclick="getMap(6)" id="6">Medical Education</a>
-                            <br>
-                            <br>
-                            <a class="bold" onclick="getMap(7)" id="7">Engineering, Computer Science & Technology Education</a>
-                            <br>
-                            <br>
-
-                        </div>
-
-                    </div>
-                
-                </div>
-
+               
 
 
 

@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%
+	if(request.getAttribute("homeContent")==null)
+	{   
+		response.sendRedirect("./Home");
+	    return; 
+	}
+%>
+
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html>
+    
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,9 +28,12 @@
 
 
         <meta charset="UTF-8">
-
-
-
+	
+	
+	 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	    <script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
+	
+	    <script type="text/javascript" src="js/semantic.min.js"></script>
 
         <link type="text/css" rel="stylesheet" href="css/style.css" />
         <!--Let browser know website is optimized for mobile-->
@@ -29,9 +43,10 @@
             @viewport {
                 width: auto;
             }
+         
+         
         </style>
-
-
+		
 
     </head>
 
@@ -48,7 +63,9 @@
 
             <div style=" height:70%;" class="slider slider1">
                 <div class="slides">
-                    <div class="slide-item item1">
+                    <% if(request.getAttribute("homeContent") != null) { %>
+					<c:forEach items="${homeContent}" var="news">
+					<div class="slide-item landscape"  style="background:url(${news.getImage()}) center; z-index: -1;">
                         <div class="overlay">
 
 
@@ -57,13 +74,13 @@
                                 <div class="two column row">
                                     <div class="column">
                                         <div class="carousel-content">
-                                            <span class="carousel-header">PAASCU JOINS TRAIN IQA</span>
+                                            <b><span class="carousel-header" id="spanTitle">${news.getTitle()}</span></b>
                                             <br>
                                             <br>
-                                            <span style=" text-align: left;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie </span>
+                                            <b><span style=" text-align: left;" id="spanContent">${news.getContent()}</span></b>
                                             <br>
                                             <br>
-                                            <button class="ui green button">READ MORE ></button>
+                                            <button class="ui green button" onclick ="location.href='ViewNews?newsID=${news.getNewsID()}'">READ MORE ></button>
                                         </div>
                                     </div>
                                 </div>
@@ -75,35 +92,9 @@
 
 
                     </div>
-                    <div class="slide-item item2">
-
-                        <div class="overlay">
-
-
-
-                            <div class="ui four column grid">
-                                <div class="two column row">
-                                    <div class="column">
-                                        <div class="carousel-content">
-                                            <span class="carousel-header">PAASCU JOINS TRAIN IQA</span>
-                                            <br>
-                                            <br>
-                                            <span style=" text-align: left;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a libero hendrerit, vulputate ligula id, mattis risus. Fusce sed metus vitae odio pulvinar aliquam vel sed nisi. Fusce molestie </span>
-                                            <br>
-                                            <br>
-                                            <button class="ui green button">READ MORE ></button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-
-
-                    </div>
+                    </c:forEach>
+					<% }%>
+                   
 
                 </div>
             </div>
@@ -194,10 +185,7 @@
 
 
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/jquery.glide/1.0.6/jquery.glide.min.js"></script>
-
-    <script type="text/javascript" src="js/semantic.min.js"></script>
+   
 
     <script type="text/javascript">
         if (screen.width >= 1500) {

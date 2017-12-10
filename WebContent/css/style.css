@@ -185,12 +185,16 @@ input{
 height: 28px;
 display: block;
 padding: 0;
+color: #000;
+
 }
 .slider-arrow--right {
 background-position: -17px 0;
+color: #000;
 }
 .slider-arrow--left {
 
+color: #000;
 }
 
 /* home page slider - start */
@@ -223,7 +227,9 @@ background-position: -17px 0;
   background:url("../img/2.jpg") no-repeat center;
 }
 .slider1 {
-  color:#fff;
+  text-shadow: -1px 0 white, 0 1px white,
+      1px 0 white, 0 -1px white;
+      color: #000;
 }
 .slider1 .content {
   margin-top:37%;

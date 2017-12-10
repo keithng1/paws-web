@@ -1,28 +1,27 @@
-package Routes;
+package JSONLoaders;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Utilities.InstitutionsUtil;
+import org.json.JSONArray;
+
 import Utilities.NewsUtil;
 
 /**
- * Servlet implementation class Institution
+ * Servlet implementation class GetDashboardNews
  */
-@WebServlet("/Institution")
-public class Institution extends HttpServlet {
+@WebServlet("/HomepageNewsLoader")
+public class HomepageNewsLoader extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Institution() {
+    public HomepageNewsLoader() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +31,12 @@ public class Institution extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		int ID = Integer.parseInt(request.getParameter("institutionID"));
-		InstitutionsUtil instUtil = new InstitutionsUtil();
-		
-		String name = instUtil.getInstitutionName(ID);
-		Double lng = instUtil.getLongitude(ID);
-		Double lat = instUtil.getLatitude(ID);
-		
-		request.setAttribute("instID", ID);
-		request.setAttribute("instName", name);
-		request.setAttribute("lat", lat);
-		request.setAttribute("lng", lng);
-		request.setAttribute("locationInfo", instUtil.getInstitutionLocationInfo(ID));
-		
-		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/membersPage.jsp");
-		rd.forward(request, response);	
-		
+		response.setContentType("application/json");
+		JSONArray jArray = new JSONArray();
+		NewsUtil newsUtil = new NewsUtil();
+		jArray = newsUtil.getDashboardNewsJSON();
+		response.getWriter().write(jArray.toString());
+	
 	}
 
 	/**

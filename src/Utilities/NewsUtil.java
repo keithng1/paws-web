@@ -33,39 +33,6 @@ public class NewsUtil {
 	
 	
 	
-	
-	public void addNews(String title, String content, String date){
-		try{
-			Connection conn = db.getConnection();
-
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO `news`(title, content, date) VALUES (?, ?, ?)");
-			ps.setString(1, title);
-			ps.setString(2, content);
-			ps.setString(3, date);
-			ps.executeUpdate();			
-		} catch (Exception e){
-			System.out.println("Error in NewsUtil:addNews()");
-			e.printStackTrace();	
-		}
-	}
-	
-	
-	
-	public void deleteNews(int newsID){
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("DELETE from news WHERE newsID = ?");
-			ps.setInt(1, newsID);
-			ps.executeUpdate();
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:deleteInstitution()");
-			e.printStackTrace();
-		}		
-		
-	}
-	
-	
-	
 	public News getNews(int newsID){
 		News temp = new News();
 		try{
@@ -74,7 +41,7 @@ public class NewsUtil {
 			ps.setInt(1, newsID);
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-			temp = new News(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4));
+			temp = new News(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 		} catch (Exception e){
 			System.out.println("Error in NewsUtil:getNews()");
 			e.printStackTrace();
@@ -102,8 +69,9 @@ public class NewsUtil {
 					job = new JSONObject();
 					job.put("newsID", rs.getInt(1));
 					job.put("title", rs.getString(2));
-					job.put("content", rs.getString(3));
+					job.put("content", rs.getString(3).replaceAll("\\<.*?>",""));
 					job.put("date", rs.getString(4));
+					job.put("image", rs.getString(5));
 					
 					
 
@@ -124,8 +92,9 @@ public class NewsUtil {
 					job = new JSONObject();
 					job.put("newsID", rs.getInt(1));
 					job.put("title", rs.getString(2));
-					job.put("content", rs.getString(3));
+					job.put("content", rs.getString(3).replaceAll("\\<.*?>",""));
 					job.put("date", rs.getString(4));
+					job.put("image", rs.getString(5));
 					
 					
 
@@ -142,6 +111,39 @@ public class NewsUtil {
 		return jArray;
 		
 	}
+	
+
+	public ArrayList<News> getHomepageNews(){
+		ArrayList<News> news = new ArrayList<News>();
+		News temp = new News();
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` ORDER BY `date` desc LIMIT 2");
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				
+				String content = rs.getString(3);
+				
+				String noHTMLString = content.replaceAll("\\<.*?>","");
+				
+				if(noHTMLString.length() > 170)
+					temp = new News(rs.getInt(1),rs.getString(2),noHTMLString.substring(0, 170) + "...", rs.getString(4), "/static/" + rs.getString(5));
+				
+				else
+					temp = new News(rs.getInt(1),rs.getString(2),noHTMLString, rs.getString(4), "/static/" + rs.getString(5));
+				
+				news.add(temp);
+			}
+		} catch (Exception e){
+			System.out.println("Error in NewsUtil:getAllNews()");
+			e.printStackTrace();
+		}
+		
+	    return news;
+	}
+	
+	
 	
 	public void updateNews(int newsID, String title, String content, String date){
 
@@ -179,7 +181,7 @@ public class NewsUtil {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()){
-				temp = new News(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4));
+				temp = new News(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4), rs.getString(5));
 				news.add(temp);
 			}
 		} catch (Exception e){
@@ -189,9 +191,6 @@ public class NewsUtil {
 		
 	    return news;
 	}
-		
-	
-	
 	
 
 	public JSONArray getAllNewsJSON(){
@@ -209,6 +208,7 @@ public class NewsUtil {
 				job.put("title", rs.getString(2));
 				job.put("content", rs.getString(3));
 				job.put("date", rs.getString(4));
+				job.put("image", rs.getString(5));
 				
 				
 
@@ -297,6 +297,39 @@ public class NewsUtil {
 			while(rs.next()){
 				job = new JSONObject();
 				job.put("year", rs.getString(1));
+				jArray.put(job);
+				
+			}
+		} catch (Exception e){
+			System.out.println("Error in InstitutionsUtil:getAllInstitutionsJSON()");
+			e.printStackTrace();
+		}
+		
+		return jArray;
+	}
+
+
+
+
+	public JSONArray getDashboardNewsJSON() {
+		JSONArray jArray = new JSONArray();
+		JSONObject job = new JSONObject();
+		
+		try{
+			Connection conn = db.getConnection();
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` ORDER BY `date` desc LIMIT 2");
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				job = new JSONObject();
+				job.put("newsID", rs.getInt(1));
+				job.put("title", rs.getString(2));
+				job.put("content", rs.getString(3));
+				job.put("date", rs.getString(4));
+				job.put("image", "/static/" + rs.getString(5));
+				
+				
+
 				jArray.put(job);
 				
 			}

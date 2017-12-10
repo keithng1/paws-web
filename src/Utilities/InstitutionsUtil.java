@@ -104,13 +104,13 @@ public class InstitutionsUtil {
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude, name, address, city FROM `institutions`");
+			PreparedStatement ps = conn.prepareStatement("SELECT institutionID, longitude, latitude, name, address, city FROM `institutions`");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				job = new JSONObject();
-				job.put("lng", rs.getDouble(1));
-				job.put("lat", rs.getDouble(2));
-				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
+				job.put("lng", rs.getDouble(2));
+				job.put("lat", rs.getDouble(3));
+				job.put("info", "<b>" + rs.getString(4) + "</b><br>" + rs.getString(5) + "<br>" + rs.getString(6) + "<br> <a href=\"Institution?institutionID=" + rs.getInt(1) + "\"> See Institution > </a>");
 				jArray.put(job);
 				
 			}
@@ -128,15 +128,15 @@ public class InstitutionsUtil {
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude, name, address, city FROM `institutions` WHERE educLevelID = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT institutionID, longitude, latitude, name, address, city FROM `institutions` WHERE educLevelID = ?");
 			ps.setInt(1, level);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				System.out.print("waaat");
 				job = new JSONObject();
-				job.put("lng", rs.getDouble(1));
-				job.put("lat", rs.getDouble(2));
-				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
+				job.put("lng", rs.getDouble(2));
+				job.put("lat", rs.getDouble(3));
+				job.put("info", "<b>" + rs.getString(4) + "</b><br>" + rs.getString(5) + "<br>" + rs.getString(6) + "<br> <a href=\"Institution?institutionID=" + rs.getInt(1) + "\"> See Institution > </a>");
 				jArray.put(job);
 				
 			}
@@ -443,14 +443,14 @@ public class InstitutionsUtil {
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude, name, address, city FROM `institutions` WHERE city LIKE ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT institutionID, longitude, latitude, name, address, city FROM `institutions` WHERE city LIKE ?");
 			ps.setString(1, "%" + city + "%");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				job = new JSONObject();
-				job.put("lng", rs.getDouble(1));
-				job.put("lat", rs.getDouble(2));
-				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
+				job.put("lng", rs.getDouble(2));
+				job.put("lat", rs.getDouble(3));
+				job.put("info", "<b>" + rs.getString(4) + "</b><br>" + rs.getString(5) + "<br>" + rs.getString(6) + "<br> <a href=\"Institution?institutionID=" + rs.getInt(1) + "\"> See Institution > </a>");
 				
 				jArray.put(job);
 				
@@ -469,16 +469,16 @@ public class InstitutionsUtil {
 		
 		try{
 			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT longitude, latitude, name, address, city FROM `institutions` WHERE city LIKE ? AND educLevelID = ?");
+			PreparedStatement ps = conn.prepareStatement("SELECT institutionID, longitude, latitude, name, address, city FROM `institutions` WHERE city LIKE ? AND educLevelID = ?");
 			ps.setString(1, "%" + city + "%");
 			ps.setInt(2, level);
 			
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				job = new JSONObject();
-				job.put("lng", rs.getDouble(1));
-				job.put("lat", rs.getDouble(2));
-				job.put("info", "<b>" + rs.getString(3) + "</b><br>" + rs.getString(4) + "<br>" + rs.getString(5));
+				job.put("lng", rs.getDouble(2));
+				job.put("lat", rs.getDouble(3));
+				job.put("info", "<b>" + rs.getString(4) + "</b><br>" + rs.getString(5) + "<br>" + rs.getString(6) + "<br> <a href=\"Institution?institutionID=" + rs.getInt(1) + "\"> See Institution > </a>");
 				
 				jArray.put(job);
 				
@@ -905,9 +905,27 @@ public class InstitutionsUtil {
 		return jArray;
 	}
 
-	
-
-
+	public String getInstitutionLocationInfo(int ID)
+	{
+			String location = "";
+			try{
+				Connection conn = db.getConnection();
+				PreparedStatement ps = conn.prepareStatement("SELECT name, address, city FROM `institutions` WHERE institutionID = ?");
+				ps.setInt(1, ID);
+				ResultSet rs = ps.executeQuery();
+				if(rs.first())
+				{
+					location = "<b>" + rs.getString(1) + "</b><br>" + rs.getString(2) + "<br>" + rs.getString(3);
+					
+				}
+			} catch (Exception e){
+				System.out.println("Error in InstitutionsUtil:getLocationsJSON()");
+				e.printStackTrace();
+			}
+			
+			return location;
+		
+	}
 
 	
 }

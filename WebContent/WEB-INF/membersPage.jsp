@@ -43,6 +43,8 @@
 <script>
     function initMap() {
 
+
+        var infoWin = new google.maps.InfoWindow();
     	var myLatLng = {lat: ${lat}, lng: ${lng}};
 
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -54,8 +56,13 @@
           position: myLatLng,
           map: map,
           title: "${instName}"
+          
         });
-
+        google.maps.event.addListener(marker, 'click', function(evt) {
+        	infoWin.setContent("${locationInfo}");
+            infoWin.open(map, marker);
+          });
+       
     }
 
 
@@ -119,6 +126,7 @@
        				{
        					var a = document.createElement("a");
        					a.setAttribute("href", value.website);
+       					a.setAttribute("target", "_blank");
        					a.innerHTML = value.website;
        					document.getElementById("website").appendChild(a);
            				
@@ -177,6 +185,8 @@
 	      			           			
    			       				});
       			       		}
+      						else
+      							$('#programsTable').remove();
        					});
       					
        			});

@@ -38,29 +38,105 @@ public class Search extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String searchWord = request.getParameter("query");
+		String category = request.getParameter("cat");
 		
 		
 		ArrayList<SearchResults> results = new ArrayList<SearchResults>();
+	
+		if(category!=null)
+		{
+			if(category.equals("members"))
+			{
+				BoardMembersUtil bmUtil = new BoardMembersUtil();
+				if(bmUtil.getBMResults(searchWord)!=null)
+					results.add(bmUtil.getBMResults(searchWord));
+					
+				CommissionMembersUtil cmUtil = new CommissionMembersUtil();
+				if(cmUtil.getCMResults(searchWord)!=null)
+					results.add(cmUtil.getCMResults(searchWord));
+				
+				request.setAttribute("cat", "members");
+
+				request.setAttribute("pages", 0);
+				request.setAttribute("page", 0);
+			}
+			
+			if(category.equals("news"))
+			{
+				NewsUtil newsUtil = new NewsUtil();
+				
+				if(newsUtil.getNewsResults(searchWord)!=null)
+					results.add(newsUtil.getNewsResults(searchWord));
+				
+				request.setAttribute("cat", "news");
+				request.setAttribute("pages", 0);
+				request.setAttribute("page", 0);
+				
+			}
+			
+			if(category.equals("institutions"))
+			{
+				InstitutionsUtil instUtil = new InstitutionsUtil();
+			
+				if(instUtil.getInstitutionsResults(searchWord)!=null)
+					results.addAll(instUtil.getInstitutionsResults(searchWord));
+				
+				if(instUtil.getInstitutionsWithProgram(searchWord)!=null)
+					results.addAll(instUtil.getInstitutionsWithProgram(searchWord));
+				
+				
+				System.out.println("results size :" + results.size());
+				int nPages = (results.size()/10);
+				if(results.size()%10 > 0)
+					nPages++;
+				else if(results.size()%10 == 0)
+					nPages--;
+				
+				System.out.println("pages :" + nPages);
+				
+				request.setAttribute("pages", nPages);
+				
+			
+				int selectedPage = 1;
+				if(request.getParameter("page")!=null)
+				{
+					selectedPage = Integer.parseInt(request.getParameter("page"));
+				}
+
+				ArrayList<SearchResults> resultsPage = new ArrayList<SearchResults>();
+				
+				if(results.size() > selectedPage*10)
+				{
+					for(int i = ((selectedPage-1)*10); i<((selectedPage-1)*10)+10; i++)
+					{
+						resultsPage.add(results.get(i));
+					}
+				}
+				else if(results.size() < selectedPage*10)
+				{
+					for(int i = ((selectedPage-1)*10); i<results.size(); i++)
+					{
+						resultsPage.add(results.get(i));
+					}
+				}
+				
+				results.clear();
+				results = resultsPage;
+			
+				request.setAttribute("page", selectedPage);
 		
-		BoardMembersUtil bmUtil = new BoardMembersUtil();
-		if(bmUtil.getBMResults(searchWord)!=null)
-			results.add(bmUtil.getBMResults(searchWord));
-		
-		CommissionMembersUtil cmUtil = new CommissionMembersUtil();
-		if(cmUtil.getCMResults(searchWord)!=null)
-			results.add(cmUtil.getCMResults(searchWord));
-		
-		NewsUtil newsUtil = new NewsUtil();
-		if(newsUtil.getNewsResults(searchWord)!=null)
-			results.add(newsUtil.getNewsResults(searchWord));
-		
-		InstitutionsUtil instUtil = new InstitutionsUtil();
-		if(instUtil.getInstitutionsResults(searchWord)!=null)
-			results.addAll(instUtil.getInstitutionsResults(searchWord));
-		
-		if(instUtil.getInstitutionsWithProgram(searchWord)!=null)
-			results.addAll(instUtil.getInstitutionsWithProgram(searchWord));
-		
+				
+				request.setAttribute("cat", "institutions");
+			}
+		}
+		else
+		{
+
+			request.setAttribute("pages", 0);
+			request.setAttribute("page", 0);
+			request.setAttribute("cat", "null");
+		}
+			
 		
 		request.setAttribute("results", results);
 		request.setAttribute("searchWord", searchWord);
