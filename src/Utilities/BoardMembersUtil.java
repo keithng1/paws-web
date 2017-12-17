@@ -65,7 +65,6 @@ public class BoardMembersUtil {
 			if(rs.next())
 			{
 				temp = new SearchResults("Board Members", rs.getString(1) + " " + rs.getString(2) + " - " + rs.getString(3) + "<br>...", "BoardMembers", "Board Members");
-				System.out.print("ASAS" + rs.getString(1));
 			}
 		
 		} catch (Exception e){

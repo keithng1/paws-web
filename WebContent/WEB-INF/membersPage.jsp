@@ -148,38 +148,31 @@
       			           			divRow.setAttribute("class", "row");
       			           			
       			           			var div1 = document.createElement("div");
-      			           			div1.setAttribute("class", "four wide column");
+      			           			div1.setAttribute("class", "five wide column");
   			           			
       			           			var b1 = document.createElement("p");
   			           				b1.innerHTML = value.degreeName;
   			           				
 	   			           			var div2 = document.createElement("div");
-	   			           			div2.setAttribute("class", "four wide column");
+	   			           			div2.setAttribute("class", "five wide column");
 				           			
 	   			           			var b2 = document.createElement("p");
 			           				b2.innerHTML = value.educLevel;
 				           				
 			           				var div3 = document.createElement("div");
-      			           			div3.setAttribute("class", "four wide column");
+      			           			div3.setAttribute("class", "five wide column");
   			           			
       			           			var b3 = document.createElement("p");
   			           				b3.innerHTML = value.accLevel;
   			           				
-	   			           			var div4 = document.createElement("div");
-	   			           			div4.setAttribute("class", "four wide column");
-				           			
-	   			           			var b4 = document.createElement("p");
-				           			b4.innerHTML = value.validUntil;
 			           				
 				           			div1.appendChild(b1);
 				           			div2.appendChild(b2);
 				           			div3.appendChild(b3);
-				           			div4.appendChild(b4);
 				           			
 				           			divRow.appendChild(div1);
 				           			divRow.appendChild(div2);
 				           			divRow.appendChild(div3);
-				           			divRow.appendChild(div4);
 				           			
 				           			document.getElementById("tableCell").appendChild(divRow);
 	      			           			
@@ -283,27 +276,23 @@
 	               <div class="row">
 	
 	
-	                   <div class="four wide column">
+	                   <div class="five wide column">
 	                       <b>Programs</b>
 	
 	                   </div>
 	
 	
-	                   <div class="four wide column">
+	                   <div class="five wide column">
 	                       <b>Education Level</b>
 	
 	                   </div>
 	
-	                   <div class="four wide column">
+	                   <div class="five wide column">
 	                       <b>Accreditation Level</b>
 	
 	                   </div>
 	
 	
-	                   <div class="four wide column">
-	
-	                       <b>Valid Until</b>
-	                   </div>
 	
 	
 	               </div>

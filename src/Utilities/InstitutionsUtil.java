@@ -21,46 +21,8 @@ public class InstitutionsUtil {
 		db = new DBUtil();
 	}
 	
+	
 	public JSONArray getFilteredInstitutionsJSON(String startLetter, int level){
-		JSONArray jArray = new JSONArray();
-		JSONObject job = new JSONObject();
-		try{
-			Connection conn = db.getConnection();
-			if(level==0)
-			{
-				PreparedStatement ps = conn.prepareStatement("SELECT name, city, institutionID FROM institutions WHERE name LIKE ?");
-				ps.setString(1, startLetter + "%");
-				ResultSet rs = ps.executeQuery();
-				while(rs.next()){
-					job = new JSONObject();
-					job.put("institutionID", rs.getInt(3));
-					job.put("institutionName", rs.getString(1) + " - " + rs.getString(2));
-					jArray.put(job);
-				}
-			}
-			else
-			{
-				PreparedStatement ps = conn.prepareStatement("SELECT name, city, institutionID FROM institutions WHERE name LIKE ? AND educLevelID = ?");
-				ps.setString(1, startLetter + "%");
-				ps.setInt(2, level);
-				ResultSet rs = ps.executeQuery();
-				while(rs.next()){
-					job = new JSONObject();
-					job.put("institutionID", rs.getInt(3));
-					job.put("institutionName", rs.getString(1) + " - " + rs.getString(2));
-					jArray.put(job);
-				}
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitutionsStartingLetterJSON()");
-			e.printStackTrace();
-		}
-		
-		return jArray;
-	}
-	
-	
-	public JSONArray getFilteredInstitutionsJSON1(String startLetter, int level){
 		JSONArray jArray = new JSONArray();
 		JSONObject job = new JSONObject();
 		try{
@@ -91,7 +53,7 @@ public class InstitutionsUtil {
 				}
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitutionsStartingLetterJSON()");
+			System.out.println("Error in InstitutionsUtil:getFilteredInstitutionsJSON()");
 			e.printStackTrace();
 		}
 		
@@ -132,7 +94,6 @@ public class InstitutionsUtil {
 			ps.setInt(1, level);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				System.out.print("waaat");
 				job = new JSONObject();
 				job.put("lng", rs.getDouble(2));
 				job.put("lat", rs.getDouble(3));
@@ -141,7 +102,7 @@ public class InstitutionsUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getLocationsJSON()");
+			System.out.println("Error in InstitutionsUtil:getLocationsLevelJSON()");
 			e.printStackTrace();
 		}
 		
@@ -165,7 +126,7 @@ public class InstitutionsUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitutionsJSON()");
+			System.out.println("Error in InstitutionsUtil:getInstitutionsOfSystemJSON()");
 			e.printStackTrace();
 		}
 		
@@ -195,7 +156,6 @@ public class InstitutionsUtil {
 		return jArray;
 	}
 	
-
 	public ArrayList<SearchResults> getInstitutionsResults(String searchWord)
 	{
 		ArrayList<SearchResults> temp = new ArrayList<SearchResults>();
@@ -230,7 +190,7 @@ public class InstitutionsUtil {
 			}
 		
 		} catch (Exception e){
-			System.out.println("Error in BoardMembersUtil:getBMResults()");
+			System.out.println("Error in InstitutionsUtil:getInstitutionsResults()");
 			e.printStackTrace();
 		}
 		
@@ -269,48 +229,16 @@ public class InstitutionsUtil {
 				tempResult = new SearchResults(rs.getString(2) + acronym, rs.getString(2) + " has programs related to your search query: \"" + searchWord + "\"", "Institution?institutionID=" + rs.getInt(1), "Institution");
 				temp.add(tempResult);
 				
-				System.out.print("asasd");
 			}
 		
 		} catch (Exception e){
-			System.out.println("Error in BoardMembersUtil:getBMResults()");
+			System.out.println("Error in InstitutionsUtil:getInstitutionsWithProgram()");
 			e.printStackTrace();
 		}
 		
 		return temp;
 	}
-	
-	public JSONArray getAllInstitutionsJSON(){
-		JSONArray jArray = new JSONArray();
-		JSONObject job = new JSONObject();
-		
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT name, systemID, acronym, dateAdded, city, institutionID, educLevelID FROM `institutions` ORDER BY `name`");
-			
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				job = new JSONObject();
-				job.put("institutionName", rs.getString(1));
-				job.put("system", getSchoolSystemName(rs.getInt(2)));
-				job.put("acronym", rs.getString(3));
-				job.put("dateAdded", formatDate_yearFirst(rs.getString(4)));
-				job.put("city", rs.getString(5));
-				job.put("institutionID", rs.getInt(6));
-				job.put("educLevel", getEducLevelName(rs.getInt(7)));
-				
 
-				jArray.put(job);
-				
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getAllInstitutionsJSON()");
-			e.printStackTrace();
-		}
-		
-		return jArray;
-	}
-	
 	private String getEducLevelName(int educLevelID)
 	{
 		String name="";
@@ -331,30 +259,7 @@ public class InstitutionsUtil {
 		
 		return name;
 	}
-	
-	
-	public int getEducLevelID(int institutionID)
-	{
-		int ID = 0;
 		
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT `educLevelID` FROM `institutions` where `institutionID`=?");
-			ps.setInt(1, institutionID);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){				
-				ID = rs.getInt(1);
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getEducLevelName()");
-			e.printStackTrace();
-		}
-		
-		return ID;
-	}
-	
-	
-	
 	private String getSchoolSystemName(int ID){
 		String name="";
 		
@@ -374,66 +279,6 @@ public class InstitutionsUtil {
 		}
 		
 		return name;
-	}
-	
-	public ArrayList<Institution> getInstitutions(){
-		ArrayList<Institution> institutions = new ArrayList<Institution>();
-		Institution temp = new Institution();
-
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM institutions ORDER BY `name`");
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				//constructor is (int accreditorID, String name, String institution, String discipline, String primaryArea, 
-				// String secondaryArea, int totalSurveys, String city)
-				//db returns accreditorID, lastname, firstname, midlename, honorifics, email, num_surveys, 
-				//date_trained, contact, address, city, country, venue_trained, primaryAreaID, 
-				//secondaryAreaID, discipline
-				
-				
-			
-				System.out.println(rs.getString(3));
-				temp = new Institution(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), getEducLevelName(rs.getInt(19)), rs.getDouble(20), rs.getDouble(21));
-				
-				temp.setSchoolSystemName(getSchoolSystemName(rs.getInt(2)));
-				
-				institutions.add(temp);
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitutions()");
-			e.printStackTrace();
-		}
-		
-	    return institutions;
-	}
-	
-	public ArrayList<Institution> getInstitutionsNameIDLevel(){
-		ArrayList<Institution> institutions = new ArrayList<Institution>();
-		Institution temp = new Institution();
-		
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT institutionID, name, city, educLevelID FROM institutions ORDER BY `name`");
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				//constructor is (int accreditorID, String name, String institution, String discipline, String primaryArea, 
-				// String secondaryArea, int totalSurveys, String city)
-				//db returns accreditorID, lastname, firstname, midlename, honorifics, email, num_surveys, 
-				//date_trained, contact, address, city, country, venue_trained, primaryAreaID, 
-				//secondaryAreaID, discipline
-				
-			
-				temp = new Institution(rs.getInt(1), rs.getString(2), rs.getString(3), getEducLevelName(rs.getInt(4)));
-				
-				institutions.add(temp);
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitutionsNameID()");
-			e.printStackTrace();
-		}
-		
-	    return institutions;
 	}
 	
 	public JSONArray getLocationsCityJSON(String city) 
@@ -456,7 +301,7 @@ public class InstitutionsUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getLocationsJSON()");
+			System.out.println("Error in InstitutionsUtil:getLocationsCityJSON()");
 			e.printStackTrace();
 		}
 		
@@ -484,7 +329,7 @@ public class InstitutionsUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getLocationsJSON()");
+			System.out.println("Error in InstitutionsUtil:getLocationsLevelCityJSON()");
 			e.printStackTrace();
 		}
 		
@@ -573,7 +418,7 @@ public class InstitutionsUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitutionsForLevelJSON()");
+			System.out.println("Error in InstitutionsUtil:getInstitutionsInfo()");
 			e.printStackTrace();
 		}
 		
@@ -602,206 +447,10 @@ public class InstitutionsUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitutions()");
+			System.out.println("Error in InstitutionsUtil:getInstitutionName()");
 			e.printStackTrace();
 		}
 		return name;
-	}
-	
-	public ArrayList<Institution> getSchoolSystemInstitutions(int systemID){
-		ArrayList<Institution> institutions = new ArrayList<Institution>();
-		Institution temp = new Institution();
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM institutions WHERE `systemID` = ?  ORDER BY `name`");
-			ps.setInt(1, systemID);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				//constructor is (int accreditorID, String name, String institution, String discipline, String primaryArea, 
-				// String secondaryArea, int totalSurveys, String city)
-				//db returns accreditorID, lastname, firstname, midlename, honorifics, email, num_surveys, 
-				//date_trained, contact, address, city, country, venue_trained, primaryAreaID, 
-				//secondaryAreaID, discipline
-			
-				System.out.println(rs.getString(3));
-				temp = new Institution(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), getEducLevelName(rs.getInt(19)), rs.getDouble(20), rs.getDouble(21));;;
-				institutions.add(temp);
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getSchoolSystemInstitutions()");
-			e.printStackTrace();
-		}
-		
-	    return institutions;
-	}
-	
-	public Institution getInstitution(int instID){
-		Institution temp = new Institution();
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM institutions a where a.institutionID = ?");
-			ps.setInt(1,  instID);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				temp = new Institution(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), getEducLevelName(rs.getInt(19)), rs.getDouble(20), rs.getDouble(21));;;
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitution()");
-			e.printStackTrace();
-		}
-		
-	    return temp;
-	}
-	
-	
-	
-	public void addInstitution(String ssName, String institutionName, String institutionAcronym, String address , String city , String country ,
-			String website , String contactNumber , String fax , String institutionHead , String position , String headEmail ,
-			String contactPerson , String contactPosition , String contactEmail , String membershipDate){
-		try{
-		
-			String dateBuild = formatDate(membershipDate);
-			
-			
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO institutions (systemID, name, head, hPosition, hEmail, address, status, dateAdded, city, fax, contactPerson, contactPosition, contactNumber, website, country, contactEmail, acronym) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			int ssID_int = Integer.parseInt(ssName);
-			ps.setInt(1, ssID_int);
-			ps.setString(2, institutionName);
-			ps.setString(3, institutionHead);
-			ps.setString(4, position);
-			ps.setString(5, headEmail);
-			ps.setString(6, address);
-			ps.setString(7, "Preliminary Visit");
-			ps.setString(8, dateBuild);
-			ps.setString(9, city);
-			ps.setString(10, fax);
-			ps.setString(11, contactPerson);
-			ps.setString(12, contactPosition);
-			ps.setString(13, contactNumber);
-			ps.setString(14, website);
-			ps.setString(15, country);
-			ps.setString(16, contactEmail);
-			ps.setString(17, institutionAcronym);
-			ps.executeUpdate();
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:addInstitution()");
-			e.printStackTrace();	
-		}
-	}
-	
-	public void editInstitution(int institutionID, String ssName, String institutionName, String institutionAcronym, String address , String city , String country ,
-			String website , String contactNumber , String fax , String institutionHead , String position , String headEmail ,
-			String contactPerson , String contactPosition , String contactEmail , String membershipDate){
-		try{
-			String dateBuild = formatDate(membershipDate);
-			
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("UPDATE institutions SET systemID=?, name=?, head=?, hPosition=?, hEmail=?, address=?, status=?, dateAdded=?, city=?, fax=?, contactPerson=?, contactPosition=?, contactNumber=?, website=?, country=?, contactEmail=?, acronym=? WHERE institutionID=?");
-			int ssID_int = Integer.parseInt(ssName);
-			
-			ps.setInt(1, ssID_int);
-			ps.setString(2, institutionName);
-			ps.setString(3, institutionHead);
-			ps.setString(4, position);
-			ps.setString(5, headEmail);
-			ps.setString(6, address);
-			ps.setString(7, "Preliminary Visit");
-			ps.setString(8, dateBuild);
-			ps.setString(9, city);
-			ps.setString(10, fax);
-			ps.setString(11, contactPerson);
-			ps.setString(12, contactPosition);
-			ps.setString(13, contactNumber);
-			ps.setString(14, website);
-			ps.setString(15, country);
-			ps.setString(16, contactEmail);
-			ps.setString(17, institutionAcronym);
-			ps.setInt(18, institutionID);
-			
-			ps.executeUpdate();
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:editInstitution()");
-			e.printStackTrace();	
-		}
-	}
-	
-	
-	public void addProgramToInst(String specific, int generalID, int insinstitutionID){
-		try{
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date = new Date();
-			String strDate = dateFormat.format(date);
-			
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("INSERT INTO `school-program` (programID, institutionID, level, dateAdded, degreeName) VALUES (?,?,?,?,?)");
-		
-			ps.setInt(1, generalID);
-			ps.setInt(2, insinstitutionID);
-			ps.setString(3, "NA");
-			ps.setString(4, strDate);
-			ps.setString(5, specific);
-			
-			ps.executeUpdate();
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:addProgramToInstitution()");
-			e.printStackTrace();	
-		}
-		
-	}
-	
-	public void deleteInstitution(int institutionID){
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("DELETE from institutions WHERE institutionID = ?");
-			ps.setInt(1, institutionID);
-			ps.executeUpdate();
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:deleteInstitution()");
-			e.printStackTrace();
-		}
-	}
-	
-	private static String formatDate(String date){
-		String format = new String();
-		String month = "";
-		String day;
-		String year;
-		if(date!=null&&date!=""){
-		String[] parts = date.split(" ");
-		if(parts[0].equals("January")){
-			month = "01";
-		}else if(parts[0].equals("February")){
-			month = "02";
-		}else if(parts[0].equals("March")){
-			month = "03";
-		}else if(parts[0].equals("April")){
-			month = "04";
-		}else if(parts[0].equals("May")){
-			month = "05";
-		}else if(parts[0].equals("June")){
-			month = "06";
-		}else if(parts[0].equals("July")){
-			month = "07";
-		}else if(parts[0].equals("August")){
-			month = "08";
-		}else if(parts[0].equals("September")){
-			month = "09";
-		}else if(parts[0].equals("October")){
-			month = "10";
-		}else if(parts[0].equals("November")){
-			month = "11";
-		}else if(parts[0].equals("December")){
-			month = "12";
-		}
-		year = parts[2];
-
-		parts = parts[1].split(",");
-		day = parts[0];
-		
-		format = year + "-" + month + "-"+ day;
-		}
-		return format;
 	}
 	
 	private static String formatDate_yearFirst(String date){
@@ -855,7 +504,7 @@ public class InstitutionsUtil {
 				lng = rs.getDouble(1);
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getSchoolSystemInstitutions()");
+			System.out.println("Error in InstitutionsUtil:getLongitude()");
 			e.printStackTrace();
 		}
 		
@@ -873,7 +522,7 @@ public class InstitutionsUtil {
 				lat = rs.getDouble(1);
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getSchoolSystemInstitutions()");
+			System.out.println("Error in InstitutionsUtil:getLatitude()");
 			e.printStackTrace();
 		}
 		
@@ -898,7 +547,7 @@ public class InstitutionsUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getInstitutionsForLevelJSON()");
+			System.out.println("Error in InstitutionsUtil:getAddressOfInst()");
 			e.printStackTrace();
 		}
 		
@@ -919,7 +568,7 @@ public class InstitutionsUtil {
 					
 				}
 			} catch (Exception e){
-				System.out.println("Error in InstitutionsUtil:getLocationsJSON()");
+				System.out.println("Error in InstitutionsUtil:getInstitutionLocationInfo()");
 				e.printStackTrace();
 			}
 			

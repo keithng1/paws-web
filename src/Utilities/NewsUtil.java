@@ -3,10 +3,7 @@ package Utilities;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,8 +11,6 @@ import org.json.JSONObject;
 import com.mysql.jdbc.Connection;
 
 import Models.News;
-import Models.Program;
-import Models.SchoolSystem;
 import Models.SearchResults;
 
 
@@ -29,9 +24,6 @@ public class NewsUtil {
 	public NewsUtil(){
 		db = new DBUtil();
 	}
-	
-	
-	
 	
 	public News getNews(int newsID){
 		News temp = new News();
@@ -104,7 +96,7 @@ public class NewsUtil {
 			}
 			
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getAllInstitutionsJSON()");
+			System.out.println("Error in NewsUtil:getNewsInPageJSON()");
 			e.printStackTrace();
 		}
 		
@@ -112,7 +104,6 @@ public class NewsUtil {
 		
 	}
 	
-
 	public ArrayList<News> getHomepageNews(){
 		ArrayList<News> news = new ArrayList<News>();
 		News temp = new News();
@@ -136,91 +127,11 @@ public class NewsUtil {
 				news.add(temp);
 			}
 		} catch (Exception e){
-			System.out.println("Error in NewsUtil:getAllNews()");
+			System.out.println("Error in NewsUtil:getHomepageNews()");
 			e.printStackTrace();
 		}
 		
 	    return news;
-	}
-	
-	
-	
-	public void updateNews(int newsID, String title, String content, String date){
-
-		try{
-
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("UPDATE news SET newsID=?, title=?, content=?, date=? WHERE newsID=?");
-		
-			ps.setInt(1, newsID);
-			ps.setString(2, title);
-			ps.setString(3, content);
-			ps.setString(4, date);
-			ps.setInt(5, newsID);
-		
-		    ps.executeQuery();
-			
-			
-		} catch (Exception e){
-			System.out.println("Error in NewsUtil:getNews()");
-			e.printStackTrace();
-		}
-		
-	
-	}
-	
-	
-	
-
-	public ArrayList<News> getAllNews(){
-		ArrayList<News> news = new ArrayList<News>();
-		News temp = new News();
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` ORDER BY `newsID`");
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()){
-				temp = new News(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4), rs.getString(5));
-				news.add(temp);
-			}
-		} catch (Exception e){
-			System.out.println("Error in NewsUtil:getAllNews()");
-			e.printStackTrace();
-		}
-		
-	    return news;
-	}
-	
-
-	public JSONArray getAllNewsJSON(){
-		JSONArray jArray = new JSONArray();
-		JSONObject job = new JSONObject();
-		
-		try{
-			Connection conn = db.getConnection();
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM `news` ORDER BY `newsID`");
-			
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				job = new JSONObject();
-				job.put("newsID", rs.getInt(1));
-				job.put("title", rs.getString(2));
-				job.put("content", rs.getString(3));
-				job.put("date", rs.getString(4));
-				job.put("image", rs.getString(5));
-				
-				
-
-				jArray.put(job);
-				
-			}
-		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getAllInstitutionsJSON()");
-			e.printStackTrace();
-		}
-		
-		return jArray;
 	}
 	
 	public int getTotalCountNews(int year){
@@ -252,8 +163,6 @@ public class NewsUtil {
 	    return count;
 	}
 	
-	
-
 	public SearchResults getNewsResults(String searchWord)
 	{
 		SearchResults temp = null;
@@ -281,10 +190,6 @@ public class NewsUtil {
 		return temp;
 	}
 
-
-
-
-
 	public JSONArray getNewsYearsJSON() {
 		JSONArray jArray = new JSONArray();
 		JSONObject job = new JSONObject();
@@ -301,15 +206,12 @@ public class NewsUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getAllInstitutionsJSON()");
+			System.out.println("Error in NewsUtil:getNewsYearsJSON()");
 			e.printStackTrace();
 		}
 		
 		return jArray;
 	}
-
-
-
 
 	public JSONArray getDashboardNewsJSON() {
 		JSONArray jArray = new JSONArray();
@@ -334,7 +236,7 @@ public class NewsUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in InstitutionsUtil:getAllInstitutionsJSON()");
+			System.out.println("Error in NewsUtil:getDashboardNewsJSON()");
 			e.printStackTrace();
 		}
 		

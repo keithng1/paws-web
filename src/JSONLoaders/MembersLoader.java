@@ -44,7 +44,7 @@ public class MembersLoader extends HttpServlet {
 		response.setContentType("application/json");
 		JSONArray jArray = new JSONArray();
 		InstitutionsUtil instUtil = new InstitutionsUtil();
-		jArray = instUtil.getFilteredInstitutionsJSON1(startLetter, level);
+		jArray = instUtil.getFilteredInstitutionsJSON(startLetter, level);
 		response.getWriter().write(jArray.toString());
 	}
 

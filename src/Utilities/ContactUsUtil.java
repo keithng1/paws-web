@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -39,7 +42,7 @@ public class ContactUsUtil {
 	        conn.setAutoCommit(true);
 			
 		} catch (Exception e){
-			System.out.println("Error in BoardMembersUtil:getBMResults()");
+			System.out.println("Error in ContactUsUtil:submitContactUs()");
 			e.printStackTrace();
 		}
 
@@ -60,7 +63,6 @@ public class ContactUsUtil {
 			{
 				if(!message.equalsIgnoreCase(rs.getString(3)))
 				{
-					System.out.print(message + " " + rs.getString(3));
 					if(!name.equalsIgnoreCase(rs.getString(1)))
 						if(!email.equalsIgnoreCase(rs.getString(2)))
 							return false;
@@ -70,7 +72,7 @@ public class ContactUsUtil {
 				return false;
 			
 		} catch (Exception e){
-			System.out.println("Error in BoardMembersUtil:getBMResults()");
+			System.out.println("Error in ContactUsUtil:isLastEntry()");
 			e.printStackTrace();
 		}
 		return true;
@@ -78,6 +80,11 @@ public class ContactUsUtil {
 	
 	
 	public String getCurrentTimeStamp() {
-	    return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date());
+		
+		Instant instant = Instant.now();
+		ZoneId z = ZoneId.of( "Asia/Manila" );
+		ZonedDateTime zdt = instant.atZone( z );
+		
+	    return zdt.toString();
 	}
 }

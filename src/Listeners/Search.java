@@ -85,14 +85,12 @@ public class Search extends HttpServlet {
 					results.addAll(instUtil.getInstitutionsWithProgram(searchWord));
 				
 				
-				System.out.println("results size :" + results.size());
 				int nPages = (results.size()/10);
 				if(results.size()%10 > 0)
 					nPages++;
 				else if(results.size()%10 == 0)
 					nPages--;
 				
-				System.out.println("pages :" + nPages);
 				
 				request.setAttribute("pages", nPages);
 				

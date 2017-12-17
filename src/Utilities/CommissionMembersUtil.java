@@ -43,7 +43,7 @@ public class CommissionMembersUtil {
 				
 			}
 		} catch (Exception e){
-			System.out.println("Error in BoardMembersUtil:getBoardMembersJSON()");
+			System.out.println("Error in CommissionMembersUtil:getCommissionMembersJSON()");
 			e.printStackTrace();
 		}
 		
